@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5927E64E5300915F26 /* FuelView.swift */; };
+		F41E1B5C27E64E7000915F26 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5B27E64E7000915F26 /* SocialView.swift */; };
+		F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5D27E64E8400915F26 /* CarbonView.swift */; };
+		F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5F27E6578700915F26 /* SettingsView.swift */; };
+		F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6127E65F9D00915F26 /* FuelModal.swift */; };
+		F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6327E6612C00915F26 /* CompenseModal.swift */; };
+		F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B6E27E6692800915F26 /* Localizable.strings */; };
+		F41E1B7127E6696400915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B7327E6696400915F26 /* Localizable.strings */; };
 		F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */; };
 		F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402527DFD3DD0003CEB8 /* ContentView.swift */; };
 		F4D3402827DFD3DE0003CEB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */; };
@@ -34,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F41E1B5927E64E5300915F26 /* FuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelView.swift; sourceTree = "<group>"; };
+		F41E1B5B27E64E7000915F26 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
+		F41E1B5D27E64E8400915F26 /* CarbonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonView.swift; sourceTree = "<group>"; };
+		F41E1B5F27E6578700915F26 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F41E1B6127E65F9D00915F26 /* FuelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelModal.swift; sourceTree = "<group>"; };
+		F41E1B6327E6612C00915F26 /* CompenseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompenseModal.swift; sourceTree = "<group>"; };
+		F41E1B6D27E6692800915F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F41E1B7227E6696400915F26 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4D3402027DFD3DD0003CEB8 /* Fuel Compense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuel Compense.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseApp.swift; sourceTree = "<group>"; };
 		F4D3402527DFD3DD0003CEB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,10 +110,18 @@
 		F4D3402227DFD3DD0003CEB8 /* Fuel Compense */ = {
 			isa = PBXGroup;
 			children = (
+				F41E1B6E27E6692800915F26 /* Localizable.strings */,
 				F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */,
 				F4D3402527DFD3DD0003CEB8 /* ContentView.swift */,
 				F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */,
 				F4D3402927DFD3DE0003CEB8 /* Preview Content */,
+				F41E1B5927E64E5300915F26 /* FuelView.swift */,
+				F41E1B5B27E64E7000915F26 /* SocialView.swift */,
+				F41E1B5D27E64E8400915F26 /* CarbonView.swift */,
+				F41E1B5F27E6578700915F26 /* SettingsView.swift */,
+				F41E1B6127E65F9D00915F26 /* FuelModal.swift */,
+				F41E1B6327E6612C00915F26 /* CompenseModal.swift */,
+				F41E1B7327E6696400915F26 /* Localizable.strings */,
 			);
 			path = "Fuel Compense";
 			sourceTree = "<group>";
@@ -212,7 +236,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				es,
 			);
 			mainGroup = F4D3401727DFD3DD0003CEB8;
 			productRefGroup = F4D3402127DFD3DD0003CEB8 /* Products */;
@@ -232,6 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D3402B27DFD3DE0003CEB8 /* Preview Assets.xcassets in Resources */,
+				F41E1B7127E6696400915F26 /* Localizable.strings in Resources */,
+				F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */,
 				F4D3402827DFD3DE0003CEB8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +284,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */,
+				F41E1B5C27E64E7000915F26 /* SocialView.swift in Sources */,
 				F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */,
+				F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */,
+				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
+				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
+				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,
+				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +325,25 @@
 			targetProxy = F4D3403B27DFD3DE0003CEB8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F41E1B6E27E6692800915F26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F41E1B6D27E6692800915F26 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F41E1B7327E6696400915F26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F41E1B7227E6696400915F26 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F4D3404227DFD3DE0003CEB8 /* Debug */ = {
@@ -346,7 +397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -401,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -419,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Fuel Compense/Preview Content\"";
+				DEVELOPMENT_TEAM = 29T4MGF4AT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -448,6 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Fuel Compense/Preview Content\"";
+				DEVELOPMENT_TEAM = 29T4MGF4AT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

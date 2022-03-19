@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Fuel Compense
+
+  Created by Sergio Almendro Cerdá on 19/3/22.
+  
+*/
+
+// ----> English
+
+"add" = "Add";
+"cancel" = "Cancel";
+
+// Content view
+
+"cv.questionAdd" = "What do you want to add?";
+"cv.refueling" = "Refueling";
+"cv.compensation" = "Compensation";
+"cv.fuel" = "Fuel";
+"cv.social" = "Social";
+"cv.settings" = "Settings";
+
