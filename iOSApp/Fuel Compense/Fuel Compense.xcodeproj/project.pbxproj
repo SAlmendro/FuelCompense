@@ -23,6 +23,7 @@
 		F4D3403527DFD3DE0003CEB8 /* Fuel_CompenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403427DFD3DE0003CEB8 /* Fuel_CompenseTests.swift */; };
 		F4D3403F27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */; };
 		F4D3404127DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */; };
+		F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5CF7627E8FA4300A93B20 /* MyForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		F4D3403A27DFD3DE0003CEB8 /* Fuel CompenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fuel CompenseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITests.swift; sourceTree = "<group>"; };
 		F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4E5CF7627E8FA4300A93B20 /* MyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				F41E1B6327E6612C00915F26 /* CompenseModal.swift */,
 				F41E1B7327E6696400915F26 /* Localizable.strings */,
 				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
+				F4E5CF7627E8FA4300A93B20 /* MyForm.swift */,
 			);
 			path = "Fuel Compense";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
 				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
+				F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

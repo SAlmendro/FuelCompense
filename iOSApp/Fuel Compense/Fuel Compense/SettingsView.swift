@@ -13,7 +13,7 @@ struct SettingsView: View {
     @State var isFree: Bool = true
     @State var prefEnabled: Bool = false
     @State private var pIndex = 0
-    let prefs = ["Antes", "Durante", "Después"]
+    let prefs = ["Gasolina", ""]
     
     var body: some View {
         NavigationView {

@@ -10,6 +10,7 @@
 
 "add" = "Add";
 "cancel" = "Cancel";
+"date" = "Date";
 
 // Content view
 
@@ -20,4 +21,12 @@
 "cv.social" = "Social";
 "cv.settings" = "Settings";
 
+// FuelView
 "fv.header" = "Refuelings";
+
+// FuelModal
+"fm.odometer" = "Odometer";
+"fm.liters" = "Liters";
+"fm.total" = "Total (€)";
+"fm.full" = "Full tank";
+
