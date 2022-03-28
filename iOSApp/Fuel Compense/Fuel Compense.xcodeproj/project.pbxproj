@@ -15,6 +15,8 @@
 		F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6327E6612C00915F26 /* CompenseModal.swift */; };
 		F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B6E27E6692800915F26 /* Localizable.strings */; };
 		F41E1B7127E6696400915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B7327E6696400915F26 /* Localizable.strings */; };
+		F435627E27F2428300389E39 /* FuelDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435627D27F2428300389E39 /* FuelDataController.swift */; };
+		F435628027F2445100389E39 /* CarbonDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435627F27F2445100389E39 /* CarbonDataController.swift */; };
 		F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2833127E7A91900DD0E75 /* AddButton.swift */; };
 		F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */; };
 		F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402527DFD3DD0003CEB8 /* ContentView.swift */; };
@@ -52,6 +54,8 @@
 		F41E1B6327E6612C00915F26 /* CompenseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompenseModal.swift; sourceTree = "<group>"; };
 		F41E1B6D27E6692800915F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F41E1B7227E6696400915F26 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F435627D27F2428300389E39 /* FuelDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDataController.swift; sourceTree = "<group>"; };
+		F435627F27F2445100389E39 /* CarbonDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDataController.swift; sourceTree = "<group>"; };
 		F4B2833127E7A91900DD0E75 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F4D3402027DFD3DD0003CEB8 /* Fuel Compense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuel Compense.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseApp.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				F41E1B7327E6696400915F26 /* Localizable.strings */,
 				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
 				F4E5CF7627E8FA4300A93B20 /* MyForm.swift */,
+				F435627D27F2428300389E39 /* FuelDataController.swift */,
+				F435627F27F2445100389E39 /* CarbonDataController.swift */,
 			);
 			path = "Fuel Compense";
 			sourceTree = "<group>";
@@ -297,6 +303,8 @@
 				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
 				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
 				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,
+				F435628027F2445100389E39 /* CarbonDataController.swift in Sources */,
+				F435627E27F2428300389E39 /* FuelDataController.swift in Sources */,
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
 				F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */,
 			);
