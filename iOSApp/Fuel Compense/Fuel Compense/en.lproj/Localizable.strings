@@ -30,3 +30,5 @@
 "fm.total" = "Total (€)";
 "fm.full" = "Full tank";
 
+// FuelRow
+"fr.lastKM" = "in the last "
