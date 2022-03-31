@@ -26,14 +26,4 @@ class FuelModel : ObservableObject {
     
     @Published var refills = [FuelRefill]()
     
-    /* Se crean la base y el token. Se crea la URLSession desde la que se va a
-     *   controlar todo el proceso de consulta a la API.
-     */
-    
-    
-    let urlBase = ""
-    let TOKEN = ""
-    let session = URLSession.shared
-    
-   
 }
