@@ -10,6 +10,7 @@ import SwiftUI
 struct FuelModal: View {
     
     @Binding var showFuelModal: Bool
+    @EnvironmentObject var fuelModel : FuelModel
     @State var odometer = "0"
     @State var liters = "1"
     @State var eurosLiter = 0.0
@@ -41,6 +42,7 @@ struct FuelModal: View {
             HStack{
                 Spacer()
                 Button(action: {
+                    fuelModel.refills.append(FuelRefill(odometer: Int(odometer)!, liters: Float(liters)!, eurosLiter: Float(eurosLiter), total: Float(total)!, date: date, fullTank: full, totalCarbon: (Float(liters)!*2.5)))
                     // guardar datos convirtiendo a float primero todos los string
                     self.showFuelModal = false
                 }) {Text(String(localized: "add"))}

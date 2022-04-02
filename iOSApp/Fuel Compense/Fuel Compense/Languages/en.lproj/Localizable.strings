@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Fuel Compense
 
@@ -32,3 +32,7 @@
 
 // FuelRow
 "fr.lastKM" = "in the last ";
+
+// CarbonView
+"cav.title" = "Compensations";
+

@@ -9,11 +9,14 @@ import SwiftUI
 
 struct FuelView: View {
     var body: some View {
+        
+        let fuelModel = FuelModel.init()
+        
         VStack{
             AddButton()
-            Spacer()
-            Text("Aquí habrá un picker en la parte de arriba para seleccionar o una vista de estadísticas de consumo o una lista de los repostajes.")
-                .padding()
+                .environmentObject(fuelModel)
+            FuelListSubView()
+                .environmentObject(fuelModel)
             Spacer()
         }
     }

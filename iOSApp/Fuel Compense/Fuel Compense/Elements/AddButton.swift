@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddButton: View {
     
+    @EnvironmentObject var fuelModel: FuelModel
     @State private var showingActionSheet = false
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
@@ -32,6 +33,7 @@ struct AddButton: View {
             .padding()
             .sheet(isPresented: $showFuelModal){
                 FuelModal(showFuelModal: $showFuelModal)
+                    .environmentObject(fuelModel)
             }
             .sheet(isPresented: $showCompenseModal){
                 CompenseModal(showCompenseModal: $showCompenseModal)
@@ -40,11 +42,5 @@ struct AddButton: View {
         
     }
         
-}
-
-struct AddButton_Previews: PreviewProvider {
-    static var previews: some View {
-        AddButton()
-    }
 }
 

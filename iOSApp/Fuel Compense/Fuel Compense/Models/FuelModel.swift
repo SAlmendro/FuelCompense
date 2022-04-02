@@ -10,7 +10,7 @@ import Foundation
 
 struct FuelRefill: Codable {
     
-    let id: Int
+    var id = UUID()
     var odometer: Int
     var liters: Float
     var eurosLiter: Float

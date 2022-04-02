@@ -14,9 +14,11 @@
 		F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6127E65F9D00915F26 /* FuelModal.swift */; };
 		F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6327E6612C00915F26 /* CompenseModal.swift */; };
 		F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B6E27E6692800915F26 /* Localizable.strings */; };
-		F41E1B7127E6696400915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B7327E6696400915F26 /* Localizable.strings */; };
-		F435627E27F2428300389E39 /* FuelDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435627D27F2428300389E39 /* FuelDataController.swift */; };
-		F435628027F2445100389E39 /* CarbonDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435627F27F2445100389E39 /* CarbonDataController.swift */; };
+		F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */; };
+		F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */; };
+		F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E027F8624A00D8EFCD /* FuelDetail.swift */; };
+		F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E227F8633600D8EFCD /* CarbonDetail.swift */; };
+		F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E427F863E800D8EFCD /* CarbonRow.swift */; };
 		F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2833127E7A91900DD0E75 /* AddButton.swift */; };
 		F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE227F4F90500CA0639 /* FuelRow.swift */; };
 		F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */; };
@@ -56,9 +58,11 @@
 		F41E1B6127E65F9D00915F26 /* FuelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelModal.swift; sourceTree = "<group>"; };
 		F41E1B6327E6612C00915F26 /* CompenseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompenseModal.swift; sourceTree = "<group>"; };
 		F41E1B6D27E6692800915F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F41E1B7227E6696400915F26 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F435627D27F2428300389E39 /* FuelDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDataController.swift; sourceTree = "<group>"; };
-		F435627F27F2445100389E39 /* CarbonDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDataController.swift; sourceTree = "<group>"; };
+		F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonListSubView.swift; sourceTree = "<group>"; };
+		F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListSubView.swift; sourceTree = "<group>"; };
+		F454F2E027F8624A00D8EFCD /* FuelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetail.swift; sourceTree = "<group>"; };
+		F454F2E227F8633600D8EFCD /* CarbonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDetail.swift; sourceTree = "<group>"; };
+		F454F2E427F863E800D8EFCD /* CarbonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonRow.swift; sourceTree = "<group>"; };
 		F4B2833127E7A91900DD0E75 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F4C84AE227F4F90500CA0639 /* FuelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRow.swift; sourceTree = "<group>"; };
 		F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonModel.swift; sourceTree = "<group>"; };
@@ -101,6 +105,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F454F2D627F85C1400D8EFCD /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				F4E5CF7627E8FA4300A93B20 /* MyForm.swift */,
+				F4C84AE227F4F90500CA0639 /* FuelRow.swift */,
+				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
+				F454F2E427F863E800D8EFCD /* CarbonRow.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		F454F2D727F85C6800D8EFCD /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B6127E65F9D00915F26 /* FuelModal.swift */,
+				F41E1B6327E6612C00915F26 /* CompenseModal.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		F454F2D827F85C9700D8EFCD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4C84AE627F5005C00CA0639 /* FuelModel.swift */,
+				F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F454F2D927F85CB000D8EFCD /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B6E27E6692800915F26 /* Localizable.strings */,
+			);
+			path = Languages;
+			sourceTree = "<group>";
+		};
+		F454F2DA27F85D1A00D8EFCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B5D27E64E8400915F26 /* CarbonView.swift */,
+				F41E1B5927E64E5300915F26 /* FuelView.swift */,
+				F41E1B5F27E6578700915F26 /* SettingsView.swift */,
+				F41E1B5B27E64E7000915F26 /* SocialView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F454F2DB27F85D9E00D8EFCD /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */,
+				F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */,
+				F454F2E027F8624A00D8EFCD /* FuelDetail.swift */,
+				F454F2E227F8633600D8EFCD /* CarbonDetail.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		F4D3401727DFD3DD0003CEB8 = {
 			isa = PBXGroup;
 			children = (
@@ -124,25 +187,16 @@
 		F4D3402227DFD3DD0003CEB8 /* Fuel Compense */ = {
 			isa = PBXGroup;
 			children = (
-				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
-				F435627F27F2445100389E39 /* CarbonDataController.swift */,
-				F41E1B5D27E64E8400915F26 /* CarbonView.swift */,
-				F41E1B6327E6612C00915F26 /* CompenseModal.swift */,
-				F4D3402527DFD3DD0003CEB8 /* ContentView.swift */,
 				F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */,
-				F435627D27F2428300389E39 /* FuelDataController.swift */,
-				F41E1B6127E65F9D00915F26 /* FuelModal.swift */,
-				F4C84AE227F4F90500CA0639 /* FuelRow.swift */,
-				F41E1B5927E64E5300915F26 /* FuelView.swift */,
-				F4E5CF7627E8FA4300A93B20 /* MyForm.swift */,
-				F41E1B5F27E6578700915F26 /* SettingsView.swift */,
-				F41E1B5B27E64E7000915F26 /* SocialView.swift */,
+				F4D3402527DFD3DD0003CEB8 /* ContentView.swift */,
+				F454F2DA27F85D1A00D8EFCD /* Views */,
+				F454F2DB27F85D9E00D8EFCD /* SubViews */,
+				F454F2D727F85C6800D8EFCD /* Modals */,
+				F454F2D627F85C1400D8EFCD /* Elements */,
+				F454F2D827F85C9700D8EFCD /* Models */,
+				F454F2D927F85CB000D8EFCD /* Languages */,
 				F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */,
-				F41E1B6E27E6692800915F26 /* Localizable.strings */,
-				F41E1B7327E6696400915F26 /* Localizable.strings */,
 				F4D3402927DFD3DE0003CEB8 /* Preview Content */,
-				F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */,
-				F4C84AE627F5005C00CA0639 /* FuelModel.swift */,
 			);
 			path = "Fuel Compense";
 			sourceTree = "<group>";
@@ -277,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D3402B27DFD3DE0003CEB8 /* Preview Assets.xcassets in Resources */,
-				F41E1B7127E6696400915F26 /* Localizable.strings in Resources */,
 				F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */,
 				F4D3402827DFD3DE0003CEB8 /* Assets.xcassets in Resources */,
 			);
@@ -312,10 +365,13 @@
 				F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */,
 				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
 				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
+				F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */,
+				F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */,
 				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,
-				F435628027F2445100389E39 /* CarbonDataController.swift in Sources */,
-				F435627E27F2428300389E39 /* FuelDataController.swift in Sources */,
+				F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */,
+				F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */,
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
+				F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */,
 				F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */,
 				F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */,
 				F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */,
@@ -359,14 +415,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F41E1B6D27E6692800915F26 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		F41E1B7327E6696400915F26 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F41E1B7227E6696400915F26 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

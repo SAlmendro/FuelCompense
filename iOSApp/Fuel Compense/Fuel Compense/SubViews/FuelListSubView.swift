@@ -1,0 +1,23 @@
+//
+//  FuelListSubView.swift
+//  Fuel Compense
+//
+//  Created by Sergio Almendro Cerdá on 2/4/22.
+//
+
+import SwiftUI
+
+struct FuelListSubView: View {
+    
+    @EnvironmentObject var fuelModel : FuelModel
+    
+    var body: some View {
+        List {
+            ForEach(fuelModel.refills.indices, id: \.self) { i in
+                NavigationLink(destination: FuelDetail(fuelRefill: $fuelModel.refills[i])) {
+                    FuelRow(fuelRefill: $fuelModel.refills[i])
+                }
+            }
+        }
+    }
+}
