@@ -22,7 +22,9 @@ struct FuelModal: View {
         VStack{
             Spacer()
             MyForm(fieldName: String(localized: "fm.odometer"), fieldNumber: $odometer)
+                .padding()
             MyForm(fieldName: String(localized: "fm.liters"), fieldNumber: $liters)
+                .padding()
             HStack {
                 Text("€/L")
                     .padding()
@@ -42,7 +44,20 @@ struct FuelModal: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    fuelModel.refills.append(FuelRefill(odometer: Int(odometer)!, liters: Float(liters)!, eurosLiter: Float(eurosLiter), total: Float(total)!, date: date, fullTank: full, totalCarbon: (Float(liters)!*2.5)))
+                    let refill = FuelRefill(
+                        odometer: Int(odometer)!,
+                        trip: 1,
+                        liters: Float(liters)!,
+                        eurosLiter: Float(eurosLiter),
+                        total: Float(total)!,
+                        date: date,
+                        fullTank: full,
+                        meanConsume: 1,
+                        meanEmissions: 1,
+                        totalCarbon: (Float(liters)!*2.5),
+                        previousRefill: UUID() //poner el del anterior
+                    )
+                    fuelModel.refills.append(refill)
                     // guardar datos convirtiendo a float primero todos los string
                     self.showFuelModal = false
                 }) {Text(String(localized: "add"))}

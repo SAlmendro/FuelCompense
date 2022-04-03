@@ -36,3 +36,11 @@
 // CarbonView
 "cav.title" = "Compensations";
 
+// FuelDetail
+"fd.trip" = "Trip";
+"fd.partial" = "This is a partial refill, we can't calculate mean consume and emissions.";
+"fd.meanConsume" = "Mean consume:";
+"fd.meanEmissions" = "Mean emissions:";
+"fd.totalCarbon" = "CO2 in this refueling:";
+"fd.delete" = "Delete refueling";
+

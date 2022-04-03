@@ -29,18 +29,6 @@ struct FuelRow: View {
                     )
                      )
                     .padding()
-                HStack {
-                    VStack {
-                        Text("\(meanConsume) L/100km")
-                            .padding()
-                        Text("\(meanCarbon) kgCO2/100km")
-                            .padding()
-                    }
-                    Text(String(localized: "fr.lastKM") + "\(kmFromLastFull) km")
-                        .padding()
-                }
-            }
-            VStack {
                 Text(String(localized: "fm.odometer") + " \(fuelRefill.odometer) km")
                     .padding()
                 Text("\(tripKm) km")
