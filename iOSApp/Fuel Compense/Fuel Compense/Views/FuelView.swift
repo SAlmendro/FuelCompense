@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct FuelView: View {
+    
+    @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+    
     var body: some View {
-        
-        let fuelModel = FuelModel.init()
         
         VStack{
             AddButton()

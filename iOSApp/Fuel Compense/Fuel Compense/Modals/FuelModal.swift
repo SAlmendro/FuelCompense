@@ -11,6 +11,8 @@ struct FuelModal: View {
     
     @Binding var showFuelModal: Bool
     @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+   // @State var lastOdometer = (globalsModel.globals.lastRefuel?.odometer ?? 0)
     @State var odometer = "0"
     @State var liters = "1"
     @State var eurosLiter = 0.0
@@ -23,6 +25,7 @@ struct FuelModal: View {
             Spacer()
             MyForm(fieldName: String(localized: "fm.odometer"), fieldNumber: $odometer)
                 .padding()
+            // Text(String(localized: "fd.trip") + String(globalsModel.globals.lastRefuel?.odometer))
             MyForm(fieldName: String(localized: "fm.liters"), fieldNumber: $liters)
                 .padding()
             HStack {

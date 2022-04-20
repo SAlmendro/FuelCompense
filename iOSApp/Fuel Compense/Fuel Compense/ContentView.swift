@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+    
     var body: some View {
         TabView{
             // Consumos
@@ -17,12 +21,18 @@ struct ContentView: View {
                     Image(systemName: "car.fill")
                     Text(String(localized: "cv.fuel"))
                 }
+                .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
             // CO2
             CarbonView()
                 .tabItem{
                     Image(systemName: "leaf.fill")
                     Text("CO2")
                 }
+                .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
             // Social (inicio)
             SocialView()
                 .tabItem{
@@ -35,6 +45,9 @@ struct ContentView: View {
                     Image(systemName: "gearshape.fill")
                     Text(String(localized: "cv.settings"))
                 }
+                .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
         }
     }
 }

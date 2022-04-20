@@ -10,9 +10,10 @@ import Foundation
 
 struct CarbonCompensation: Codable {
     
-    let id: Int
-    var date: Date
-    var tons: Float
+    let id : Int
+    var date : Date
+    var tons : Float
+    var currentCarbonNet : Float
     
 }
 

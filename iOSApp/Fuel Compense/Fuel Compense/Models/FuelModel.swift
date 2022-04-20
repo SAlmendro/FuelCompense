@@ -28,7 +28,38 @@ struct FuelRefill: Codable {
 
 class FuelModel : ObservableObject {
     
-    @Published var refills = [FuelRefill]()
+    private var encoder = JSONEncoder()
+    private var decoder = JSONDecoder()
+    
+    @Published var refills : Array<FuelRefill> {
+        didSet {
+            do {
+                let data = try encoder.encode(refills)
+                UserDefaults.standard.set(data, forKey: "refuelings")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    var userDef : UserDefaults
+    
+    init(){
+        userDef = UserDefaults.standard
+        if let refillsUserDefData = (userDef.object(forKey: "refuelings") as? Data) {
+            do {
+                let refillsUserDef = try decoder.decode(Array<FuelRefill>.self, from: refillsUserDefData)
+                self.refills = refillsUserDef
+            } catch {
+                self.refills = []
+                print(error.localizedDescription)
+            }
+            print("Refuelings recovered")
+        } else {
+            print("There were no refuelings in userDef")
+            self.refills = []
+        }
+    }
     
     func delete(uuid: UUID) -> Bool {
         if refills.last!.id == uuid {
@@ -36,6 +67,11 @@ class FuelModel : ObservableObject {
             return true;
         }
         return false;
+    }
+    
+    func deleteAll() -> Void {
+        refills = []
+        
     }
     
 }

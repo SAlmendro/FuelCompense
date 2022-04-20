@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
 
     @State var name: String = ""
     @State var isFree: Bool = true

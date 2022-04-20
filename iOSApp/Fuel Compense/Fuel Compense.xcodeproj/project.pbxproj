@@ -19,6 +19,7 @@
 		F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E027F8624A00D8EFCD /* FuelDetail.swift */; };
 		F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E227F8633600D8EFCD /* CarbonDetail.swift */; };
 		F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E427F863E800D8EFCD /* CarbonRow.swift */; };
+		F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488B6502801F13B007934CA /* GlobalsModel.swift */; };
 		F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2833127E7A91900DD0E75 /* AddButton.swift */; };
 		F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE227F4F90500CA0639 /* FuelRow.swift */; };
 		F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */; };
@@ -63,6 +64,7 @@
 		F454F2E027F8624A00D8EFCD /* FuelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetail.swift; sourceTree = "<group>"; };
 		F454F2E227F8633600D8EFCD /* CarbonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDetail.swift; sourceTree = "<group>"; };
 		F454F2E427F863E800D8EFCD /* CarbonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonRow.swift; sourceTree = "<group>"; };
+		F488B6502801F13B007934CA /* GlobalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalsModel.swift; sourceTree = "<group>"; };
 		F4B2833127E7A91900DD0E75 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F4C84AE227F4F90500CA0639 /* FuelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRow.swift; sourceTree = "<group>"; };
 		F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonModel.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				F4C84AE627F5005C00CA0639 /* FuelModel.swift */,
 				F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */,
+				F488B6502801F13B007934CA /* GlobalsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */,
 				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
 				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
+				F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */,
 				F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */,
 				F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */,
 				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,

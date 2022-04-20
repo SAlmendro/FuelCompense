@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct CarbonView: View {
+    
+    @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+    
     var body: some View {
         NavigationView {
             
