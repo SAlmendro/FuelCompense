@@ -12,6 +12,7 @@ struct FuelListSubView: View {
     @EnvironmentObject var fuelModel : FuelModel
     
     var body: some View {
+        NavigationView{
         List {
             ForEach(fuelModel.refills.indices, id: \.self) { i in
                 NavigationLink(
@@ -21,6 +22,7 @@ struct FuelListSubView: View {
                     FuelRow(fuelRefill: $fuelModel.refills[i])
                 }
             }
+        }
         }
     }
 }

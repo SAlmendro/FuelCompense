@@ -59,6 +59,7 @@
 		F41E1B6127E65F9D00915F26 /* FuelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelModal.swift; sourceTree = "<group>"; };
 		F41E1B6327E6612C00915F26 /* CompenseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompenseModal.swift; sourceTree = "<group>"; };
 		F41E1B6D27E6692800915F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F42F092A2822DEF6007E2AC3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonListSubView.swift; sourceTree = "<group>"; };
 		F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListSubView.swift; sourceTree = "<group>"; };
 		F454F2E027F8624A00D8EFCD /* FuelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetail.swift; sourceTree = "<group>"; };
@@ -419,6 +420,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F41E1B6D27E6692800915F26 /* en */,
+				F42F092A2822DEF6007E2AC3 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
