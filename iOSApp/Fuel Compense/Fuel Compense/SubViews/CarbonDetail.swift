@@ -9,11 +9,29 @@ import SwiftUI
 
 struct CarbonDetail: View {
     
+    @Environment(\.presentationMode) var mode : Binding<PresentationMode>
     @Binding var carbonCompensation : CarbonCompensation
+    @EnvironmentObject var carbonModel : CarbonModel
     
     var body: some View {
         
-        Text("Here we'll have a detail of the compensation and a button to delete it if it is the last one.")
+        VStack {
+            Text(String(localized: "date") + ": \(carbonCompensation.date)")
+                .padding()
+            Text("kgCO2: \(carbonCompensation.tons*1000)")
+                .padding()
+            Button(action: {
+                if carbonModel.delete(uuid: carbonCompensation.id) {
+                    self.mode.wrappedValue.dismiss()
+                }
+            }, label: {
+                VStack{
+                    Image(systemName: "trash")
+                    Text(String(localized: "fd.delete"))
+                        .font(.footnote)
+                }
+            })
+        }
         
     }
 }

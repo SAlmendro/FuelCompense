@@ -32,3 +32,14 @@
 
 // FuelRow
 "fr.lastKM" = "en los últimos ";
+
+// CarbonView
+"cav.title" = "Compensaciones";
+
+// FuelDetail
+"fd.trip" = "Viaje";
+"fd.partial" = "Este es un repostaje parcial, no podemos calcular la media de consumo y emisiones.";
+"fd.meanConsume" = "Consumo medio:";
+"fd.meanEmissions" = "Emisiones medias:";
+"fd.totalCarbon" = "CO2 en este repostaje:";
+"fd.delete" = "Borrar repostaje";

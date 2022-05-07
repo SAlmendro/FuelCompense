@@ -15,17 +15,17 @@ struct FuelDetail: View {
     
     var body: some View {
         VStack {
-            Text(String(localized: "fm.odometer") + ": \(fuelRefill.odometer)")
+            Text(String(localized: "fm.odometer") + ": \(fuelRefill.odometer) km")
                 .padding()
-            Text(String(localized: "fd.trip") + ": \(fuelRefill.trip)")
+            Text(String(localized: "fd.trip") + ": \(fuelRefill.trip) km")
                 .padding()
-            Text(String(localized: "fm.liters") + ": \(fuelRefill.liters)")
+            Text(String(localized: "fm.liters") + ": \(fuelRefill.liters) L")
                 .padding()
-            Text(String(localized: "fm.odometer") + ": \(fuelRefill.eurosLiter)")
+            Text(String(localized: "€/L:") + "\(fuelRefill.eurosLiter) €/L")
                 .padding()
-            Text(String(localized: "fm.odometer") + ": \(fuelRefill.total)")
+            Text(String(localized: "fm.total") + ": \(fuelRefill.total) €")
                 .padding()
-            Text(String(localized: "fm.odometer") + ": \(fuelRefill.date)")
+            Text(String(localized: "date") + ": \(fuelRefill.date)")
                 .padding()
             if fuelRefill.fullTank {
                 HStack {

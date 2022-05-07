@@ -50,11 +50,11 @@ class FuelModel : ObservableObject {
             do {
                 let refillsUserDef = try decoder.decode(Array<FuelRefill>.self, from: refillsUserDefData)
                 self.refills = refillsUserDef
+                print("Refuelings recovered")
             } catch {
                 self.refills = []
                 print(error.localizedDescription)
             }
-            print("Refuelings recovered")
         } else {
             print("There were no refuelings in userDef")
             self.refills = []
@@ -63,7 +63,7 @@ class FuelModel : ObservableObject {
     
     func delete(uuid: UUID) -> Bool {
         if refills.last!.id == uuid {
-            refills.popLast()
+            refills.removeLast()
             return true;
         }
         return false;
@@ -71,7 +71,6 @@ class FuelModel : ObservableObject {
     
     func deleteAll() -> Void {
         refills = []
-        
     }
     
 }

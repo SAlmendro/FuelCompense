@@ -23,21 +23,23 @@ struct FuelModal: View {
     var body: some View {
         VStack{
             Spacer()
-            MyForm(fieldName: String(localized: "fm.odometer"), fieldNumber: $odometer)
-                .padding()
-            // Text(String(localized: "fd.trip") + String(globalsModel.globals.lastRefuel?.odometer))
-            MyForm(fieldName: String(localized: "fm.liters"), fieldNumber: $liters)
-                .padding()
-            HStack {
-                Text("€/L")
+            VStack {
+                MyForm(fieldName: String(localized: "fm.odometer"), fieldNumber: $odometer)
                     .padding()
-                Spacer()
-                Text(String((Float(total) ?? 0)/(Float(liters) ?? 1)) + "€/L" )
+                Text(String(localized: "fd.trip") + String(globalsModel.globals.lastRefuel?.odometer ?? 0))
+                MyForm(fieldName: String(localized: "fm.liters"), fieldNumber: $liters)
+                    .padding()
+                HStack {
+                    Text("€/L")
+                        .padding()
+                    Spacer()
+                    Text(String((Float(total) ?? 0)/(Float(liters) ?? 1)) + " €/L" )
+                        .padding()
+                }
+                MyForm(fieldName: String(localized: "fm.total"), fieldNumber: $total)
+                DatePicker(String(localized: "date"), selection: $date)
                     .padding()
             }
-            MyForm(fieldName: String(localized: "fm.total"), fieldNumber: $total)
-            DatePicker(String(localized: "date"), selection: $date)
-                .padding()
             Spacer()
             Toggle(isOn: $full) {
                 Text(String(localized: "fm.full"))
@@ -68,7 +70,9 @@ struct FuelModal: View {
                 Button(action: {
                     self.showFuelModal = false
                 }) {Text(String(localized: "cancel"))}
+                Spacer()
             }
+            .padding()
         }
         .padding()
     }

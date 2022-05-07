@@ -28,12 +28,25 @@ struct Globals: Codable {
 
 class GlobalsModel : ObservableObject {
     
+    private var globals0 = Globals(
+        fuelType: "",
+        carbonPerLiter: 0,
+        totalLiters: 0,
+        totalKm: 0,
+        totalKmCarbon: 0,
+        totalCarbon: 0,
+        netCarbon: 0,
+        meanConsume: 0,
+        meanEmissions: 0,
+        lastRefuel: nil,
+        lastCompensation: nil,
+        kmSinceLastFullRefill: 0,
+        partialRefuelingsNotConsolidated: [])
+    
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
     
-    @Published var globals : Globals
-    
-    var userDef : UserDefaults {
+    @Published var globals : Globals {
         didSet {
             do {
                 let data = try encoder.encode(globals)
@@ -44,6 +57,8 @@ class GlobalsModel : ObservableObject {
         }
     }
     
+    var userDef : UserDefaults
+    
     init(){
         userDef = UserDefaults.standard
         if let globalsUserDefData = (userDef.object(forKey: "globals") as? Data) {
@@ -52,39 +67,13 @@ class GlobalsModel : ObservableObject {
                 self.globals = globalsUserDef
                 print("Globals recovered")
             } catch {
-                self.globals = Globals(
-                    fuelType: "",
-                    carbonPerLiter: 0,
-                    totalLiters: 0,
-                    totalKm: 0,
-                    totalKmCarbon: 0,
-                    totalCarbon: 0,
-                    netCarbon: 0,
-                    meanConsume: 0,
-                    meanEmissions: 0,
-                    lastRefuel: nil,
-                    lastCompensation: nil,
-                    kmSinceLastFullRefill: 0,
-                    partialRefuelingsNotConsolidated: [])
+                self.globals = globals0
                 print(error.localizedDescription)
             }
             
         } else {
             print("There were no globals in userDef")
-            self.globals = Globals(
-                fuelType: "",
-                carbonPerLiter: 0,
-                totalLiters: 0,
-                totalKm: 0,
-                totalKmCarbon: 0,
-                totalCarbon: 0,
-                netCarbon: 0,
-                meanConsume: 0,
-                meanEmissions: 0,
-                lastRefuel: nil,
-                lastCompensation: nil,
-                kmSinceLastFullRefill: 0,
-                partialRefuelingsNotConsolidated: [])
+            self.globals = globals0
         }
     }
     
@@ -123,20 +112,7 @@ class GlobalsModel : ObservableObject {
     }
     
     func deleteAll() -> Void {
-        globals = Globals(
-            fuelType: "",
-            carbonPerLiter: 0,
-            totalLiters: 0,
-            totalKm: 0,
-            totalKmCarbon: 0,
-            totalCarbon: 0,
-            netCarbon: 0,
-            meanConsume: 0,
-            meanEmissions: 0,
-            lastRefuel: nil,
-            lastCompensation: nil,
-            kmSinceLastFullRefill: 0,
-            partialRefuelingsNotConsolidated: [])
+        globals = globals0
     }
     
 }
