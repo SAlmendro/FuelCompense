@@ -32,6 +32,9 @@
 		F4D3403F27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */; };
 		F4D3404127DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */; };
 		F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5CF7627E8FA4300A93B20 /* MyForm.swift */; };
+		F4F4C710282C31D2008452FF /* SocialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C70F282C31D2008452FF /* SocialModel.swift */; };
+		F4F4C712282C36E7008452FF /* SocialRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C711282C36E7008452FF /* SocialRow.swift */; };
+		F4F4C714282C3E1C008452FF /* SocialDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C713282C3E1C008452FF /* SocialDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITests.swift; sourceTree = "<group>"; };
 		F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F4E5CF7627E8FA4300A93B20 /* MyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyForm.swift; sourceTree = "<group>"; };
+		F4F4C70F282C31D2008452FF /* SocialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialModel.swift; sourceTree = "<group>"; };
+		F4F4C711282C36E7008452FF /* SocialRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialRow.swift; sourceTree = "<group>"; };
+		F4F4C713282C3E1C008452FF /* SocialDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 				F4C84AE227F4F90500CA0639 /* FuelRow.swift */,
 				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
 				F454F2E427F863E800D8EFCD /* CarbonRow.swift */,
+				F4F4C711282C36E7008452FF /* SocialRow.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -134,6 +141,7 @@
 				F4C84AE627F5005C00CA0639 /* FuelModel.swift */,
 				F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */,
 				F488B6502801F13B007934CA /* GlobalsModel.swift */,
+				F4F4C70F282C31D2008452FF /* SocialModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 				F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */,
 				F454F2E027F8624A00D8EFCD /* FuelDetail.swift */,
 				F454F2E227F8633600D8EFCD /* CarbonDetail.swift */,
+				F4F4C713282C3E1C008452FF /* SocialDetail.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -364,6 +373,7 @@
 				F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */,
 				F41E1B5C27E64E7000915F26 /* SocialView.swift in Sources */,
 				F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */,
+				F4F4C714282C3E1C008452FF /* SocialDetail.swift in Sources */,
 				F4C84AE727F5005C00CA0639 /* FuelModel.swift in Sources */,
 				F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */,
 				F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */,
@@ -377,8 +387,10 @@
 				F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */,
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
 				F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */,
+				F4F4C710282C31D2008452FF /* SocialModel.swift in Sources */,
 				F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */,
 				F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */,
+				F4F4C712282C36E7008452FF /* SocialRow.swift in Sources */,
 				F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

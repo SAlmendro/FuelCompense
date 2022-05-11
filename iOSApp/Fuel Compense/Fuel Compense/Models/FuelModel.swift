@@ -11,17 +11,17 @@ import Foundation
 struct FuelRefill: Codable {
     
     var id = UUID()
-    var odometer: Int
-    var trip: Int
-    var liters: Float
-    var eurosLiter: Float
-    var total: Float
-    var date: Date
-    var fullTank: Bool
-    var meanConsume: Float
-    var meanEmissions: Float
-    var totalCarbon: Float
-    var previousRefill: UUID
+    var odometer : Int
+    var trip : Int
+    var liters : Float
+    var eurosLiter : Float
+    var total : Float
+    var date : Date
+    var fullTank : Bool
+    var meanConsume : Float
+    var meanEmissions : Float
+    var totalCarbon : Float
+    var previousRefill : UUID
     
 }
 

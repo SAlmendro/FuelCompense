@@ -13,6 +13,7 @@ struct Fuel_CompenseApp: App {
     let fuelModel = FuelModel()
     let carbonModel = CarbonModel()
     let globalsModel = GlobalsModel()
+    let socialModel = SocialModel()
     
     var body: some Scene {
         WindowGroup {
@@ -20,6 +21,7 @@ struct Fuel_CompenseApp: App {
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
+                .environmentObject(socialModel)
         }
     }
 }

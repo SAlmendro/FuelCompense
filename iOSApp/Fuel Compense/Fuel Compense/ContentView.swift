@@ -12,6 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
+    @EnvironmentObject var socialModel : SocialModel
     
     var body: some View {
         TabView{
@@ -39,6 +40,7 @@ struct ContentView: View {
                     Image(systemName: "person.3")
                     Text(String(localized: "cv.social"))
                 }
+                .environmentObject(socialModel)
             // Settings
             SettingsView()
                 .tabItem{

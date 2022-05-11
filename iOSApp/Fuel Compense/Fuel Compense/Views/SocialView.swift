@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct SocialView: View {
+    
+    @EnvironmentObject var socialModel : SocialModel
+    
     var body: some View {
-        VStack {
-            AddButton()
-            Spacer()
-            Text("Aquí habrá una List mostrando las actualizaciones de estado de tus amigos, cada elemento de la list será una view con el texto del estado y botón de like, al estilo twitter.")
-                .padding()
-            Spacer()
+        
+        NavigationView{
+            List {
+                ForEach(socialModel.socialUnits.indices, id: \.self) { i in
+                    NavigationLink(
+                        destination: SocialDetail(socialUnit: $socialModel.socialUnits[i])
+                            .environmentObject(socialModel)
+                    ) {
+                        SocialRow(socialUnit: $socialModel.socialUnits[i])
+                    }
+                }
+            }
         }
         
     }
 }
 
-struct SocialView_Previews: PreviewProvider {
-    static var previews: some View {
-        SocialView()
-    }
-}
+
