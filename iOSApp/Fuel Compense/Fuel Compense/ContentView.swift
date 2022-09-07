@@ -41,6 +41,9 @@ struct ContentView: View {
                     Text(String(localized: "cv.social"))
                 }
                 .environmentObject(socialModel)
+                .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
             // Settings
             SettingsView()
                 .tabItem{
