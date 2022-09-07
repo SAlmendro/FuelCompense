@@ -14,10 +14,17 @@ struct CarbonView: View {
     @EnvironmentObject var globalsModel : GlobalsModel
     
     var body: some View {
-        NavigationView {
-            
+        
+        VStack{
+            AddButton()
+                .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
+            CarbonListSubView()
+                .environmentObject(carbonModel)
+            Spacer()
         }
-        .navigationTitle(String(localized: "cav.title"))
+        
     }
 }
 

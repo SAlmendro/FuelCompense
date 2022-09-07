@@ -22,7 +22,7 @@ struct SocialDetail: View {
                 .padding()
             HStack {
                 Button {
-                    // change FAV state
+                    // change FAV state, añadiendo o eliminando mi username del array de favs
                 } label: {
                     Text("\(socialUnit.favs.count) FAVs")
                 }

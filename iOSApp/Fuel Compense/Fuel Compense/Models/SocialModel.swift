@@ -11,7 +11,6 @@ struct SocialUnit : Codable {
     
     var id = UUID()
     var text : String
-    var fav : Bool
     var favs : Array<String> // the strings are the usernames of the users that marked this social unit as fav
     var authUserName : String
     var authID : Int

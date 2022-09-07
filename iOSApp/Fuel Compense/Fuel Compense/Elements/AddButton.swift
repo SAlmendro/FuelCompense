@@ -10,6 +10,8 @@ import SwiftUI
 struct AddButton: View {
     
     @EnvironmentObject var fuelModel: FuelModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+    @EnvironmentObject var carbonModel : CarbonModel
     @State private var showingActionSheet = false
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
@@ -34,9 +36,12 @@ struct AddButton: View {
             .sheet(isPresented: $showFuelModal){
                 FuelModal(showFuelModal: $showFuelModal)
                     .environmentObject(fuelModel)
+                    .environmentObject(globalsModel)
             }
             .sheet(isPresented: $showCompenseModal){
                 CompenseModal(showCompenseModal: $showCompenseModal)
+                    .environmentObject(carbonModel)
+                    .environmentObject(globalsModel)
             }
         }
         

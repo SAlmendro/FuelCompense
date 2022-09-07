@@ -26,6 +26,8 @@ struct SocialRow: View {
                 .padding()
             
             HStack {
+                /*  Cuando sepa dónde guardo mi nombre de usuario, debo buscar mi nombre
+                        de usuario en el array de favs para comprobar si yo he dado fav
                 if socialUnit.fav {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.yellow)
@@ -33,6 +35,7 @@ struct SocialRow: View {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.gray)
                 }
+                 */
                 Spacer()
                 Text("\(socialUnit.favs.count) FAVs")
                 Spacer()

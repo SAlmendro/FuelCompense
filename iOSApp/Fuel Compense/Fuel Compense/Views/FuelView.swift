@@ -18,6 +18,8 @@ struct FuelView: View {
         VStack{
             AddButton()
                 .environmentObject(fuelModel)
+                .environmentObject(carbonModel)
+                .environmentObject(globalsModel)
             FuelListSubView()
                 .environmentObject(fuelModel)
             Spacer()

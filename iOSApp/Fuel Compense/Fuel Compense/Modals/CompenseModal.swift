@@ -10,6 +10,8 @@ import SwiftUI
 struct CompenseModal: View {
     
     @Binding var showCompenseModal: Bool
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
     @State var date = Date()
     @State var CO2kg = "0"
     
@@ -24,7 +26,13 @@ struct CompenseModal: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    // guardar fecha y kgco2 (este convertirlo a float y a toneladas antes de guardarlo)
+                    let compensation = CarbonCompensation(
+                        date: date,
+                        tons: Float(CO2kg)!*0.001
+                    )
+                    print(compensation.tons)
+                    print("Toneladas convertidas desde kg")
+                    carbonModel.compensations.append(compensation)
                     self.showCompenseModal = false
                 }) {Text(String(localized: "add"))}
                 Spacer()

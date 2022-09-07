@@ -13,10 +13,12 @@ struct CarbonRow: View {
     @Binding var carbonCompensation : CarbonCompensation
     
     var body: some View {
-        
-        // TODO
-        
-        Text("\(carbonCompensation.tons) tons compensed")
+        HStack {
+            Spacer()
+            Text("\(carbonCompensation.tons) tons compensed")
+            Spacer()
+            Text("\(carbonCompensation.date)")
+        }
         
     }
 }
