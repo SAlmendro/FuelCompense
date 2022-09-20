@@ -13,9 +13,8 @@ struct Globals: Codable {
     var carbonPerLiter : Float
     var totalLiters : Float
     var totalKm : Int
-    var totalKmCarbon : Int
-    var totalCarbon : Float
-    var netCarbon : Float
+    var totalCarbonEmitted : Float
+    var totalCarbonCompensed : Float
     var meanConsume : Float
     var meanEmissions : Float
     var lastRefuel : FuelRefill?
@@ -31,13 +30,6 @@ class GlobalsModel : ObservableObject {
     private var globals0 = Globals(
         fuelType: "",
         carbonPerLiter: 0,
-        totalLiters: 0,
-        totalKm: 0,
-        totalKmCarbon: 0,
-        totalCarbon: 0,
-        netCarbon: 0,
-        meanConsume: 0,
-        meanEmissions: 0,
         lastRefuel: nil,
         lastCompensation: nil,
         kmSinceLastFullRefill: 0,
@@ -83,28 +75,26 @@ class GlobalsModel : ObservableObject {
             carbonPerLiter: 0,
             totalLiters: 0,
             totalKm: 0,
-            totalKmCarbon: self.globals.totalKmCarbon,
-            totalCarbon: self.globals.totalCarbon,
-            netCarbon: self.globals.netCarbon,
+            totalCarbonEmitted: self.globals.totalCarbonEmitted,
+            totalCarbonCompensed: self.globals.totalCarbonCompensed,
             meanConsume: 0,
-            meanEmissions: self.globals.meanEmissions,
+            meanEmissions: 0,
             lastRefuel: nil,
             lastCompensation: self.globals.lastCompensation,
             kmSinceLastFullRefill: 0,
             partialRefuelingsNotConsolidated: [])
     }
     
-    func deleteCompensations() -> Void {
+    func deleteCarbonData() -> Void {
         globals = Globals(
             fuelType: self.globals.fuelType,
-            carbonPerLiter: 0,
+            carbonPerLiter: self.globals.carbonPerLiter,
             totalLiters: self.globals.totalLiters,
             totalKm: self.globals.totalKm,
-            totalKmCarbon: 0,
-            totalCarbon: 0,
-            netCarbon: 0,
-            meanConsume: 0,
-            meanEmissions: self.globals.meanEmissions,
+            totalCarbonEmitted: 0,
+            totalCarbonCompensed: 0,
+            meanConsume: self.globals.meanConsume,
+            meanEmissions: 0,
             lastRefuel: nil,
             lastCompensation: self.globals.lastCompensation,
             kmSinceLastFullRefill: 0,

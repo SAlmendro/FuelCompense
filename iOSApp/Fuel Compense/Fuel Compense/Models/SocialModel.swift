@@ -36,6 +36,7 @@ class SocialModel : ObservableObject {
     func publish(socialUnit: SocialUnit) -> Void {
         socialUnits.append(socialUnit);
         // publish the new social unit to the API and then, retrieve the social units to have it complete
+        refresh()
     }
     
     func delete(uuid: UUID) -> Bool {
