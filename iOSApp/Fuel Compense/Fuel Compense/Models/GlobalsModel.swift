@@ -11,12 +11,6 @@ struct Globals: Codable {
     
     var fuelType : String
     var carbonPerLiter : Float
-    var totalLiters : Float
-    var totalKm : Int
-    var totalCarbonEmitted : Float
-    var totalCarbonCompensed : Float
-    var meanConsume : Float
-    var meanEmissions : Float
     var lastRefuel : FuelRefill?
     var lastCompensation : CarbonCompensation?
     var kmSinceLastFullRefill : Int
@@ -73,12 +67,6 @@ class GlobalsModel : ObservableObject {
         globals = Globals(
             fuelType: "",
             carbonPerLiter: 0,
-            totalLiters: 0,
-            totalKm: 0,
-            totalCarbonEmitted: self.globals.totalCarbonEmitted,
-            totalCarbonCompensed: self.globals.totalCarbonCompensed,
-            meanConsume: 0,
-            meanEmissions: 0,
             lastRefuel: nil,
             lastCompensation: self.globals.lastCompensation,
             kmSinceLastFullRefill: 0,
@@ -89,12 +77,6 @@ class GlobalsModel : ObservableObject {
         globals = Globals(
             fuelType: self.globals.fuelType,
             carbonPerLiter: self.globals.carbonPerLiter,
-            totalLiters: self.globals.totalLiters,
-            totalKm: self.globals.totalKm,
-            totalCarbonEmitted: 0,
-            totalCarbonCompensed: 0,
-            meanConsume: self.globals.meanConsume,
-            meanEmissions: 0,
             lastRefuel: nil,
             lastCompensation: self.globals.lastCompensation,
             kmSinceLastFullRefill: 0,

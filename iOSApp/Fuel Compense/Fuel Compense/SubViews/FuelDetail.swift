@@ -51,17 +51,20 @@ struct FuelDetail: View {
             Text(String(localized: "fd.totalCarbon") + "\(fuelRefill.totalCarbon) kg")
                 .padding()
             Spacer()
-            Button(action: {
-                if fuelModel.delete(uuid: fuelRefill.id) {
-                    self.mode.wrappedValue.dismiss()
-                }
-            }, label: {
-                VStack{
-                    Image(systemName: "trash")
-                    Text(String(localized: "fd.delete"))
-                        .font(.footnote)
-                }
-            })
+            if fuelModel.refills.last!.id == fuelRefill.id {
+                Button(action: {
+                    if fuelModel.delete(uuid: fuelRefill.id) {
+                        self.mode.wrappedValue.dismiss()
+                    }
+                }, label: {
+                    VStack{
+                        Image(systemName: "trash")
+                        Text(String(localized: "fd.delete"))
+                            .font(.footnote)
+                    }
+                })
+            }
+            
         }
     }
 }

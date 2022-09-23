@@ -20,17 +20,19 @@ struct CarbonDetail: View {
                 .padding()
             Text("kgCO2: \(carbonCompensation.tons*1000)")
                 .padding()
-            Button(action: {
-                if carbonModel.delete(uuid: carbonCompensation.id) {
-                    self.mode.wrappedValue.dismiss()
-                }
-            }, label: {
-                VStack{
-                    Image(systemName: "trash")
-                    Text(String(localized: "fd.delete"))
-                        .font(.footnote)
-                }
-            })
+            if carbonModel.compensations.last!.id == carbonCompensation.id {
+                Button(action: {
+                    if carbonModel.delete(uuid: carbonCompensation.id) {
+                        self.mode.wrappedValue.dismiss()
+                    }
+                }, label: {
+                    VStack{
+                        Image(systemName: "trash")
+                        Text(String(localized: "fd.delete"))
+                            .font(.footnote)
+                    }
+                })
+            }
         }
         
     }
