@@ -59,8 +59,7 @@ struct FuelModal: View {
                         fullTank: full,
                         meanConsume: 1,
                         meanEmissions: 1,
-                        totalCarbon: (Float(liters)!*2.5),
-                        previousRefill: UUID() //poner el del anterior
+                        totalCarbon: (Float(liters)!*2.5) //poner el del anterior
                     )
                     fuelModel.refills.append(refill)
                     // guardar datos convirtiendo a float primero todos los string

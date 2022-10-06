@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8CF379DB-1E20-4256-874A-34AC4633586F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64A5DE00-9DB6-4DB9-A4EC-68EDEB27293F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fuel Compense/Models/FuelModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "refills"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "64A5DE00-9DB6-4DB9-A4EC-68EDEB27293F - 7ba589f4e64d9fb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fuel_Compense.FuelModel.refills.didset : Swift.Array&lt;Fuel_Compense.FuelRefill&gt;"
+                  moduleName = "Fuel Compense"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergioalmendrocerda/Documents/TFG/FuelCompense/iOSApp/Fuel%20Compense/Fuel%20Compense/Models/FuelModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  uuid = "64A5DE00-9DB6-4DB9-A4EC-68EDEB27293F - e5bad03a4ae7c849"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Fuel_Compense.FuelRefill, Fuel_Compense.FuelRefill) -&gt; Swift.Bool in Fuel_Compense.FuelModel.refills.didset : Swift.Array&lt;Fuel_Compense.FuelRefill&gt;"
+                  moduleName = "Fuel Compense"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergioalmendrocerda/Documents/TFG/FuelCompense/iOSApp/Fuel%20Compense/Fuel%20Compense/Models/FuelModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "133">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

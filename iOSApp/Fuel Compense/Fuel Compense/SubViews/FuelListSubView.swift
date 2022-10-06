@@ -14,7 +14,7 @@ struct FuelListSubView: View {
     var body: some View {
         NavigationView{
         List {
-            ForEach(fuelModel.refills.indices.reversed(), id: \.self) { i in
+            ForEach(fuelModel.refills.indices, id: \.self) { i in
                 NavigationLink(
                     destination: FuelDetail(fuelRefill: $fuelModel.refills[i])
                         .environmentObject(fuelModel)

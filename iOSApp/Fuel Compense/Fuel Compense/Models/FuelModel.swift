@@ -21,7 +21,6 @@ struct FuelRefill: Codable {
     var meanConsume : Float
     var meanEmissions : Float
     var totalCarbon : Float
-    var previousRefill : UUID
     
 }
 
@@ -34,6 +33,7 @@ class FuelModel : ObservableObject {
     @Published var refills : Array<FuelRefill> {
         didSet {
             do {
+                refills = refills.sorted(by: {$0.date.compare($1.date) == ComparisonResult.orderedDescending});
                 let data = try encoder.encode(refills)
                 UserDefaults.standard.set(data, forKey: "refuelings")
             } catch {
