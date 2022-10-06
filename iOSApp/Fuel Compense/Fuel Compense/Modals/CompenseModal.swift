@@ -33,6 +33,10 @@ struct CompenseModal: View {
                     print(compensation.tons)
                     print("Toneladas convertidas desde kg")
                     carbonModel.compensations.append(compensation)
+                    let compensationsSorted = carbonModel.compensations.sorted(by: { (com0: CarbonCompensation, com1: CarbonCompensation) -> Bool in
+                        return com0 < com1
+                    })
+                    carbonModel.compensations = compensationsSorted
                     self.showCompenseModal = false
                 }) {Text(String(localized: "add"))}
                 Spacer()

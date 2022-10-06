@@ -8,11 +8,15 @@
 import Foundation
 
 
-struct CarbonCompensation: Codable {
+struct CarbonCompensation: Codable, Comparable {
     
     var id = UUID()
     var date : Date
     var tons : Float
+    
+    static func <(lhs: CarbonCompensation, rhs: CarbonCompensation) -> Bool {
+        return lhs.date.compare(rhs.date).rawValue > 0
+    }
     
 }
 

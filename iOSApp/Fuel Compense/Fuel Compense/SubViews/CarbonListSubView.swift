@@ -14,7 +14,7 @@ struct CarbonListSubView: View {
     var body: some View {
         NavigationView{
         List {
-            ForEach(carbonModel.compensations.indices.reversed(), id: \.self) { i in
+            ForEach(carbonModel.compensations.indices, id: \.self) { i in
                 NavigationLink(
                     destination: CarbonDetail(carbonCompensation: $carbonModel.compensations[i])
                         .environmentObject(carbonModel)

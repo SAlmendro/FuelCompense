@@ -53,7 +53,7 @@ struct FuelModal: View {
                         odometer: Int(odometer)!,
                         trip: 1,
                         liters: Float(liters)!,
-                        eurosLiter: Float(eurosLiter),
+                        eurosLiter: (Float(total) ?? 0)/(Float(liters) ?? 1),
                         total: Float(total)!,
                         date: date,
                         fullTank: full,
@@ -62,6 +62,10 @@ struct FuelModal: View {
                         totalCarbon: (Float(liters)!*2.5) //poner el del anterior
                     )
                     fuelModel.refills.append(refill)
+                    let refillsSorted = fuelModel.refills.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
+                        return ref0 > ref1
+                    })
+                    fuelModel.refills = refillsSorted
                     // guardar datos convirtiendo a float primero todos los string
                     self.showFuelModal = false
                 }) {Text(String(localized: "add"))}

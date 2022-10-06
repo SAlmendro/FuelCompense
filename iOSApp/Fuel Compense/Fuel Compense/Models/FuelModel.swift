@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct FuelRefill: Codable {
+struct FuelRefill: Codable, Comparable {
     
     var id = UUID()
     var odometer : Int
@@ -22,6 +22,11 @@ struct FuelRefill: Codable {
     var meanEmissions : Float
     var totalCarbon : Float
     
+    static func <(lhs: FuelRefill, rhs: FuelRefill) -> Bool {
+            return lhs.odometer < rhs.odometer
+    }
+    
+    
 }
 
 
@@ -33,7 +38,6 @@ class FuelModel : ObservableObject {
     @Published var refills : Array<FuelRefill> {
         didSet {
             do {
-                refills = refills.sorted(by: {$0.date.compare($1.date) == ComparisonResult.orderedDescending});
                 let data = try encoder.encode(refills)
                 UserDefaults.standard.set(data, forKey: "refuelings")
             } catch {
