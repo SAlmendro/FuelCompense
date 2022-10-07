@@ -17,7 +17,7 @@ struct FuelDetail: View {
         VStack {
             Text(String(localized: "fm.odometer") + ": \(fuelRefill.odometer) km")
                 .padding()
-            Text(String(localized: "fd.trip") + ": \(fuelRefill.trip) km")
+            Text(String(localized: "fd.trip") + ": 1 km")
                 .padding()
             Text(String(localized: "fm.liters") + ": \(fuelRefill.liters) L")
                 .padding()
@@ -32,14 +32,14 @@ struct FuelDetail: View {
                     VStack {
                         Text(String(localized: "fd.meanConsume"))
                             .padding()
-                        Text("\(fuelRefill.meanConsume) L/100km")
+                        Text("1 L/100km")
                             .padding()
                     }
                     .padding()
                     VStack {
                         Text(String(localized: "fd.meanEmissions"))
                             .padding()
-                        Text("\(fuelRefill.meanConsume) kgCO2/100km")
+                        Text("1 kgCO2/100km")
                             .padding()
                     }
                     .padding()
@@ -51,7 +51,6 @@ struct FuelDetail: View {
             Text(String(localized: "fd.totalCarbon") + "\(fuelRefill.totalCarbon) kg")
                 .padding()
             Spacer()
-            if fuelModel.refills.last!.id == fuelRefill.id {
                 Button(action: {
                     if fuelModel.delete(uuid: fuelRefill.id) {
                         self.mode.wrappedValue.dismiss()
@@ -63,7 +62,6 @@ struct FuelDetail: View {
                             .font(.footnote)
                     }
                 })
-            }
             
         }
     }

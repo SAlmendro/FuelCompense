@@ -13,10 +13,10 @@ struct FuelModal: View {
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var globalsModel : GlobalsModel
    // @State var lastOdometer = (globalsModel.globals.lastRefuel?.odometer ?? 0)
-    @State var odometer = "0"
-    @State var liters = "1"
+    @State var odometer = ""
+    @State var liters = ""
     @State var eurosLiter = 0.0
-    @State var total = "0"
+    @State var total = ""
     @State var date = Date()
     @State var full = true
     
@@ -24,59 +24,53 @@ struct FuelModal: View {
         VStack{
             Spacer()
             VStack {
-                MyForm(fieldName: String(localized: "fm.odometer"), fieldNumber: $odometer)
-                    .padding()
-                Text(String(localized: "fd.trip") + String(globalsModel.globals.lastRefuel?.odometer ?? 0))
-                MyForm(fieldName: String(localized: "fm.liters"), fieldNumber: $liters)
-                    .padding()
-                HStack {
-                    Text("€/L")
-                        .padding()
-                    Spacer()
-                    Text(String((Float(total) ?? 0)/(Float(liters) ?? 1)) + " €/L" )
-                        .padding()
+                Form {
+                    Section {
+                        TextField(String(localized: "fm.odometer"), text: $odometer)
+                        TextField(String(localized: "fm.liters"), text: $liters)
+                        HStack {
+                            Text("€/L")
+                            Spacer()
+                            Text(String((Float(total) ?? 0)/(Float(liters) ?? 1)) + " €/L" )
+                        }
+                        TextField(String(localized: "fm.total"), text: $total)
+                        DatePicker(String(localized: "date"), selection: $date)
+                        Toggle(isOn: $full) { Text(String(localized: "fm.full")) }
+                        HStack{
+                            Spacer()
+                            Button(action: {
+                                if ((odometer == "") || (liters == "") || (total == "")) {
+                                    self.showFuelModal = false
+                                } else {
+                                    let refill = FuelRefill(
+                                        odometer: Int(odometer)!,
+                                        liters: Float(liters)!,
+                                        eurosLiter: (Float(total) ?? 0)/(Float(liters) ?? 1),
+                                        total: Float(total)!,
+                                        date: date,
+                                        fullTank: full,
+                                        totalCarbon: (Float(liters)!*2.5) //poner el del anterior
+                                    )
+                                    var refillsTemp = fuelModel.refills
+                                    refillsTemp.append(refill)
+                                    let refillsSorted = refillsTemp.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
+                                        return ref0 > ref1
+                                    })
+                                    fuelModel.refills = refillsSorted
+                                    // guardar datos convirtiendo a float primero todos los string
+                                    self.showFuelModal = false
+                                }
+                            }) {Text(String(localized: "add"))}
+                            Spacer()
+                            Button(action: {
+                                self.showFuelModal = false
+                            }) {Text(String(localized: "cancel"))}
+                            Spacer()
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
                 }
-                MyForm(fieldName: String(localized: "fm.total"), fieldNumber: $total)
-                DatePicker(String(localized: "date"), selection: $date)
-                    .padding()
             }
-            Spacer()
-            Toggle(isOn: $full) {
-                Text(String(localized: "fm.full"))
-            }
-            .padding()
-            Spacer()
-            HStack{
-                Spacer()
-                Button(action: {
-                    let refill = FuelRefill(
-                        odometer: Int(odometer)!,
-                        trip: 1,
-                        liters: Float(liters)!,
-                        eurosLiter: (Float(total) ?? 0)/(Float(liters) ?? 1),
-                        total: Float(total)!,
-                        date: date,
-                        fullTank: full,
-                        meanConsume: 1,
-                        meanEmissions: 1,
-                        totalCarbon: (Float(liters)!*2.5) //poner el del anterior
-                    )
-                    fuelModel.refills.append(refill)
-                    let refillsSorted = fuelModel.refills.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
-                        return ref0 > ref1
-                    })
-                    fuelModel.refills = refillsSorted
-                    // guardar datos convirtiendo a float primero todos los string
-                    self.showFuelModal = false
-                }) {Text(String(localized: "add"))}
-                Spacer()
-                Button(action: {
-                    self.showFuelModal = false
-                }) {Text(String(localized: "cancel"))}
-                Spacer()
-            }
-            .padding()
         }
-        .padding()
     }
 }

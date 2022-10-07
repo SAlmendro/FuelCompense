@@ -31,7 +31,6 @@
 		F4D3403527DFD3DE0003CEB8 /* Fuel_CompenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403427DFD3DE0003CEB8 /* Fuel_CompenseTests.swift */; };
 		F4D3403F27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */; };
 		F4D3404127DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */; };
-		F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5CF7627E8FA4300A93B20 /* MyForm.swift */; };
 		F4F4C710282C31D2008452FF /* SocialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C70F282C31D2008452FF /* SocialModel.swift */; };
 		F4F4C712282C36E7008452FF /* SocialRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C711282C36E7008452FF /* SocialRow.swift */; };
 		F4F4C714282C3E1C008452FF /* SocialDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C713282C3E1C008452FF /* SocialDetail.swift */; };
@@ -83,7 +82,6 @@
 		F4D3403A27DFD3DE0003CEB8 /* Fuel CompenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fuel CompenseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITests.swift; sourceTree = "<group>"; };
 		F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F4E5CF7627E8FA4300A93B20 /* MyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyForm.swift; sourceTree = "<group>"; };
 		F4F4C70F282C31D2008452FF /* SocialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialModel.swift; sourceTree = "<group>"; };
 		F4F4C711282C36E7008452FF /* SocialRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialRow.swift; sourceTree = "<group>"; };
 		F4F4C713282C3E1C008452FF /* SocialDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetail.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		F454F2D627F85C1400D8EFCD /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				F4E5CF7627E8FA4300A93B20 /* MyForm.swift */,
 				F4C84AE227F4F90500CA0639 /* FuelRow.swift */,
 				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
 				F454F2E427F863E800D8EFCD /* CarbonRow.swift */,
@@ -389,7 +386,6 @@
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
 				F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */,
 				F4F4C710282C31D2008452FF /* SocialModel.swift in Sources */,
-				F4E5CF7727E8FA4300A93B20 /* MyForm.swift in Sources */,
 				F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */,
 				F4F4C712282C36E7008452FF /* SocialRow.swift in Sources */,
 				F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */,
