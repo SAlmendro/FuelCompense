@@ -29,6 +29,8 @@
 "fm.liters" = "Litros";
 "fm.total" = "Total (€)";
 "fm.full" = "Depósito lleno";
+"fm.save" = "Guardar";
+"cm.tons" = "Toneladas de CO2";
 
 // FuelRow
 "fr.lastKM" = "en los últimos ";
@@ -42,4 +44,10 @@
 "fd.meanConsume" = "Consumo medio:";
 "fd.meanEmissions" = "Emisiones medias:";
 "fd.totalCarbon" = "CO2 en este repostaje:";
-"fd.delete" = "Borrar repostaje";
+"fd.delete" = "Borrar";
+"fd.questionDelete" = "¿Seguro que quiere borrar el repostaje?";
+"fd.yes" = "Borrar";
+"fd.edit" = "Editar";
+
+//CarbonDetail
+"cd.questionDelete" = "¿Seguro que quiere borrar la compensación?";

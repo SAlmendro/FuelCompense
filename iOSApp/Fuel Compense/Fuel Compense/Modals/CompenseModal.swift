@@ -9,39 +9,51 @@ import SwiftUI
 
 struct CompenseModal: View {
     
-    @Binding var showCompenseModal: Bool
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
+    @Binding var showCompenseModal: Bool
     @State var date = Date()
-    @State var CO2kg = ""
+    @State var CO2tons = ""
+    var editMode : Bool
+    var index = 0
     
     var body: some View {
         VStack{
             Form {
                 Section {
-                    TextField("kgCO2", text: $CO2kg)
+                    TextField(String(localized: "cm.tons"), text: $CO2tons)
                     DatePicker(String(localized: "date"), selection: $date)
                     HStack{
                         Spacer()
-                        Button(action: {
-                            if (CO2kg == "") {
-                                self.showCompenseModal = false
-                            } else {
-                                let compensation = CarbonCompensation(
-                                    date: date,
-                                    tons: Float(CO2kg)!*0.001
-                                )
-                                print(compensation.tons)
-                                print("Toneladas convertidas desde kg")
-                                var compensationsTemp = carbonModel.compensations
-                                compensationsTemp.append(compensation)
-                                let compensationsSorted = compensationsTemp.sorted(by: { (com0: CarbonCompensation, com1: CarbonCompensation) -> Bool in
-                                    return com0 < com1
-                                })
-                                carbonModel.compensations = compensationsSorted
-                                self.showCompenseModal = false
-                            }
-                        }) {Text(String(localized: "add"))}
+                        if (editMode) {
+                            Button(action: {
+                                if (CO2tons == "") {
+                                    self.showCompenseModal = false
+                                } else {
+                                    carbonModel.compensations[index].tons = Float(CO2tons)!
+                                    carbonModel.compensations[index].date = date
+                                    self.showCompenseModal = false
+                                }
+                            }) {Text(String(localized: "fm.save"))}
+                        } else {
+                            Button(action: {
+                                if (CO2tons == "") {
+                                    self.showCompenseModal = false
+                                } else {
+                                    let compensation = CarbonCompensation(
+                                        date: date,
+                                        tons: Float(CO2tons)!
+                                    )
+                                    var compensationsTemp = carbonModel.compensations
+                                    compensationsTemp.append(compensation)
+                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: CarbonCompensation, com1: CarbonCompensation) -> Bool in
+                                        return com0 < com1
+                                    })
+                                    carbonModel.compensations = compensationsSorted
+                                    self.showCompenseModal = false
+                                }
+                            }) {Text(String(localized: "add"))}
+                        }
                         Spacer()
                         Button(action: {
                             self.showCompenseModal = false

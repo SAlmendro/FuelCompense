@@ -20,6 +20,7 @@
 		F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E227F8633600D8EFCD /* CarbonDetail.swift */; };
 		F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E427F863E800D8EFCD /* CarbonRow.swift */; };
 		F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488B6502801F13B007934CA /* GlobalsModel.swift */; };
+		F4A89CA828F3345A00F9169F /* Rounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A89CA728F3345A00F9169F /* Rounder.swift */; };
 		F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2833127E7A91900DD0E75 /* AddButton.swift */; };
 		F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE227F4F90500CA0639 /* FuelRow.swift */; };
 		F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */; };
@@ -68,6 +69,7 @@
 		F454F2E227F8633600D8EFCD /* CarbonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDetail.swift; sourceTree = "<group>"; };
 		F454F2E427F863E800D8EFCD /* CarbonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonRow.swift; sourceTree = "<group>"; };
 		F488B6502801F13B007934CA /* GlobalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalsModel.swift; sourceTree = "<group>"; };
+		F4A89CA728F3345A00F9169F /* Rounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounder.swift; sourceTree = "<group>"; };
 		F4B2833127E7A91900DD0E75 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F4C84AE227F4F90500CA0639 /* FuelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRow.swift; sourceTree = "<group>"; };
 		F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonModel.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				F454F2D927F85CB000D8EFCD /* Languages */,
 				F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */,
 				F4D3402927DFD3DE0003CEB8 /* Preview Content */,
+				F4A89CA728F3345A00F9169F /* Rounder.swift */,
 			);
 			path = "Fuel Compense";
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */,
+				F4A89CA828F3345A00F9169F /* Rounder.swift in Sources */,
 				F41E1B5C27E64E7000915F26 /* SocialView.swift in Sources */,
 				F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */,
 				F4F4C714282C3E1C008452FF /* SocialDetail.swift in Sources */,

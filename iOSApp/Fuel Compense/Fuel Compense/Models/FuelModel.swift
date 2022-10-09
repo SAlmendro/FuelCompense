@@ -26,6 +26,16 @@ struct FuelRefill: Codable, Comparable {
     
 }
 
+struct FullTankData {
+    
+    var fullKm : Int
+    var fullLiters : Float
+    var fullCO2 : Float
+    var meanConsume : Float
+    var meanEmissions : Float
+    
+}
+
 
 class FuelModel : ObservableObject {
     
@@ -62,16 +72,56 @@ class FuelModel : ObservableObject {
         }
     }
     
-    func delete(uuid: UUID) -> Bool {
-        if refills.last!.id == uuid {
-            refills.removeLast()
-            return true;
-        }
-        return false;
+    func delete(index: Int) -> Void {
+        refills.remove(at: index)
     }
     
     func deleteAll() -> Void {
         refills = []
+    }
+    
+    func getTrip(i: Int) -> Int {
+        if (refills.count == i+1) {
+            return 0
+        }
+        return refills[i].odometer - refills[i+1].odometer
+    }
+    
+    public func getFullTankData(i: Int) -> FullTankData {
+        if (i+1 == refills.count) {
+            return FullTankData(
+                fullKm: getTrip(i: i),
+                fullLiters: refills[i].liters,
+                fullCO2: refills[i].totalCarbon,
+                meanConsume: 0,
+                meanEmissions: 0
+                )
+        }
+        var partial = !refills[i+1].fullTank
+        let fullKm = getTrip(i: i)
+        let fullLiters = refills[i].liters
+        let fullCO2 = refills[i].totalCarbon
+        var fullTankData = FullTankData(
+            fullKm: fullKm,
+            fullLiters: fullLiters,
+            fullCO2: fullCO2,
+            meanConsume: (fullLiters / Float(fullKm))*100,
+            meanEmissions: (fullCO2 / Float(fullKm))*100
+            )
+        var index = i+1
+        while(partial) {
+            fullTankData.fullKm += getTrip(i: index)
+            fullTankData.fullLiters += refills[index].liters
+            fullTankData.fullCO2 += refills[index].totalCarbon
+            fullTankData.meanConsume = (fullTankData.fullLiters / Float(fullTankData.fullKm))*100
+            fullTankData.meanEmissions = (fullTankData.fullCO2 / Float(fullTankData.fullKm))*100
+            index += 1
+            if (index == refills.count) {
+                return fullTankData
+            }
+            partial = !refills[index].fullTank
+        }
+        return fullTankData
     }
     
 }

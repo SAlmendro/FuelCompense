@@ -29,6 +29,8 @@
 "fm.liters" = "Liters";
 "fm.total" = "Total (€)";
 "fm.full" = "Full tank";
+"fm.save" = "Save";
+"cm.tons" = "CO2 tons";
 
 // FuelRow
 "fr.lastKM" = "in the last ";
@@ -42,5 +44,10 @@
 "fd.meanConsume" = "Mean consume:";
 "fd.meanEmissions" = "Mean emissions:";
 "fd.totalCarbon" = "CO2 in this refueling:";
-"fd.delete" = "Delete refueling";
+"fd.delete" = "Delete";
+"fd.questionDelete" = "Are you sure you want to delete the refueling?";
+"fd.yes" = "Delete";
+"fd.edit" = "Edit";
 
+//CarbonDetail
+"cd.questionDelete" = "Are you sure you want to delete the compensation?";

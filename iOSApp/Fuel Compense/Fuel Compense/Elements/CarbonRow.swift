@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 struct CarbonRow: View {
-
+    
     @Binding var carbonCompensation : CarbonCompensation
     
     var body: some View {
         HStack {
             Spacer()
-            Text("\(carbonCompensation.tons) tons compensed")
+            Text("\(carbonCompensation.tons.round(amountOfDecimals: 3)) tons compensed")
             Spacer()
-            Text("\(carbonCompensation.date)")
+            Text("\(carbonCompensation.date.formatted(.dateTime.day().month(.twoDigits).year()))")
         }
         
     }

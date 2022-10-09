@@ -9,13 +9,10 @@ import Foundation
 import SwiftUI
 
 struct FuelRow: View {
-
-    @Binding var fuelRefill : FuelRefill
     
-    let meanConsume = 1;
-    let meanCarbon = 1;
-    let tripKm = 1;
-    let kmFromLastFull = 1;
+    @EnvironmentObject var fuelModel : FuelModel
+    @Binding var fuelRefill : FuelRefill
+    var index : Int
     
     var body: some View {
         HStack {
@@ -31,15 +28,15 @@ struct FuelRow: View {
                     .padding()
                 Text(String(localized: "fm.odometer") + " \(fuelRefill.odometer) km")
                     .padding()
-                Text("\(tripKm) km")
+                Text("\(fuelModel.getTrip(i: index)) km")
                     .padding()
             }
             VStack {
-                Text("\(fuelRefill.liters) L")
+                Text("\(fuelRefill.liters.round(amountOfDecimals: 2)) L")
                     .padding()
-                Text("\(fuelRefill.total) €")
+                Text("\(fuelRefill.total.round(amountOfDecimals: 2)) €")
                     .padding()
-                Text("\(fuelRefill.totalCarbon) kgCO2")
+                Text("\(fuelRefill.totalCarbon.round(amountOfDecimals: 2)) kgCO2")
                     .padding()
             }
         }

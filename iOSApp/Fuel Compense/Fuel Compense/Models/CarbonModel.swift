@@ -56,12 +56,8 @@ class CarbonModel : ObservableObject {
         }
     }
     
-    func delete(uuid: UUID) -> Bool {
-        if compensations.last!.id == uuid {
-            compensations.removeLast()
-            return true;
-        }
-        return false;
+    func delete(index: Int) -> Void {
+        compensations.remove(at: index)
     }
     
     func deleteAll() -> Void {

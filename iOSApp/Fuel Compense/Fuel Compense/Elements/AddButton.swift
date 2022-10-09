@@ -34,12 +34,12 @@ struct AddButton: View {
             .frame(width: 25, height: 25)
             .padding()
             .sheet(isPresented: $showFuelModal){
-                FuelModal(showFuelModal: $showFuelModal)
+                FuelModal(showFuelModal: $showFuelModal, editMode: false)
                     .environmentObject(fuelModel)
                     .environmentObject(globalsModel)
             }
             .sheet(isPresented: $showCompenseModal){
-                CompenseModal(showCompenseModal: $showCompenseModal)
+                CompenseModal(showCompenseModal: $showCompenseModal, editMode: false)
                     .environmentObject(carbonModel)
                     .environmentObject(globalsModel)
             }

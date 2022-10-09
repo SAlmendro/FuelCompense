@@ -12,19 +12,22 @@ struct CarbonDetail: View {
     @Environment(\.presentationMode) var mode : Binding<PresentationMode>
     @Binding var carbonCompensation : CarbonCompensation
     @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var globalsModel : GlobalsModel
+    @State private var showAlert = false
+    @State private var showEditSheet = false
+    var index = 0
     
     var body: some View {
         
         VStack {
             Text(String(localized: "date") + ": \(carbonCompensation.date)")
                 .padding()
-            Text("kgCO2: \(carbonCompensation.tons*1000)")
+            Text("kgCO2: \((carbonCompensation.tons*1000).round(amountOfDecimals: 0))")
                 .padding()
-            if carbonModel.compensations.last!.id == carbonCompensation.id {
+            HStack {
+                Spacer()
                 Button(action: {
-                    if carbonModel.delete(uuid: carbonCompensation.id) {
-                        self.mode.wrappedValue.dismiss()
-                    }
+                    showAlert = true
                 }, label: {
                     VStack{
                         Image(systemName: "trash")
@@ -32,7 +35,41 @@ struct CarbonDetail: View {
                             .font(.footnote)
                     }
                 })
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text(String(localized: "fd.delete")),
+                        message: Text(String(localized: "cd.questionDelete")),
+                        primaryButton: .cancel() {},
+                        secondaryButton: .destructive(
+                            Text("Delete"),
+                            action: { carbonModel.delete(index: index) }
+                        )
+                    )
+                }
+                Spacer()
+                Button(action: {
+                    showEditSheet = true
+                }, label: {
+                    VStack{
+                        Image(systemName: "square.and.pencil")
+                        Text(String(localized: "fd.edit"))
+                            .font(.footnote)
+                    }
+                })
+                .sheet(isPresented: $showEditSheet){
+                    CompenseModal(
+                        showCompenseModal: $showEditSheet,
+                        date: carbonCompensation.date,
+                        CO2tons: carbonCompensation.tons.round(amountOfDecimals: 3),
+                        editMode: true,
+                        index: index
+                    )
+                    .environmentObject(carbonModel)
+                    .environmentObject(globalsModel)
+                }
+                Spacer()
             }
+            .padding()
         }
         
     }

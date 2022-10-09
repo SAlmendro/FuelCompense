@@ -16,10 +16,11 @@ struct FuelListSubView: View {
         List {
             ForEach(fuelModel.refills.indices, id: \.self) { i in
                 NavigationLink(
-                    destination: FuelDetail(fuelRefill: $fuelModel.refills[i])
+                    destination: FuelDetail(fuelRefill: $fuelModel.refills[i], index: i, fullTankData: fuelModel.getFullTankData(i: i))
                         .environmentObject(fuelModel)
                 ) {
-                    FuelRow(fuelRefill: $fuelModel.refills[i])
+                    FuelRow(fuelRefill: $fuelModel.refills[i], index: i)
+                        .environmentObject(fuelModel)
                 }
             }
         }
