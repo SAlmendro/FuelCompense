@@ -7,29 +7,44 @@
 
 import SwiftUI
 
+struct CarbonSubView: Identifiable {
+    let id = UUID()
+    let name: String.LocalizationValue
+    let number: String
+}
+let carbonSubViews = [ CarbonSubView(name: "cav.statSV", number: "1"),
+               CarbonSubView(name: "cav.listSV", number: "2") ]
+
 struct CarbonView: View {
     
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
+    @State var selectedSV = "1"
     
     var body: some View {
         
         VStack{
-            AddButton()
+            AddButton(title: String(localized: "cav.title"))
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
-            CarbonListSubView()
-                .environmentObject(carbonModel)
+            Picker("CarbonSubViews", selection: $selectedSV) {
+                ForEach(carbonSubViews) { sv in
+                    Text(String(localized: sv.name)).tag(sv.number)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            if (selectedSV == "1") {
+                CarbonStatsSubView()
+                    .environmentObject(carbonModel)
+            } else {
+                CarbonListSubView()
+                    .environmentObject(carbonModel)
+            }
+            
             Spacer()
         }
         
-    }
-}
-
-struct CarbonView_Previews: PreviewProvider {
-    static var previews: some View {
-        CarbonView()
     }
 }

@@ -15,9 +15,18 @@ struct AddButton: View {
     @State private var showingActionSheet = false
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
+    @State var title : String
     
     var body: some View {
         HStack{
+            Button(action: {}) {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+            }
+            .frame(width: 25, height: 25)
+            .padding()
+            Spacer()
+            Text(title)
             Spacer()
             Button(action: {
                 showingActionSheet = true

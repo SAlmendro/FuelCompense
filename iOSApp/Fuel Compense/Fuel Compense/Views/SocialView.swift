@@ -16,7 +16,7 @@ struct SocialView: View {
     
     var body: some View {
         VStack{
-            AddButton()
+            AddButton(title: String(localized: "sv.title"))
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)

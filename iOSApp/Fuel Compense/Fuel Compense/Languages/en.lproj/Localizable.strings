@@ -22,7 +22,12 @@
 "cv.settings" = "Settings";
 
 // FuelView
-"fv.header" = "Refuelings";
+"fv.title" = "Refuelings";
+"fv.listSV" = "List";
+"fv.statSV" = "Stats";
+
+// SocialView
+"sv.title" = "Social";
 
 // FuelModal
 "fm.odometer" = "Odometer";
@@ -37,6 +42,8 @@
 
 // CarbonView
 "cav.title" = "Compensations";
+"cav.listSV" = "List";
+"cav.statSV" = "Stats and compense";
 
 // FuelDetail
 "fd.trip" = "Trip";
