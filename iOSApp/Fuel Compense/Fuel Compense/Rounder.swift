@@ -11,7 +11,7 @@ extension Float {
     func round(amountOfDecimals: Int) -> String {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = amountOfDecimals
-        formatter.decimalSeparator = "."
+        formatter.decimalSeparator = ","
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
 }

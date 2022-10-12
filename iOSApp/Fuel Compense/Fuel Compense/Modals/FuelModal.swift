@@ -35,7 +35,7 @@ struct FuelModal: View {
                         HStack {
                             Text("€/L")
                             Spacer()
-                            Text(String((Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1)) + " €/L" )
+                            Text(((Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1)).round(amountOfDecimals: 3) + " €/L" )
                         }
                         TextField(String(localized: "fm.total"), text: $total)
                             .keyboardType(.decimalPad)
