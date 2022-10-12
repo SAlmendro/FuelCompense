@@ -63,5 +63,16 @@ class CarbonModel : ObservableObject {
     func deleteAll() -> Void {
         compensations = []
     }
+    
+    public func getTotalCompensedInKg() -> Float {
+        var totalCompensed = Float(0)
+        if compensations.isEmpty {
+            return totalCompensed
+        }
+        for compensation in compensations {
+            totalCompensed += compensation.tons
+        }
+        return totalCompensed*1000
+    }
    
 }

@@ -58,3 +58,10 @@
 
 //CarbonDetail
 "cd.questionDelete" = "¿Seguro que quiere borrar la compensación?";
+
+//CarbonStatsSubView
+"cssv.avgEmissions" = "Tus emisiones medias son ";
+"cssv.netEmissions" = "Tienes un valor neto de ";
+"cssv.compense" = "Compensar ";
+"cssv.of" = " de ";
+"cssv.congrats" = "¡Felicidades! ¡Estás ayudando al planeta!";

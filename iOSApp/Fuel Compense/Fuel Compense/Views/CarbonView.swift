@@ -38,6 +38,7 @@ struct CarbonView: View {
             if (selectedSV == "1") {
                 CarbonStatsSubView()
                     .environmentObject(carbonModel)
+                    .environmentObject(fuelModel)
             } else {
                 CarbonListSubView()
                     .environmentObject(carbonModel)

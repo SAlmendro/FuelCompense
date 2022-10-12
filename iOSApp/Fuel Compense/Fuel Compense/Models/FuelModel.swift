@@ -81,7 +81,7 @@ class FuelModel : ObservableObject {
     }
     
     func getTrip(i: Int) -> Int {
-        if (refills.count == i+1) {
+        if (refills.count == i+1 || getNumberOfFullTanks() < 2) {
             return 0
         }
         return refills[i].odometer - refills[i+1].odometer
@@ -121,7 +121,41 @@ class FuelModel : ObservableObject {
             }
             partial = !refills[index].fullTank
         }
+        print(fullTankData.meanEmissions)
         return fullTankData
+    }
+    
+    public func getAverageEmissions() -> Float {
+        let totalEmissions = getTotalEmissions()
+        if totalEmissions == 0 {
+            return Float(0)
+        }
+        print("total emissions: \(totalEmissions)")
+        let lastIndex = refills.count - 1
+        let totalKm = refills[0].odometer - refills[lastIndex].odometer
+        print("total km: \(totalKm)")
+        if totalKm < 1 {
+            return Float(0)
+        }
+        return (totalEmissions/Float(totalKm))*100
+    }
+    
+    public func getTotalEmissions() -> Float {
+        var totalEmissions = Float(0)
+        for refill in refills {
+            totalEmissions += refill.totalCarbon
+        }
+        return totalEmissions
+    }
+    
+    public func getNumberOfFullTanks() -> Int {
+        var n = 0;
+        for refill in refills {
+            if refill.fullTank {
+                n += 1
+            }
+        }
+        return n
     }
     
 }

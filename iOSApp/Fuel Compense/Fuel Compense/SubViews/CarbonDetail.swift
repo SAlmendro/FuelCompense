@@ -41,7 +41,7 @@ struct CarbonDetail: View {
                         message: Text(String(localized: "cd.questionDelete")),
                         primaryButton: .cancel() {},
                         secondaryButton: .destructive(
-                            Text("Delete"),
+                            Text("fd.delete"),
                             action: { carbonModel.delete(index: index) }
                         )
                     )
