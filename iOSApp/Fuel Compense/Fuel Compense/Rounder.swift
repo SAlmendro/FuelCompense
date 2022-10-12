@@ -20,4 +20,8 @@ extension String {
     func commaToPoint() -> String {
         return NSString(string: self).replacingOccurrences(of: ",", with: ".")
     }
+    
+    func pointToComma() -> String {
+        return NSString(string: self).replacingOccurrences(of: ".", with: ",")
+    }
 }

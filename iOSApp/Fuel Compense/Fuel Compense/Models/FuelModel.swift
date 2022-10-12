@@ -149,8 +149,10 @@ class FuelModel : ObservableObject {
     
     public func getTotalConsume() -> Float {
         var totalConsume = Float(0)
-        for refill in refills {
-            totalConsume += refill.liters
+        for i in refills.indices {
+            if i != 0 {
+                totalConsume += refills[i].liters
+            }
         }
         return totalConsume
     }

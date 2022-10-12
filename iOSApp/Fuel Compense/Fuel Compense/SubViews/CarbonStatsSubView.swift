@@ -66,7 +66,7 @@ struct CarbonStatsSubView: View {
         }
         if (netCarbon > 0) {
             Button(String(localized: "cssv.compense") + netCarbon.round(amountOfDecimals: 2) + " kg" + String(localized: "cssv.of") + "CO2") {
-                if let yourURL = URL(string: "https://www.ceroco2.org/compensacion/index.php?toneladas=" + (netCarbon/1000).round(amountOfDecimals: 3)) {
+                if let yourURL = URL(string: "https://www.ceroco2.org/compensacion/index.php?toneladas=" + (netCarbon/1000).round(amountOfDecimals: 3).commaToPoint()) {
                         UIApplication.shared.open(yourURL)
                     }
             }

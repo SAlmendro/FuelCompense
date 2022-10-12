@@ -47,9 +47,9 @@ struct FuelStatsSubView: View {
             .padding()
         Text(String(localized: "fssv.totalKm") + "\(fuelModel.getTotalKm()) km.")
             .padding()
-        Text(String(localized: "fssv.totalLiters") + "\(fuelModel.getTotalConsume()) L.")
+        Text(String(localized: "fssv.totalLiters") + "\(fuelModel.getTotalConsume().round(amountOfDecimals: 2)) L.")
             .padding()
-        Text(String(localized: "fssv.totalEmissions") + "\(fuelModel.getTotalEmissions())" + String(localized: "fssv.tonsCarbon"))
+        Text(String(localized: "fssv.totalEmissions") + "\((fuelModel.getTotalEmissions()/1000).round(amountOfDecimals: 3))" + String(localized: "fssv.tonsCarbon"))
             .padding()
     }
 }
