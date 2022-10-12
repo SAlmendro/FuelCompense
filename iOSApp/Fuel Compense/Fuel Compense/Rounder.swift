@@ -15,3 +15,9 @@ extension Float {
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
+
+extension String {
+    func commaToPoint() -> String {
+        return NSString(string: self).replacingOccurrences(of: ",", with: ".")
+    }
+}

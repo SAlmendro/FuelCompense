@@ -22,6 +22,7 @@ struct CompenseModal: View {
             Form {
                 Section {
                     TextField(String(localized: "cm.tons"), text: $CO2tons)
+                        .keyboardType(.decimalPad)
                     DatePicker(String(localized: "date"), selection: $date)
                     HStack{
                         Spacer()
@@ -30,7 +31,7 @@ struct CompenseModal: View {
                                 if (CO2tons == "") {
                                     self.showCompenseModal = false
                                 } else {
-                                    carbonModel.compensations[index].tons = Float(CO2tons)!
+                                    carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
                                     carbonModel.compensations[index].date = date
                                     self.showCompenseModal = false
                                 }
@@ -42,7 +43,7 @@ struct CompenseModal: View {
                                 } else {
                                     let compensation = CarbonCompensation(
                                         date: date,
-                                        tons: Float(CO2tons)!
+                                        tons: Float(CO2tons.commaToPoint())!
                                     )
                                     var compensationsTemp = carbonModel.compensations
                                     compensationsTemp.append(compensation)

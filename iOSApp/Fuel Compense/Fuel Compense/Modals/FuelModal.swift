@@ -29,13 +29,16 @@ struct FuelModal: View {
                 Form {
                     Section {
                         TextField(String(localized: "fm.odometer"), text: $odometer)
+                            .keyboardType(.numberPad)
                         TextField(String(localized: "fm.liters"), text: $liters)
+                            .keyboardType(.decimalPad)
                         HStack {
                             Text("€/L")
                             Spacer()
-                            Text(String((Float(total) ?? 0)/(Float(liters) ?? 1)) + " €/L" )
+                            Text(String((Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1)) + " €/L" )
                         }
                         TextField(String(localized: "fm.total"), text: $total)
+                            .keyboardType(.decimalPad)
                         DatePicker(String(localized: "date"), selection: $date)
                         Toggle(isOn: $full) { Text(String(localized: "fm.full")) }
                         HStack{
@@ -46,12 +49,12 @@ struct FuelModal: View {
                                         self.showFuelModal = false
                                     } else {
                                         fuelModel.refills[index].odometer = Int(odometer)!
-                                        fuelModel.refills[index].liters = Float(liters)!
-                                        fuelModel.refills[index].eurosLiter = (Float(total)!)/(Float(liters)!)
-                                        fuelModel.refills[index].total = Float(total)!
+                                        fuelModel.refills[index].liters = Float(liters.commaToPoint())!
+                                        fuelModel.refills[index].eurosLiter = (Float(total.commaToPoint())!)/(Float(liters.commaToPoint())!)
+                                        fuelModel.refills[index].total = Float(total.commaToPoint())!
                                         fuelModel.refills[index].date = date
                                         fuelModel.refills[index].fullTank = full
-                                        fuelModel.refills[index].totalCarbon = (Float(liters)!*2.5)
+                                        fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*2.5)
                                         self.showFuelModal = false
                                     }
                                 }) {Text(String(localized: "fm.save"))}
@@ -62,12 +65,12 @@ struct FuelModal: View {
                                     } else {
                                         let refill = FuelRefill(
                                             odometer: Int(odometer)!,
-                                            liters: Float(liters)!,
-                                            eurosLiter: (Float(total) ?? 0)/(Float(liters) ?? 1),
-                                            total: Float(total)!,
+                                            liters: Float(liters.commaToPoint())!,
+                                            eurosLiter: (Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1),
+                                            total: Float(total.commaToPoint())!,
                                             date: date,
                                             fullTank: full,
-                                            totalCarbon: (Float(liters)!*2.5)
+                                            totalCarbon: (Float(liters.commaToPoint())!*2.5)
                                         )
                                         var refillsTemp = fuelModel.refills
                                         refillsTemp.append(refill)

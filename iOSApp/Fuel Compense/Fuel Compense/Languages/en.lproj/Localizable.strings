@@ -61,8 +61,15 @@
 
 //CarbonStatsSubView
 "cssv.avgEmissions" = "Your average emissions are ";
-"cssv.netEmissions" = "You have a net of ";
+"cssv.netEmissions" = "Your net emissions are ";
 "cssv.compense" = "Compense ";
 "cssv.of" = " of ";
 "cssv.congrats" = "Congratulations! You are doing well for the planet!";
+
+//FuelStatsSubView
+"fssv.avgConsume" = "Your average fuel consume is ";
+"fssv.totalKm" = "The total distance you have traveled is ";
+"fssv.totalLiters" = "The total fuel you have refueled is ";
+"fssv.totalEmissions" = "The total carbon you have emitted to the planet is ";
+"fssv.tonsCarbon" = " tons of CO2.";
 

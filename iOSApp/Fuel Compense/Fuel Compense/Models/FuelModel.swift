@@ -131,8 +131,7 @@ class FuelModel : ObservableObject {
             return Float(0)
         }
         print("total emissions: \(totalEmissions)")
-        let lastIndex = refills.count - 1
-        let totalKm = refills[0].odometer - refills[lastIndex].odometer
+        let totalKm = getTotalKm()
         print("total km: \(totalKm)")
         if totalKm < 1 {
             return Float(0)
@@ -146,6 +145,29 @@ class FuelModel : ObservableObject {
             totalEmissions += refill.totalCarbon
         }
         return totalEmissions
+    }
+    
+    public func getTotalConsume() -> Float {
+        var totalConsume = Float(0)
+        for refill in refills {
+            totalConsume += refill.liters
+        }
+        return totalConsume
+    }
+    
+    public func getTotalKm() -> Int {
+        if refills.count < 2 {
+            return 0
+        }
+        return refills[0].odometer - refills[refills.count - 1].odometer
+    }
+    
+    public func getAverageConsume() -> Float {
+        let totalKm = getTotalKm()
+        if totalKm < 1 {
+            return Float(0)
+        }
+        return (getTotalConsume()/Float(totalKm))*100
     }
     
     public func getNumberOfFullTanks() -> Int {

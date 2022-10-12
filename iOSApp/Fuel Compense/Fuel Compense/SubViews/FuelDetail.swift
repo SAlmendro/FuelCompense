@@ -73,7 +73,7 @@ struct FuelDetail: View {
                         message: Text(String(localized: "fd.questionDelete")),
                         primaryButton: .cancel() {},
                         secondaryButton: .destructive(
-                            Text("Delete"),
+                            Text(String(localized: "fd.delete")),
                             action: { fuelModel.delete(index: index) }
                         )
                     )
