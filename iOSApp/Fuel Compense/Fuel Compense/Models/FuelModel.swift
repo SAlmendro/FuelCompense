@@ -110,7 +110,8 @@ class FuelModel : ObservableObject {
             )
         var index = i+1
         while(partial) {
-            fullTankData.fullKm += getTrip(i: index)
+            let trip = getTrip(i: index)
+            fullTankData.fullKm += trip
             fullTankData.fullLiters += refills[index].liters
             fullTankData.fullCO2 += refills[index].totalCarbon
             fullTankData.meanConsume = (fullTankData.fullLiters / Float(fullTankData.fullKm))*100

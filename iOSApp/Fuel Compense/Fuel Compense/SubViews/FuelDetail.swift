@@ -91,8 +91,8 @@ struct FuelDetail: View {
                 .sheet(isPresented: $showEditSheet){
                     FuelModal(showFuelModal: $showEditSheet,
                               odometer: String(fuelRefill.odometer),
-                              liters: String(fuelRefill.liters),
-                              total: String(fuelRefill.total),
+                              liters: String(fuelRefill.liters).pointToComma(),
+                              total: String(fuelRefill.total).pointToComma(),
                               date: fuelRefill.date,
                               full: fuelRefill.fullTank,
                               editMode: true,

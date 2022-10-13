@@ -11,6 +11,8 @@
 "add" = "Add";
 "cancel" = "Cancel";
 "date" = "Date";
+"gasoil" = "Diesel";
+"gasoline" = "Gasoline";
 
 // Content view
 
@@ -29,6 +31,13 @@
 // SocialView
 "sv.title" = "Social";
 
+// SettingsView
+"sv.fuel" = "Fuel";
+"sv.fuelSelected" = "Fuel selected";
+"sv.changeFuel" = "Change fuel type";
+"sv.questionChangeFuel" = "Are you sure you want to change fuel type? New refuelings will calculate emissions based on the new type of fuel.";
+"sv.change" = "Change";
+
 // FuelModal
 "fm.odometer" = "Odometer";
 "fm.liters" = "Liters";
@@ -39,6 +48,9 @@
 
 // FuelRow
 "fr.lastKM" = "in the last ";
+
+// CarbonRow
+"cr.tonsCompensed" = " tons compensed";
 
 // CarbonView
 "cav.title" = "Compensations";
@@ -72,4 +84,7 @@
 "fssv.totalLiters" = "The total fuel you have refueled is ";
 "fssv.totalEmissions" = "The total carbon you have emitted to the planet is ";
 "fssv.tonsCarbon" = " tons of CO2.";
+
+//FuelTypeModal
+"ftm.selectFuelType" = "Please, select the fuel type of your vehicle.";
 

@@ -54,7 +54,7 @@ struct FuelModal: View {
                                         fuelModel.refills[index].total = Float(total.commaToPoint())!
                                         fuelModel.refills[index].date = date
                                         fuelModel.refills[index].fullTank = full
-                                        fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*2.5)
+                                        fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
                                         self.showFuelModal = false
                                     }
                                 }) {Text(String(localized: "fm.save"))}
@@ -70,7 +70,7 @@ struct FuelModal: View {
                                             total: Float(total.commaToPoint())!,
                                             date: date,
                                             fullTank: full,
-                                            totalCarbon: (Float(liters.commaToPoint())!*2.5)
+                                            totalCarbon: (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
                                         )
                                         var refillsTemp = fuelModel.refills
                                         refillsTemp.append(refill)

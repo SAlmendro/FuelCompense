@@ -7,14 +7,14 @@
 
 import Foundation
 
+enum FuelType: Float, Equatable, CaseIterable, Hashable{
+    case gasoline = 2.32
+    case gasoil = 2.6
+}
+
 struct Globals: Codable {
     
-    var fuelType : String
     var carbonPerLiter : Float
-    var lastRefuel : FuelRefill?
-    var lastCompensation : CarbonCompensation?
-    var kmSinceLastFullRefill : Int
-    var partialRefuelingsNotConsolidated : [UUID]
     
 }
 
@@ -22,12 +22,7 @@ struct Globals: Codable {
 class GlobalsModel : ObservableObject {
     
     private var globals0 = Globals(
-        fuelType: "",
-        carbonPerLiter: 0,
-        lastRefuel: nil,
-        lastCompensation: nil,
-        kmSinceLastFullRefill: 0,
-        partialRefuelingsNotConsolidated: [])
+        carbonPerLiter: 0)
     
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
@@ -61,26 +56,6 @@ class GlobalsModel : ObservableObject {
             print("There were no globals in userDef")
             self.globals = globals0
         }
-    }
-    
-    func deleteCarData() -> Void {
-        globals = Globals(
-            fuelType: "",
-            carbonPerLiter: 0,
-            lastRefuel: nil,
-            lastCompensation: self.globals.lastCompensation,
-            kmSinceLastFullRefill: 0,
-            partialRefuelingsNotConsolidated: [])
-    }
-    
-    func deleteCarbonData() -> Void {
-        globals = Globals(
-            fuelType: self.globals.fuelType,
-            carbonPerLiter: self.globals.carbonPerLiter,
-            lastRefuel: nil,
-            lastCompensation: self.globals.lastCompensation,
-            kmSinceLastFullRefill: 0,
-            partialRefuelingsNotConsolidated: [])
     }
     
     func deleteAll() -> Void {

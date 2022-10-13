@@ -11,6 +11,8 @@
 "add" = "Añadir";
 "cancel" = "Cancelar";
 "date" = "Fecha";
+"gasoil" = "Diésel";
+"gasoline" = "Gasolina";
 
 // Content view
 
@@ -29,6 +31,13 @@
 // SocialView
 "sv.title" = "Social";
 
+// SettingsView
+"sv.fuel" = "Combustible";
+"sv.fuelSelected" = "Combustible seleccionado";
+"sv.changeFuel" = "Cambiar combustible";
+"sv.questionChangeFuel" = "¿Seguro que quiere cambiar el tipo de combustible? Los nuevos repostajes calcularán las emisiones en base al nuevo tipo de combustible.";
+"sv.change" = "Cambiar";
+
 // FuelModal
 "fm.odometer" = "Odómetro";
 "fm.liters" = "Litros";
@@ -39,6 +48,9 @@
 
 // FuelRow
 "fr.lastKM" = "en los últimos ";
+
+// CarbonRow
+"cr.tonsCompensed" = " toneladas compensadas";
 
 // CarbonView
 "cav.title" = "Compensaciones";
@@ -72,4 +84,7 @@
 "fssv.totalLiters" = "El total de combustible que has repostado es ";
 "fssv.totalEmissions" = "La cantidad total de CO2 que has emitido al planeta es ";
 "fssv.tonsCarbon" = " toneladas.";
+
+//FuelTypeModal
+"ftm.selectFuelType" = "Por favor, seleccione el tipo de combustible de su vehículo.";
 

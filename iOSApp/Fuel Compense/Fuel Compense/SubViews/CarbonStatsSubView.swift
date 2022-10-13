@@ -31,7 +31,7 @@ struct CarbonStatsSubView: View {
             RuleMark(y: .value("Average", averageEmissions))
                  .foregroundStyle(.orange)
                  .annotation {
-                     Text("\(Int(averageEmissions)) kgC02/100km")
+                     Text(averageEmissions.round(amountOfDecimals: 2) + " kgC02/100km")
             }
         }
         .chartXAxis {
@@ -66,7 +66,7 @@ struct CarbonStatsSubView: View {
         }
         if (netCarbon > 0) {
             Button(String(localized: "cssv.compense") + netCarbon.round(amountOfDecimals: 2) + " kg" + String(localized: "cssv.of") + "CO2") {
-                if let yourURL = URL(string: "https://www.ceroco2.org/compensacion/index.php?toneladas=" + (netCarbon/1000).round(amountOfDecimals: 3).commaToPoint()) {
+                if let yourURL = URL(string: "https://www.ceroco2.org/compensacion/index.php?toneladas=" + (netCarbon/1000).roundForCompense()) {
                         UIApplication.shared.open(yourURL)
                     }
             }

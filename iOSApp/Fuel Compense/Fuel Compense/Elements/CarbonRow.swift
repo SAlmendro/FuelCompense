@@ -15,7 +15,7 @@ struct CarbonRow: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("\(carbonCompensation.tons.round(amountOfDecimals: 3)) tons compensed")
+            Text(carbonCompensation.tons.round(amountOfDecimals: 3) + String(localized: "cr.tonsCompensed"))
             Spacer()
             Text("\(carbonCompensation.date.formatted(.dateTime.day().month(.twoDigits).year()))")
         }

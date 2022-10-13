@@ -15,6 +15,7 @@ struct AddButton: View {
     @State private var showingActionSheet = false
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
+    @State private var showPicker = false
     @State var title : String
     
     var body: some View {
@@ -35,8 +36,16 @@ struct AddButton: View {
                     .resizable()
             }.actionSheet(isPresented: $showingActionSheet){
                 ActionSheet(title: Text(String(localized: "add")), message: Text(String(localized: "cv.questionAdd")), buttons: [
-                    .default(Text(String(localized: "cv.refueling"))) { showFuelModal = true },
-                    .default(Text(String(localized: "cv.compensation"))) { showCompenseModal = true },
+                    .default(Text(String(localized: "cv.refueling"))) {
+                        if globalsModel.globals.carbonPerLiter == 0 {
+                            showPicker = true
+                        } else {
+                            showFuelModal = true
+                        }
+                    },
+                    .default(Text(String(localized: "cv.compensation"))) {
+                       showCompenseModal = true
+                    },
                     .cancel()  { }
                 ])
             }
@@ -52,9 +61,16 @@ struct AddButton: View {
                     .environmentObject(carbonModel)
                     .environmentObject(globalsModel)
             }
+            .sheet(isPresented: $showPicker) {
+                FuelTypeModal(
+                    showFuelModal: $showFuelModal,
+                    showPicker: $showPicker,
+                    selection: (globalsModel.globals.carbonPerLiter == FuelType.gasoline.rawValue) ? FuelType.gasoline : FuelType.gasoil)
+                .environmentObject(globalsModel)
+            }
         }
         
     }
-        
+    
 }
 

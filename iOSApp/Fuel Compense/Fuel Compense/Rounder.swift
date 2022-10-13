@@ -14,6 +14,14 @@ extension Float {
         formatter.decimalSeparator = ","
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
+    
+    func roundForCompense() -> String {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 3
+        formatter.decimalSeparator = "."
+        formatter.roundingMode = .ceiling
+        return formatter.string(from: NSNumber(value: self)) ?? ""
+    }
 }
 
 extension String {
