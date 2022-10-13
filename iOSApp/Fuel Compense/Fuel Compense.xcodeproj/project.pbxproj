@@ -21,6 +21,8 @@
 		F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E027F8624A00D8EFCD /* FuelDetail.swift */; };
 		F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E227F8633600D8EFCD /* CarbonDetail.swift */; };
 		F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E427F863E800D8EFCD /* CarbonRow.swift */; };
+		F4620C3E28F8742600A79374 /* FuelConsumeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */; };
+		F4620C4028F8779600A79374 /* FuelEconomyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */; };
 		F47FD9EB28F5CC3F00C2ABC7 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47FD9E928F5CC3D00C2ABC7 /* Charts.framework */; };
 		F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488B6502801F13B007934CA /* GlobalsModel.swift */; };
 		F4A89CA828F3345A00F9169F /* Rounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A89CA728F3345A00F9169F /* Rounder.swift */; };
@@ -74,6 +76,8 @@
 		F454F2E027F8624A00D8EFCD /* FuelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetail.swift; sourceTree = "<group>"; };
 		F454F2E227F8633600D8EFCD /* CarbonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDetail.swift; sourceTree = "<group>"; };
 		F454F2E427F863E800D8EFCD /* CarbonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonRow.swift; sourceTree = "<group>"; };
+		F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelConsumeStats.swift; sourceTree = "<group>"; };
+		F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEconomyStats.swift; sourceTree = "<group>"; };
 		F47FD9E928F5CC3D00C2ABC7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		F488B6502801F13B007934CA /* GlobalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalsModel.swift; sourceTree = "<group>"; };
 		F4A89CA728F3345A00F9169F /* Rounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounder.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				F4F4C713282C3E1C008452FF /* SocialDetail.swift */,
 				F42CF95428F49AAA00DC232E /* FuelStatsSubView.swift */,
 				F42CF95628F49CF400DC232E /* CarbonStatsSubView.swift */,
+				F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */,
+				F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
 				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
 				F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */,
+				F4620C4028F8779600A79374 /* FuelEconomyStats.swift in Sources */,
 				F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */,
 				F42CF95728F49CF400DC232E /* CarbonStatsSubView.swift in Sources */,
 				F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */,
@@ -414,6 +421,7 @@
 				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
 				F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */,
 				F4F4C710282C31D2008452FF /* SocialModel.swift in Sources */,
+				F4620C3E28F8742600A79374 /* FuelConsumeStats.swift in Sources */,
 				F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */,
 				F4F4C712282C36E7008452FF /* SocialRow.swift in Sources */,
 				F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */,

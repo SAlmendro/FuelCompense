@@ -45,6 +45,7 @@
 "fm.full" = "Full tank";
 "fm.save" = "Save";
 "cm.tons" = "CO2 tons";
+"cm.comment" = "Comment";
 
 // FuelRow
 "fr.lastKM" = "in the last ";
@@ -84,7 +85,13 @@
 "fssv.totalLiters" = "The total fuel you have refueled is ";
 "fssv.totalEmissions" = "The total carbon you have emitted to the planet is ";
 "fssv.tonsCarbon" = " tons of CO2.";
+"fes.avgConsume" = "Average waste: ";
+"fes.totalEur" = "Total waste: ";
 
 //FuelTypeModal
 "ftm.selectFuelType" = "Please, select the fuel type of your vehicle.";
+
+//FuelStatsSubView
+"fssv.consume" = "Consume";
+"fssv.economic" = "Economy";
 

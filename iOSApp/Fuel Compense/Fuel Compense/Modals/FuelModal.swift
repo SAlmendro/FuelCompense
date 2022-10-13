@@ -55,6 +55,11 @@ struct FuelModal: View {
                                         fuelModel.refills[index].date = date
                                         fuelModel.refills[index].fullTank = full
                                         fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
+                                        let refillsTemp = fuelModel.refills
+                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
+                                            return ref0 > ref1
+                                        })
+                                        fuelModel.refills = refillsSorted
                                         self.showFuelModal = false
                                     }
                                 }) {Text(String(localized: "fm.save"))}

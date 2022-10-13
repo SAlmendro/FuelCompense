@@ -45,6 +45,7 @@
 "fm.full" = "Depósito lleno";
 "fm.save" = "Guardar";
 "cm.tons" = "Toneladas de CO2";
+"cm.comment" = "Comentario";
 
 // FuelRow
 "fr.lastKM" = "en los últimos ";
@@ -84,7 +85,12 @@
 "fssv.totalLiters" = "El total de combustible que has repostado es ";
 "fssv.totalEmissions" = "La cantidad total de CO2 que has emitido al planeta es ";
 "fssv.tonsCarbon" = " toneladas.";
+"fes.avgConsume" = "Gasto medio: ";
+"fes.totalEur" = "Gasto total: ";
 
 //FuelTypeModal
 "ftm.selectFuelType" = "Por favor, seleccione el tipo de combustible de su vehículo.";
 
+//FuelStatsSubView
+"fssv.consume" = "Consumo";
+"fssv.economic" = "Economía";

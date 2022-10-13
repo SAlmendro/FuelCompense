@@ -13,6 +13,7 @@ struct CarbonCompensation: Codable, Comparable {
     var id = UUID()
     var date : Date
     var tons : Float
+    var comment : String
     
     static func <(lhs: CarbonCompensation, rhs: CarbonCompensation) -> Bool {
         return lhs.date.compare(rhs.date).rawValue > 0

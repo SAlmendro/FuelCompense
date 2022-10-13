@@ -25,20 +25,17 @@ struct FuelRow: View {
                               .year()
                     )
                      )
-                    .padding()
-                Text(String(localized: "fm.odometer") + " \(fuelRefill.odometer) km")
-                    .padding()
+                Text("\(fuelRefill.odometer) km")
+                    .bold()
                 Text("\(fuelModel.getTrip(i: index)) km")
-                    .padding()
             }
+            .padding()
             VStack {
                 Text("\(fuelRefill.liters.round(amountOfDecimals: 2)) L")
-                    .padding()
                 Text("\(fuelRefill.total.round(amountOfDecimals: 2)) €")
-                    .padding()
                 Text("\(fuelRefill.totalCarbon.round(amountOfDecimals: 2)) kgCO2")
-                    .padding()
             }
+            .padding()
         }
         
     }

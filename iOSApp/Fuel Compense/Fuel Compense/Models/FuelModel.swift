@@ -31,8 +31,10 @@ struct FullTankData {
     var fullKm : Int
     var fullLiters : Float
     var fullCO2 : Float
+    var totalEur : Float
     var meanConsume : Float
     var meanEmissions : Float
+    var meanEur : Float
     
 }
 
@@ -81,7 +83,7 @@ class FuelModel : ObservableObject {
     }
     
     func getTrip(i: Int) -> Int {
-        if (refills.count == i+1 || getNumberOfFullTanks() < 2) {
+        if (refills.count == i+1 || getNumberOfFullTanks() < 2 || refills.count < 2) {
             return 0
         }
         return refills[i].odometer - refills[i+1].odometer
@@ -93,29 +95,35 @@ class FuelModel : ObservableObject {
                 fullKm: getTrip(i: i),
                 fullLiters: refills[i].liters,
                 fullCO2: refills[i].totalCarbon,
+                totalEur: refills[i].total,
                 meanConsume: 0,
-                meanEmissions: 0
+                meanEmissions: 0,
+                meanEur: 0
                 )
         }
         var partial = !refills[i+1].fullTank
         let fullKm = getTrip(i: i)
         let fullLiters = refills[i].liters
         let fullCO2 = refills[i].totalCarbon
+        let totalEur = refills[i].total
         var fullTankData = FullTankData(
             fullKm: fullKm,
             fullLiters: fullLiters,
             fullCO2: fullCO2,
+            totalEur: totalEur,
             meanConsume: (fullLiters / Float(fullKm))*100,
-            meanEmissions: (fullCO2 / Float(fullKm))*100
+            meanEmissions: (fullCO2 / Float(fullKm))*100,
+            meanEur: (totalEur / Float(fullKm))*100
             )
         var index = i+1
         while(partial) {
-            let trip = getTrip(i: index)
-            fullTankData.fullKm += trip
+            fullTankData.fullKm += getTrip(i: index)
             fullTankData.fullLiters += refills[index].liters
             fullTankData.fullCO2 += refills[index].totalCarbon
+            fullTankData.totalEur += refills[index].total
             fullTankData.meanConsume = (fullTankData.fullLiters / Float(fullTankData.fullKm))*100
             fullTankData.meanEmissions = (fullTankData.fullCO2 / Float(fullTankData.fullKm))*100
+            fullTankData.meanEur = (fullTankData.totalEur / Float(fullTankData.fullKm))*100
             index += 1
             if (index == refills.count) {
                 return fullTankData
@@ -151,9 +159,7 @@ class FuelModel : ObservableObject {
     public func getTotalConsume() -> Float {
         var totalConsume = Float(0)
         for i in refills.indices {
-            if i != 0 {
-                totalConsume += refills[i].liters
-            }
+            totalConsume += refills[i].liters
         }
         return totalConsume
     }
@@ -165,12 +171,28 @@ class FuelModel : ObservableObject {
         return refills[0].odometer - refills[refills.count - 1].odometer
     }
     
+    public func getTotalEur() -> Float {
+        var totalEur = Float(0)
+        for i in refills.indices {
+            totalEur += refills[i].total
+        }
+        return totalEur
+    }
+    
     public func getAverageConsume() -> Float {
         let totalKm = getTotalKm()
         if totalKm < 1 {
             return Float(0)
         }
         return (getTotalConsume()/Float(totalKm))*100
+    }
+    
+    public func getAverageEur() -> Float {
+        let totalKm = getTotalKm()
+        if totalKm < 1 {
+            return Float(0)
+        }
+        return (getTotalEur()/Float(totalKm))*100
     }
     
     public func getNumberOfFullTanks() -> Int {

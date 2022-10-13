@@ -24,6 +24,8 @@ struct CarbonDetail: View {
                 .padding()
             Text("kgCO2: \((carbonCompensation.tons*1000).round(amountOfDecimals: 0))")
                 .padding()
+            Text(carbonCompensation.comment)
+                .padding()
             HStack {
                 Spacer()
                 Button(action: {
@@ -61,6 +63,7 @@ struct CarbonDetail: View {
                         showCompenseModal: $showEditSheet,
                         date: carbonCompensation.date,
                         CO2tons: carbonCompensation.tons.round(amountOfDecimals: 3),
+                        comment: carbonCompensation.comment,
                         editMode: true,
                         index: index
                     )

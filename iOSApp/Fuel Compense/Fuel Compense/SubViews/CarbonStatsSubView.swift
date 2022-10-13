@@ -35,9 +35,9 @@ struct CarbonStatsSubView: View {
             }
         }
         .chartXAxis {
-            AxisMarks(values: .stride(by: .weekOfYear)) { value in
+            AxisMarks(values: .stride(by: .year)) { value in
                 AxisGridLine()
-                AxisValueLabel(format: .dateTime.week(.defaultDigits))
+                AxisValueLabel(format: .dateTime.year(.defaultDigits))
             }
         }
         .chartYAxis {
