@@ -6,7 +6,9 @@ import es.upm.dit.fuelcompense.persistance.repository.UserRepository;
 import es.upm.dit.fuelcompense.service.dto.UserInDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -28,4 +30,28 @@ public class UserService {
         return this.repository.findAll();
     }
 
+    public User findUserByUserName(String userName) {
+        return this.repository.findUserByUserName(userName);
+    }
+
+    public List<String> follow(String followerUserName, String followedUserName) {
+        User follower = repository.findUserByUserName(followerUserName);
+        follower.getFollowing().add(repository.findUserByUserName(followedUserName));
+        //this.repository.setUserFollowing(follower.getFollowing(), followerUserName);
+        this.repository.saveAndFlush(follower);
+        List<String> following = new ArrayList<String>();
+        for (User u : follower.getFollowing()) {
+            following.add(u.getUserName());
+        }
+        return following;
+    }
+
+    public List<String> findAllFollowing(String followerUserName) {
+        User follower = repository.findUserByUserName(followerUserName);
+        List<String> following = new ArrayList<String>();
+        for (User u : follower.getFollowing()) {
+            following.add(u.getUserName());
+        }
+        return following;
+    }
 }

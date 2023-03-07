@@ -3,10 +3,7 @@ package es.upm.dit.fuelcompense.persistance.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -20,16 +17,16 @@ public class User {
     private String userName;
     private String refuelings;
     private String compensations;
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     @OrderBy("creationDate DESC")
     private List<Status> statuses = new ArrayList<>();
-    @ManyToMany(mappedBy = "favorites")
+    @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER)
     private Set<Status> favoriteStatuses = new LinkedHashSet<>();
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "follows",
             joinColumns = @JoinColumn(name = "follower_id"),
             inverseJoinColumns = @JoinColumn(name = "followed_id"))
-    private Set<User> following = new LinkedHashSet<>();
+    private Set<User> following = new HashSet<User>();
 
 }
