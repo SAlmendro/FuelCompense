@@ -6,6 +6,7 @@ import lombok.Data;
 public class StatusInDTO {
 
     private String userName;
+    private String id;
     private String content;
 
 }

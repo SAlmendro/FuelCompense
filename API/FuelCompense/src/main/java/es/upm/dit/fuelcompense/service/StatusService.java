@@ -30,7 +30,7 @@ public class StatusService {
 
     public Status createStatus(StatusInDTO statusInDTO) {
         Status status = mapperIn.map(statusInDTO);
-        return this.repository.save(status);
+        return this.repository.saveAndFlush(status);
     }
 
     public List<Status> findAllStatusesByCreatorId(Long id) {

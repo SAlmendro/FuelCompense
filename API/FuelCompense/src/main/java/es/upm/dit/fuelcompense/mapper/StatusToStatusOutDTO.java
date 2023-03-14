@@ -1,9 +1,7 @@
 package es.upm.dit.fuelcompense.mapper;
 
 import es.upm.dit.fuelcompense.persistance.entity.Status;
-import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.service.dto.StatusOutDTO;
-import es.upm.dit.fuelcompense.service.dto.UserOutDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

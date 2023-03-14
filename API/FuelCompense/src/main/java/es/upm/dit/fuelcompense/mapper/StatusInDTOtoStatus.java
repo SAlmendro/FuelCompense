@@ -22,6 +22,7 @@ public class StatusInDTOtoStatus implements IMapper<StatusInDTO, Status> {
         status.setContent(in.getContent());
         status.setCreator(userService.findUserByUserName(in.getUserName()));
         status.setCreationDate(LocalDateTime.now());
+        status.setId(in.getId());
         return status;
     }
 

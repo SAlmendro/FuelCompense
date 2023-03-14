@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class StatusOutDTO {
 
-    private Long id;
+    private String id;
     private String content;
     private String creatorUserName;
 
