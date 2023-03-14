@@ -23,12 +23,12 @@ struct SocialView: View {
         
             NavigationView{
                 List {
-                    ForEach(socialModel.socialUnits.indices, id: \.self) { i in
+                    ForEach(socialModel.statuses.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: SocialDetail(socialUnit: $socialModel.socialUnits[i])
+                            destination: SocialDetail(status: $socialModel.statuses[i])
                                 .environmentObject(socialModel)
                         ) {
-                            SocialRow(socialUnit: $socialModel.socialUnits[i])
+                            SocialRow(status: $socialModel.statuses[i])
                         }
                     }
                 }

@@ -36,7 +36,7 @@ struct CompenseModal: View {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
                                     carbonModel.compensations[index].date = date
                                     let compensationsTemp = carbonModel.compensations
-                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: CarbonCompensation, com1: CarbonCompensation) -> Bool in
+                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
                                         return com0 < com1
                                     })
                                     carbonModel.compensations = compensationsSorted
@@ -48,14 +48,14 @@ struct CompenseModal: View {
                                 if (CO2tons == "") {
                                     self.showCompenseModal = false
                                 } else {
-                                    let compensation = CarbonCompensation(
+                                    let compensation = Compensation(
                                         date: date,
                                         tons: Float(CO2tons.commaToPoint())!,
                                         comment: comment
                                     )
                                     var compensationsTemp = carbonModel.compensations
                                     compensationsTemp.append(compensation)
-                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: CarbonCompensation, com1: CarbonCompensation) -> Bool in
+                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
                                         return com0 < com1
                                     })
                                     carbonModel.compensations = compensationsSorted

@@ -10,26 +10,26 @@ import SwiftUI
 struct SocialDetail: View {
     
     @Environment(\.presentationMode) var mode : Binding<PresentationMode>
-    @Binding var socialUnit : SocialUnit
+    @Binding var status : Status
     @EnvironmentObject var socialModel : SocialModel
     
     var body: some View {
         
         VStack {
-            Text(socialUnit.authUserName)
+            Text(status.authUserName)
                 .padding()
-            Text(socialUnit.text)
+            Text(status.text)
                 .padding()
             HStack {
                 Button {
                     // change FAV state, añadiendo o eliminando mi username del array de favs
                 } label: {
-                    Text("\(socialUnit.favs.count) FAVs")
+                    Text("\(status.favs.count) FAVs")
                 }
 
             }
             Button(action: {
-                if socialModel.delete(uuid: socialUnit.id) {
+                if socialModel.delete(uuid: status.id) {
                     self.mode.wrappedValue.dismiss()
                 }
             }, label: {

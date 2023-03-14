@@ -10,19 +10,19 @@ import SwiftUI
 
 struct SocialRow: View {
 
-    @Binding var socialUnit : SocialUnit
+    @Binding var status : Status
     
     var body: some View {
         
         VStack {
             
             HStack {
-                Text(socialUnit.authUserName)
+                Text(status.authUserName)
                 Spacer()
             }
             .padding()
             
-            Text(socialUnit.text)
+            Text(status.text)
                 .padding()
             
             HStack {
@@ -37,7 +37,7 @@ struct SocialRow: View {
                 }
                  */
                 Spacer()
-                Text("\(socialUnit.favs.count) FAVs")
+                Text("\(status.favs.count) FAVs")
                 Spacer()
             }
             .padding()

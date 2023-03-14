@@ -8,14 +8,14 @@
 import Foundation
 
 
-struct CarbonCompensation: Codable, Comparable {
+struct Compensation: Codable, Comparable {
     
     var id = UUID()
     var date : Date
     var tons : Float
     var comment : String
     
-    static func <(lhs: CarbonCompensation, rhs: CarbonCompensation) -> Bool {
+    static func <(lhs: Compensation, rhs: Compensation) -> Bool {
         return lhs.date.compare(rhs.date).rawValue > 0
     }
     
@@ -27,7 +27,7 @@ class CarbonModel : ObservableObject {
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
     
-    @Published var compensations : Array<CarbonCompensation> {
+    @Published var compensations : Array<Compensation> {
         didSet {
             do {
                 let data = try encoder.encode(compensations)
@@ -44,7 +44,7 @@ class CarbonModel : ObservableObject {
         userDef = UserDefaults.standard
         if let compensationsUserDefData = (userDef.object(forKey: "compensations") as? Data) {
             do {
-                let compensationsUserDef = try decoder.decode(Array<CarbonCompensation>.self, from: compensationsUserDefData)
+                let compensationsUserDef = try decoder.decode(Array<Compensation>.self, from: compensationsUserDefData)
                 self.compensations = compensationsUserDef
                 print("Compensations recovered")
             } catch {

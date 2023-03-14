@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct SocialUnit : Codable {
+struct Status : Codable {
     
     var id = UUID()
     var text : String
     var favs : Array<String> // the strings are the usernames of the users that marked this social unit as fav
     var authUserName : String
-    var authID : Int
     
 }
 
@@ -22,10 +21,10 @@ class SocialModel : ObservableObject {
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
     
-    @Published var socialUnits : Array<SocialUnit>
+    @Published var statuses : Array<Status>
     
     init(){
-        socialUnits = []
+        statuses = []
         // retrieve the social units from the API, if there is no social units, the API will return a 204, and we will create the array empty
     }
     
@@ -33,17 +32,17 @@ class SocialModel : ObservableObject {
         // retrieve the social units from the API
     }
     
-    func publish(socialUnit: SocialUnit) -> Void {
-        socialUnits.append(socialUnit);
+    func publish(status: Status) -> Void {
+        statuses.append(status);
         // publish the new social unit to the API and then, retrieve the social units to have it complete
         refresh()
     }
     
     func delete(uuid: UUID) -> Bool {
-        let index = socialUnits.firstIndex { su in
+        let index = statuses.firstIndex { su in
             su.id == uuid;
         }!
-        socialUnits.remove(at: index);
+        statuses.remove(at: index);
         // delete the social unit from the API, returns true if delete was succesfull
         return true;
     }

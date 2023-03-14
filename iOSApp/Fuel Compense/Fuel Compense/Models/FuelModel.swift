@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct FuelRefill: Codable, Comparable {
+struct Refill: Codable, Comparable {
     
     var id = UUID()
     var odometer : Int
@@ -19,7 +19,7 @@ struct FuelRefill: Codable, Comparable {
     var fullTank : Bool
     var totalCarbon : Float
     
-    static func <(lhs: FuelRefill, rhs: FuelRefill) -> Bool {
+    static func <(lhs: Refill, rhs: Refill) -> Bool {
             return lhs.odometer < rhs.odometer
     }
     
@@ -44,7 +44,7 @@ class FuelModel : ObservableObject {
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
     
-    @Published var refills : Array<FuelRefill> {
+    @Published var refills : Array<Refill> {
         didSet {
             do {
                 let data = try encoder.encode(refills)
@@ -61,7 +61,7 @@ class FuelModel : ObservableObject {
         userDef = UserDefaults.standard
         if let refillsUserDefData = (userDef.object(forKey: "refuelings") as? Data) {
             do {
-                let refillsUserDef = try decoder.decode(Array<FuelRefill>.self, from: refillsUserDefData)
+                let refillsUserDef = try decoder.decode(Array<Refill>.self, from: refillsUserDefData)
                 self.refills = refillsUserDef
                 print("Refuelings recovered")
             } catch {

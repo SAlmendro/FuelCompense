@@ -56,7 +56,7 @@ struct FuelModal: View {
                                         fuelModel.refills[index].fullTank = full
                                         fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
                                         let refillsTemp = fuelModel.refills
-                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
+                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
                                             return ref0 > ref1
                                         })
                                         fuelModel.refills = refillsSorted
@@ -68,7 +68,7 @@ struct FuelModal: View {
                                     if ((odometer == "") || (liters == "") || (total == "")) {
                                         self.showFuelModal = false
                                     } else {
-                                        let refill = FuelRefill(
+                                        let refill = Refill(
                                             odometer: Int(odometer)!,
                                             liters: Float(liters.commaToPoint())!,
                                             eurosLiter: (Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1),
@@ -79,7 +79,7 @@ struct FuelModal: View {
                                         )
                                         var refillsTemp = fuelModel.refills
                                         refillsTemp.append(refill)
-                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: FuelRefill, ref1: FuelRefill) -> Bool in
+                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
                                             return ref0 > ref1
                                         })
                                         fuelModel.refills = refillsSorted

@@ -11,13 +11,13 @@ import SwiftUI
 struct FuelRow: View {
     
     @EnvironmentObject var fuelModel : FuelModel
-    @Binding var fuelRefill : FuelRefill
+    @Binding var refill : Refill
     var index : Int
     
     var body: some View {
         HStack {
             VStack {
-                Text(fuelRefill.date
+                Text(refill.date
                     .formatted(
                         .dateTime
                               .day()
@@ -25,15 +25,15 @@ struct FuelRow: View {
                               .year()
                     )
                      )
-                Text("\(fuelRefill.odometer) km")
+                Text("\(refill.odometer) km")
                     .bold()
                 Text("\(fuelModel.getTrip(i: index)) km")
             }
             .padding()
             VStack {
-                Text("\(fuelRefill.liters.round(amountOfDecimals: 2)) L")
-                Text("\(fuelRefill.total.round(amountOfDecimals: 2)) €")
-                Text("\(fuelRefill.totalCarbon.round(amountOfDecimals: 2)) kgCO2")
+                Text("\(refill.liters.round(amountOfDecimals: 2)) L")
+                Text("\(refill.total.round(amountOfDecimals: 2)) €")
+                Text("\(refill.totalCarbon.round(amountOfDecimals: 2)) kgCO2")
             }
             .padding()
         }

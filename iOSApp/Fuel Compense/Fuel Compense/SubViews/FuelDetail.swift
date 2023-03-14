@@ -10,7 +10,7 @@ import SwiftUI
 struct FuelDetail: View {
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @Binding var fuelRefill : FuelRefill
+    @Binding var refill : Refill
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var globalsModel : GlobalsModel
     @State private var showAlert = false
@@ -20,19 +20,19 @@ struct FuelDetail: View {
     
     var body: some View {
         VStack {
-            Text(String(localized: "fm.odometer") + ": \(fuelRefill.odometer) km")
+            Text(String(localized: "fm.odometer") + ": \(refill.odometer) km")
                 .padding()
             Text(String(localized: "fd.trip") + ": \(fuelModel.getTrip(i: index)) km")
                 .padding()
-            Text(String(localized: "fm.liters") + ": \(fuelRefill.liters.round(amountOfDecimals: 2)) L")
+            Text(String(localized: "fm.liters") + ": \(refill.liters.round(amountOfDecimals: 2)) L")
                 .padding()
-            Text("\(fuelRefill.eurosLiter.round(amountOfDecimals: 3)) €/L")
+            Text("\(refill.eurosLiter.round(amountOfDecimals: 3)) €/L")
                 .padding()
-            Text(String(localized: "fm.total") + ": \(fuelRefill.total.round(amountOfDecimals: 2)) €")
+            Text(String(localized: "fm.total") + ": \(refill.total.round(amountOfDecimals: 2)) €")
                 .padding()
-            Text(String(localized: "date") + ": \(fuelRefill.date)")
+            Text(String(localized: "date") + ": \(refill.date)")
                 .padding()
-            if fuelRefill.fullTank {
+            if refill.fullTank {
                 HStack {
                     VStack {
                         Text(String(localized: "fd.meanConsume"))
@@ -53,7 +53,7 @@ struct FuelDetail: View {
                 Text(String(localized: "fd.partial"))
                     .padding()
             }
-            Text(String(localized: "fd.totalCarbon") + "\(fuelRefill.totalCarbon.round(amountOfDecimals: 2)) kg")
+            Text(String(localized: "fd.totalCarbon") + "\(refill.totalCarbon.round(amountOfDecimals: 2)) kg")
                 .padding()
             Spacer()
             HStack {
@@ -90,11 +90,11 @@ struct FuelDetail: View {
                 })
                 .sheet(isPresented: $showEditSheet){
                     FuelModal(showFuelModal: $showEditSheet,
-                              odometer: String(fuelRefill.odometer),
-                              liters: String(fuelRefill.liters).pointToComma(),
-                              total: String(fuelRefill.total).pointToComma(),
-                              date: fuelRefill.date,
-                              full: fuelRefill.fullTank,
+                              odometer: String(refill.odometer),
+                              liters: String(refill.liters).pointToComma(),
+                              total: String(refill.total).pointToComma(),
+                              date: refill.date,
+                              full: refill.fullTank,
                               editMode: true,
                               index: index)
                         .environmentObject(fuelModel)

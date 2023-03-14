@@ -10,7 +10,7 @@ import SwiftUI
 struct CarbonDetail: View {
     
     @Environment(\.presentationMode) var mode : Binding<PresentationMode>
-    @Binding var carbonCompensation : CarbonCompensation
+    @Binding var compensation : Compensation
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
     @State private var showAlert = false
@@ -20,11 +20,11 @@ struct CarbonDetail: View {
     var body: some View {
         
         VStack {
-            Text(String(localized: "date") + ": \(carbonCompensation.date)")
+            Text(String(localized: "date") + ": \(compensation.date)")
                 .padding()
-            Text("kgCO2: \((carbonCompensation.tons*1000).round(amountOfDecimals: 0))")
+            Text("kgCO2: \((compensation.tons*1000).round(amountOfDecimals: 0))")
                 .padding()
-            Text(carbonCompensation.comment)
+            Text(compensation.comment)
                 .padding()
             HStack {
                 Spacer()
@@ -61,9 +61,9 @@ struct CarbonDetail: View {
                 .sheet(isPresented: $showEditSheet){
                     CompenseModal(
                         showCompenseModal: $showEditSheet,
-                        date: carbonCompensation.date,
-                        CO2tons: carbonCompensation.tons.round(amountOfDecimals: 3),
-                        comment: carbonCompensation.comment,
+                        date: compensation.date,
+                        CO2tons: compensation.tons.round(amountOfDecimals: 3),
+                        comment: compensation.comment,
                         editMode: true,
                         index: index
                     )
