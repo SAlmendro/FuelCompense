@@ -3,28 +3,28 @@ package es.upm.dit.fuelcompense.mapper;
 import es.upm.dit.fuelcompense.persistance.entity.Status;
 import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.service.StatusService;
-import es.upm.dit.fuelcompense.service.dto.UserOutDTO;
+import es.upm.dit.fuelcompense.service.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserToUserOutDTO implements IMapper<User, UserOutDTO> {
+public class UserToUserDTO implements IMapper<User, UserDTO> {
 
     private final StatusService statusService;
-    private final StatusToStatusOutDTO statusMapperOut;
+    private final StatusToStatusDTO statusMapperOut;
 
-    public UserToUserOutDTO(StatusService statusService, StatusToStatusOutDTO statusMapperOut) {
+    public UserToUserDTO(StatusService statusService, StatusToStatusDTO statusMapperOut) {
         this.statusService = statusService;
         this.statusMapperOut = statusMapperOut;
     }
 
     @Override
-    public UserOutDTO map(User in){
-        UserOutDTO userOut = new UserOutDTO();
-        userOut.setUserName(in.getUserName());
+    public UserDTO map(User in){
+        UserDTO userOut = new UserDTO();
         userOut.setId(in.getId());
+        userOut.setUserName(in.getUserName());
         List<String> following = new ArrayList<String>();
         for (User u : in.getFollowing()) {
             following.add(u.getUserName());
@@ -35,8 +35,8 @@ public class UserToUserOutDTO implements IMapper<User, UserOutDTO> {
         return userOut;
     }
 
-    public List<UserOutDTO> listMap(List<User> in) {
-        List<UserOutDTO> out = new ArrayList<UserOutDTO>();
+    public List<UserDTO> listMap(List<User> in) {
+        List<UserDTO> out = new ArrayList<UserDTO>();
         for (User u : in ) {
             out.add(map(u));
         }

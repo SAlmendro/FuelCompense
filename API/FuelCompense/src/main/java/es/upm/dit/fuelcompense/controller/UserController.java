@@ -1,10 +1,9 @@
 package es.upm.dit.fuelcompense.controller;
 
-import es.upm.dit.fuelcompense.mapper.UserToUserOutDTO;
+import es.upm.dit.fuelcompense.mapper.UserToUserDTO;
 import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.service.UserService;
-import es.upm.dit.fuelcompense.service.dto.UserInDTO;
-import es.upm.dit.fuelcompense.service.dto.UserOutDTO;
+import es.upm.dit.fuelcompense.service.dto.UserDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,16 +13,16 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserToUserOutDTO userMapperOut;
+    private final UserToUserDTO userMapperOut;
 
-    public UserController(UserService userService, UserToUserOutDTO userMapperOut) {
+    public UserController(UserService userService, UserToUserDTO userMapperOut) {
         this.userService = userService;
         this.userMapperOut = userMapperOut;
     }
 
     @PostMapping(value = "/new")
-    public User createUser(@RequestBody UserInDTO userInDTO) {
-        return this.userService.createUser(userInDTO);
+    public User createUser(@RequestBody UserDTO userDTO) {
+        return this.userService.createUser(userDTO);
     }
 
     @PostMapping(value = "/follow/{followedUserName}")
@@ -37,12 +36,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserOutDTO> findAll() {
+    public List<UserDTO> findAll() {
         return userMapperOut.listMap(this.userService.findAll());
     }
 
     @GetMapping(value = "/{userName}")
-    public UserOutDTO findUser(@PathVariable("userName") String userName){
+    public UserDTO findUser(@PathVariable("userName") String userName){
         return userMapperOut.map(this.userService.findUserByUserName(userName));
     }
 

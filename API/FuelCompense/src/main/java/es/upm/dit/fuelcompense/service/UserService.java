@@ -1,28 +1,27 @@
 package es.upm.dit.fuelcompense.service;
 
-import es.upm.dit.fuelcompense.mapper.UserInDTOtoUser;
+import es.upm.dit.fuelcompense.mapper.UserDTOtoUser;
 import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.persistance.repository.UserRepository;
-import es.upm.dit.fuelcompense.service.dto.UserInDTO;
+import es.upm.dit.fuelcompense.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserService {
 
     private final UserRepository repository;
-    private final UserInDTOtoUser mapper;
+    private final UserDTOtoUser mapperIn;
 
-    public UserService(UserRepository repository, UserInDTOtoUser mapper) {
+    public UserService(UserRepository repository, UserDTOtoUser mapperIn) {
         this.repository = repository;
-        this.mapper = mapper;
+        this.mapperIn = mapperIn;
     }
 
-    public User createUser(UserInDTO userInDTO) {
-        User user = mapper.map(userInDTO);
+    public User createUser(UserDTO userDTO) {
+        User user = mapperIn.map(userDTO);
         return this.repository.save(user);
     }
 

@@ -5,11 +5,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UserOutDTO {
+public class UserDTO {
 
     private Long id;
     private String userName;
-    private List<StatusOutDTO> statuses;
+    private List<StatusDTO> statuses;
     private List<String> usersFollowing;
 
 }
