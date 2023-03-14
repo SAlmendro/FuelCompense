@@ -21,8 +21,8 @@ public class StatusController {
     }
 
     @PostMapping
-    public Status createStatus(@RequestBody StatusDTO statusDTO) {
-        return this.statusService.createStatus(statusDTO);
+    public StatusDTO createStatus(@RequestBody StatusDTO statusDTO) {
+        return statusMapperOut.map(this.statusService.createStatus(statusDTO));
     }
 
     @GetMapping

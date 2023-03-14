@@ -19,7 +19,7 @@ public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    private Long id;
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
