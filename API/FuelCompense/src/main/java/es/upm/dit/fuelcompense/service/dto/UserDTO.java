@@ -1,10 +1,13 @@
 package es.upm.dit.fuelcompense.service.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class UserDTO {
 
     private Long id;

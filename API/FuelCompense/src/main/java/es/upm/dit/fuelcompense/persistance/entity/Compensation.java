@@ -32,19 +32,14 @@ public class Compensation {
 
         Compensation that = (Compensation) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!user.equals(that.user)) return false;
-        if (!iOSid.equals(that.iOSid)) return false;
-        if (!date.equals(that.date)) return false;
-        if (!tons.equals(that.tons)) return false;
-        return Objects.equals(comment, that.comment);
+        if (!Objects.equals(id, that.id)) return false;
+        return Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + user.hashCode();
-        result = 31 * result + iOSid.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 }
