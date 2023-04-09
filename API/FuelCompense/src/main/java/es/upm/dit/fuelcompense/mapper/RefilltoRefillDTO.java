@@ -25,7 +25,7 @@ public class RefilltoRefillDTO implements IMapper<Refill, RefillDTO> {
         return out;
     }
 
-    public List<RefillDTO> listMap(List<Refill> in, User user) {
+    public List<RefillDTO> listMap(List<Refill> in) {
         List<RefillDTO> out = new ArrayList<RefillDTO>();
         for (Refill r: in) {
             out.add(map(r));

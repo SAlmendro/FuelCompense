@@ -42,4 +42,9 @@ public class StatusController {
         return statusMapperOut.listMap(this.statusService.findAllStatusesBySubscriberUserName(userName));
     }
 
+    @DeleteMapping(value = "/{iOSid}")
+    public Boolean deleteStatus(@PathVariable("iOSid") String iOSid, @RequestBody String userName) {
+        return statusService.deleteStatus(iOSid, userName);
+    }
+
 }

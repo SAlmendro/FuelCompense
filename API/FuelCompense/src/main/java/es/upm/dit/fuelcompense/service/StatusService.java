@@ -16,29 +16,29 @@ import java.util.stream.Collectors;
 @Service
 public class StatusService {
 
-    private final StatusRepository repository;
-    private final StatusDTOtoStatus mapperIn;
-    private final StatusToStatusDTO mapperOut;
+    private final StatusRepository statusRepository;
+    private final StatusDTOtoStatus statusMapperIn;
+    private final StatusToStatusDTO statusMapperOut;
     private final UserService userService;
 
-    public StatusService(StatusRepository repository, StatusDTOtoStatus mapperIn, StatusToStatusDTO mapperOut, UserService userService) {
-        this.repository = repository;
-        this.mapperIn = mapperIn;
-        this.mapperOut = mapperOut;
+    public StatusService(StatusRepository statusRepository, StatusDTOtoStatus statusMapperIn, StatusToStatusDTO statusMapperOut, UserService userService) {
+        this.statusRepository = statusRepository;
+        this.statusMapperIn = statusMapperIn;
+        this.statusMapperOut = statusMapperOut;
         this.userService = userService;
     }
 
     public List<Status> findAll() {;
-        return this.repository.findAll();
+        return this.statusRepository.findAll();
     }
 
     public Status createStatus(StatusDTO statusDTO) {
-        Status status = mapperIn.map(statusDTO);
-        return this.repository.saveAndFlush(status);
+        Status status = statusMapperIn.map(statusDTO);
+        return this.statusRepository.saveAndFlush(status);
     }
 
     public List<Status> findAllStatusesByCreatorId(Long id) {
-        return this.repository.findAllByCreatorId(id);
+        return this.statusRepository.findAllByCreatorId(id);
     }
 
     public List<Status> findAllStatusesBySubscriberUserName(String userName) {
@@ -53,6 +53,10 @@ public class StatusService {
                 .sorted(statusComparator())
                 .collect(Collectors.toList());
         return orderedStatuses;
+    }
+
+    public Boolean deleteStatus(String iOSid, String userName) {
+        return statusRepository.deleteByIOSidAndCreator_UserName(iOSid, userName) == 1;
     }
 
     private Comparator<Status> statusComparator() {

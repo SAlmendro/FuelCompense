@@ -35,6 +35,11 @@ public class UserController {
         return this.userService.findAllFollowing(followerUserName);
     }
 
+    @GetMapping(value = "/followers/{followedUserName}")
+    public List<String> findAllFollowers(@PathVariable("followedUserName") String followedUserName) {
+        return this.userService.findAllFollowers(followedUserName);
+    }
+
     @GetMapping
     public List<UserDTO> findAll() {
         return userMapperOut.listMap(this.userService.findAll());

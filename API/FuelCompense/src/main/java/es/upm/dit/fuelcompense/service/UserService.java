@@ -8,36 +8,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
 
-    private final UserRepository repository;
-    private final UserDTOtoUser mapperIn;
+    private final UserRepository userRepository;
+    private final UserDTOtoUser userMapperIn;
 
-    public UserService(UserRepository repository, UserDTOtoUser mapperIn) {
-        this.repository = repository;
-        this.mapperIn = mapperIn;
+    public UserService(UserRepository userRepository, UserDTOtoUser userMapperIn) {
+        this.userRepository = userRepository;
+        this.userMapperIn = userMapperIn;
     }
 
     public User createUser(UserDTO userDTO) {
-        User user = mapperIn.map(userDTO);
-        return this.repository.save(user);
+        User user = userMapperIn.map(userDTO);
+        return this.userRepository.save(user);
     }
 
     public List<User> findAll() {
-        return this.repository.findAll();
+        return this.userRepository.findAll();
     }
 
     public User findUserByUserName(String userName) {
-        return this.repository.findUserByUserName(userName);
+        return this.userRepository.findUserByUserName(userName);
     }
 
     public List<String> follow(String followerUserName, String followedUserName) {
-        User follower = repository.findUserByUserName(followerUserName);
-        follower.getFollowing().add(repository.findUserByUserName(followedUserName));
-        //this.repository.setUserFollowing(follower.getFollowing(), followerUserName);
-        this.repository.saveAndFlush(follower);
+        User follower = userRepository.findUserByUserName(followerUserName);
+        follower.getFollowing().add(userRepository.findUserByUserName(followedUserName));
+        this.userRepository.saveAndFlush(follower);
         List<String> following = new ArrayList<String>();
         for (User u : follower.getFollowing()) {
             following.add(u.getUserName());
@@ -46,11 +46,21 @@ public class UserService {
     }
 
     public List<String> findAllFollowing(String followerUserName) {
-        User follower = repository.findUserByUserName(followerUserName);
+        User follower = userRepository.findUserByUserName(followerUserName);
         List<String> following = new ArrayList<String>();
         for (User u : follower.getFollowing()) {
             following.add(u.getUserName());
         }
         return following;
+    }
+
+    public List<String> findAllFollowers(String followedUserName) {
+        User followed = userRepository.findUserByUserName(followedUserName);
+        Set<User> followers = userRepository.findAllByFollowingContains(followed);
+        List<String> followersUserNames = new ArrayList<String>();
+        for (User u : followers) {
+            followersUserNames.add(u.getUserName());
+        }
+        return followersUserNames;
     }
 }
