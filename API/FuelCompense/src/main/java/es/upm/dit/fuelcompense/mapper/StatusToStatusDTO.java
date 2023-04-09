@@ -17,10 +17,6 @@ public class StatusToStatusDTO implements IMapper<Status, StatusDTO> {
         out.setId(in.getIOSid());
         out.setText(in.getContent());
         out.setAuthUserName(in.getCreator().getUserName());
-        List<String> favs = new ArrayList<String>();
-        for (User u : in.getFavorites()) {
-            favs.add(u.getUserName());
-        }
         return out;
     }
 

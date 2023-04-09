@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CompensationtoCompensationDTO implements IMapper<Compensation, CompensationDTO> {
+public class CompensationToCompensationDTO implements IMapper<Compensation, CompensationDTO> {
 
     @Override
     public CompensationDTO map(Compensation in) {

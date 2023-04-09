@@ -23,15 +23,7 @@ public class UserToUserDTO implements IMapper<User, UserDTO> {
     @Override
     public UserDTO map(User in){
         UserDTO userOut = new UserDTO();
-        userOut.setId(in.getId());
         userOut.setUserName(in.getUserName());
-        List<String> following = new ArrayList<String>();
-        for (User u : in.getFollowing()) {
-            following.add(u.getUserName());
-        }
-        userOut.setUsersFollowing(following);
-        List<Status> statuses = statusService.findAllStatusesByCreatorId(in.getId());
-        userOut.setStatuses(statusMapperOut.listMap(statuses));
         return userOut;
     }
 

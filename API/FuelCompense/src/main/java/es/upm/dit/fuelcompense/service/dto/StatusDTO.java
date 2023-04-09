@@ -12,7 +12,6 @@ public class StatusDTO {
 
     private String id;
     private String text;
-    private List<String> favs;
     private String authUserName;
 
 }

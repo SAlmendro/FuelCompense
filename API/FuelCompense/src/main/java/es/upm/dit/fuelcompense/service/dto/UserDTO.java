@@ -10,9 +10,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserDTO {
 
-    private Long id;
     private String userName;
-    private List<StatusDTO> statuses;
-    private List<String> usersFollowing;
 
 }
