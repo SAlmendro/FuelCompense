@@ -2,6 +2,7 @@ package es.upm.dit.fuelcompense.service.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -14,5 +15,6 @@ public class StatusDTO {
     private String text;
     private Set<String> favs;
     private String authUserName;
+    private LocalDateTime creationDate;
 
 }

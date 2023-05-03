@@ -24,6 +24,7 @@ public class StatusToStatusDTO implements IMapper<Status, StatusDTO> {
             favs.add(u.getUserName());
         }
         out.setFavs(favs);
+        out.setCreationDate(in.getCreationDate());
         return out;
     }
 
