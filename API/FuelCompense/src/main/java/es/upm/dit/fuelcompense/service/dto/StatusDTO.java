@@ -2,7 +2,7 @@ package es.upm.dit.fuelcompense.service.dto;
 
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -10,8 +10,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StatusDTO {
 
-    private String id;
+    private Long id;
     private String text;
+    private Set<String> favs;
     private String authUserName;
 
 }

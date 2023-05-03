@@ -6,7 +6,9 @@ import es.upm.dit.fuelcompense.service.dto.StatusDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class StatusToStatusDTO implements IMapper<Status, StatusDTO> {
@@ -14,9 +16,14 @@ public class StatusToStatusDTO implements IMapper<Status, StatusDTO> {
     @Override
     public StatusDTO map(Status in) {
         StatusDTO out = new StatusDTO();
-        out.setId(in.getIOSid());
+        out.setId(in.getId());
         out.setText(in.getContent());
         out.setAuthUserName(in.getCreator().getUserName());
+        Set<String> favs = new HashSet<String>();
+        for (User u : in.getFavorites()) {
+            favs.add(u.getUserName());
+        }
+        out.setFavs(favs);
         return out;
     }
 

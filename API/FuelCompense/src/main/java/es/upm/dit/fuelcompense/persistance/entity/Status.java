@@ -28,12 +28,11 @@ public class Status {
     private String content;
     private LocalDateTime creationDate;
     @ToString.Exclude
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "favorites",
             joinColumns = @JoinColumn(name = "status_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> favorites = new HashSet<>();
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

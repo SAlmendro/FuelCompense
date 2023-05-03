@@ -6,11 +6,10 @@ import es.upm.dit.fuelcompense.persistance.entity.Status;
 import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.persistance.repository.StatusRepository;
 import es.upm.dit.fuelcompense.service.dto.StatusDTO;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,8 +54,29 @@ public class StatusService {
         return orderedStatuses;
     }
 
-    public Boolean deleteStatus(String iOSid, String userName) {
-        return statusRepository.deleteByIOSidAndCreator_UserName(iOSid, userName) == 1;
+    public void deleteStatus(Long statusId) {
+        statusRepository.deleteById(statusId);
+    }
+
+    public Optional<Boolean> changeFavorite(Long statusId, String userName) {
+        Optional<Status> optionalStatus = statusRepository.findByIdWithFavorites(statusId);
+        User user = userService.findUserByUserName(userName);
+
+        if (!optionalStatus.isPresent()) {
+            return Optional.empty();
+        }
+
+        Status status = optionalStatus.get();
+
+        if (status.getFavorites().contains(user)) {
+            status.getFavorites().remove(user);
+            statusRepository.saveAndFlush(status);
+            return Optional.of(false);
+        } else {
+            status.getFavorites().add(user);
+            statusRepository.saveAndFlush(status);
+            return Optional.of(true);
+        }
     }
 
     private Comparator<Status> statusComparator() {

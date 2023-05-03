@@ -9,7 +9,7 @@ import Foundation
 
 struct Status : Codable {
     
-    var id = UUID()
+    var id : Int64
     var text : String
     var favs : Array<String> // the strings are the usernames of the users that marked this social unit as fav
     var authUserName : String
@@ -38,9 +38,9 @@ class SocialModel : ObservableObject {
         refresh()
     }
     
-    func delete(uuid: UUID) -> Bool {
+    func delete(id: Int64) -> Bool {
         let index = statuses.firstIndex { su in
-            su.id == uuid;
+            su.id == id;
         }!
         statuses.remove(at: index);
         // delete the social unit from the API, returns true if delete was succesfull

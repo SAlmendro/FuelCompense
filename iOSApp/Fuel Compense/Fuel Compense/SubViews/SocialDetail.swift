@@ -29,7 +29,7 @@ struct SocialDetail: View {
 
             }
             Button(action: {
-                if socialModel.delete(uuid: status.id) {
+                if socialModel.delete(id: status.id) {
                     self.mode.wrappedValue.dismiss()
                 }
             }, label: {

@@ -19,7 +19,6 @@ public class StatusDTOtoStatus implements IMapper<StatusDTO, Status> {
     @Override
     public Status map(StatusDTO in){
         Status status = new Status();
-        status.setIOSid(in.getId());
         status.setContent(in.getText());
         status.setCreator(userService.findUserByUserName(in.getAuthUserName()));
         status.setCreationDate(LocalDateTime.now());
