@@ -50,4 +50,10 @@ public class UserController {
         return userMapperOut.map(this.userService.findUserByUserName(userName));
     }
 
+    @DeleteMapping("/{userName}")
+    public Boolean deleteUser(@PathVariable String userName) {
+        Long userId = userService.findUserByUserName(userName).getId();
+        return userService.deleteUserById(userId);
+    }
+
 }
