@@ -20,6 +20,7 @@ struct FuelView: View {
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
+    @EnvironmentObject var userModel : UserModel
     @State var selectedSV = "1"
     
     var body: some View {
@@ -29,6 +30,7 @@ struct FuelView: View {
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
+                .environmentObject(userModel)
             Picker("FuelSubViews", selection: $selectedSV) {
                 ForEach(fuelSubViews) { sv in
                     Text(String(localized: sv.name)).tag(sv.number)

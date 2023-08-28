@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var userModel : UserModel
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
-    @EnvironmentObject var socialModel : SocialModel
+    @EnvironmentObject var statusModel : StatusModel
+    @State var showRegister = false
+    @State var showLogin = false
     
     var body: some View {
         TabView{
@@ -40,7 +43,7 @@ struct ContentView: View {
                     Image(systemName: "person.3")
                     Text(String(localized: "cv.social"))
                 }
-                .environmentObject(socialModel)
+                .environmentObject(statusModel)
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
@@ -54,11 +57,23 @@ struct ContentView: View {
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .actionSheet(isPresented: $userModel.notLoggedUser){
+            ActionSheet(title: Text(String(localized: "loginOrRegister")), message: Text(String(localized: "loginOrRegMessage")), buttons: [
+                .default(Text(String(localized: "login"))) {
+                    showLogin = true
+                },
+                .default(Text(String(localized: "register"))) {
+                   showRegister = true
+                }
+            ])
+        }
+        .sheet(isPresented: $showLogin){
+            LoginModal(showLogin: $showLogin)
+                .environmentObject(userModel)
+        }
+        .sheet(isPresented: $showRegister){
+            RegisterModal(showRegister: $showRegister)
+                .environmentObject(userModel)
+        }
     }
 }

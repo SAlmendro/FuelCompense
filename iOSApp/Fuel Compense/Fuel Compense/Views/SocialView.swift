@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SocialView: View {
     
-    @EnvironmentObject var socialModel : SocialModel
+    @EnvironmentObject var statusModel : StatusModel
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
@@ -23,12 +23,12 @@ struct SocialView: View {
         
             NavigationView{
                 List {
-                    ForEach(socialModel.statuses.indices, id: \.self) { i in
+                    ForEach(statusModel.statuses.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: SocialDetail(status: $socialModel.statuses[i])
-                                .environmentObject(socialModel)
+                            destination: SocialDetail(status: $statusModel.statuses[i])
+                                .environmentObject(statusModel)
                         ) {
-                            SocialRow(status: $socialModel.statuses[i])
+                            SocialRow(status: $statusModel.statuses[i])
                         }
                     }
                 }

@@ -12,10 +12,14 @@ struct AddButton: View {
     @EnvironmentObject var fuelModel: FuelModel
     @EnvironmentObject var globalsModel : GlobalsModel
     @EnvironmentObject var carbonModel : CarbonModel
-    @State private var showingActionSheet = false
+    @EnvironmentObject var userModel : UserModel
+    @State private var showingAddActionSheet = false
+    @State private var showingSocialActionSheet = false
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
     @State private var showPicker = false
+    @State private var showLogin = false
+    @State private var showRegister = false
     @State var title : String
     
     var body: some View {
@@ -23,6 +27,17 @@ struct AddButton: View {
             Button(action: {}) {
                 Image(systemName: "person.circle.fill")
                     .resizable()
+            }.actionSheet(isPresented: $showingSocialActionSheet){
+                ActionSheet(title: Text(String(localized: "loginOrRegister")), message: Text(String(localized: "loginOrRegMessage")), buttons: [
+                    .default(Text(String(localized: "login"))) {
+                        showLogin = true
+                        showingSocialActionSheet = false
+                    },
+                    .default(Text(String(localized: "register"))) {
+                        showRegister = true
+                        showingSocialActionSheet = false
+                    }
+                ])
             }
             .frame(width: 25, height: 25)
             .padding()
@@ -30,11 +45,11 @@ struct AddButton: View {
             Text(title)
             Spacer()
             Button(action: {
-                showingActionSheet = true
+                showingAddActionSheet = true
             }) {
                 Image(systemName: "plus")
                     .resizable()
-            }.actionSheet(isPresented: $showingActionSheet){
+            }.actionSheet(isPresented: $showingAddActionSheet){
                 ActionSheet(title: Text(String(localized: "add")), message: Text(String(localized: "cv.questionAdd")), buttons: [
                     .default(Text(String(localized: "cv.refueling"))) {
                         if globalsModel.globals.carbonPerLiter == 0 {
@@ -67,6 +82,11 @@ struct AddButton: View {
                     showPicker: $showPicker,
                     selection: (globalsModel.globals.carbonPerLiter == FuelType.gasoline.rawValue) ? FuelType.gasoline : FuelType.gasoil)
                 .environmentObject(globalsModel)
+            }
+            .sheet(isPresented: $showLogin) {
+                LoginModal(
+                    showLogin: $showLogin)
+                .environmentObject(userModel)
             }
         }
         

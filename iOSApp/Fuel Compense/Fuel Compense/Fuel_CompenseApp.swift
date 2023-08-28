@@ -10,18 +10,20 @@ import SwiftUI
 @main
 struct Fuel_CompenseApp: App {
     
+    let userModel = UserModel()
     let fuelModel = FuelModel()
     let carbonModel = CarbonModel()
     let globalsModel = GlobalsModel()
-    let socialModel = SocialModel()
+    let statusModel = StatusModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(userModel)
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
-                .environmentObject(socialModel)
+                .environmentObject(statusModel)
         }
     }
 }

@@ -17,7 +17,7 @@ struct Status : Codable {
     
 }
 
-class SocialModel : ObservableObject {
+class StatusModel : ObservableObject {
     
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
