@@ -46,6 +46,13 @@ public class UserService {
         return following;
     }
 
+    public Boolean unfollow(String followerUserName, String followedUserName) {
+        User follower = userRepository.findUserByUserName(followerUserName);
+        follower.getFollowing().remove(userRepository.findUserByUserName(followedUserName));
+        this.userRepository.saveAndFlush(follower);
+        return !userRepository.findUserByUserName(followerUserName).getFollowing().contains(userRepository.findUserByUserName(followedUserName));
+    }
+
     public List<String> findAllFollowing(String followerUserName) {
         User follower = userRepository.findUserByUserName(followerUserName);
         List<String> following = new ArrayList<String>();
@@ -63,6 +70,15 @@ public class UserService {
             followersUserNames.add(u.getUserName());
         }
         return followersUserNames;
+    }
+
+    public List<String> findAllUsersByKeyword(String keyword) {
+        List<User> users = userRepository.findAllByUserNameContainingIgnoreCase(keyword);
+        List<String> userNames = new ArrayList<String>();
+        for (User u : users) {
+            userNames.add(u.getUserName());
+        }
+        return userNames;
     }
 
     public boolean deleteUserById(Long userId) {
