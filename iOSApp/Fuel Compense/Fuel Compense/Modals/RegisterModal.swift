@@ -22,10 +22,12 @@ struct RegisterModal: View {
             TextField(String(localized: "rm.userName"), text: $userName)
             Spacer()
             Button(action: {
-                if userModel.register(userName: userName) {
-                    showRegister = false
-                } else {
-                    registerIncorrect = true
+                userModel.register(userName: userName) { success in
+                    if success {
+                        showRegister = false
+                    } else {
+                        registerIncorrect = true
+                    }
                 }
             })  {Text(String(localized: "rm.register"))}
             Spacer()

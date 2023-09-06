@@ -47,6 +47,13 @@ struct ContentView: View {
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)
                 .environmentObject(globalsModel)
+            // Usuario
+            UserView()
+                .tabItem{
+                    Image(systemName: "person")
+                    Text(String(localized: "cv.user"))
+                }
+                .environmentObject(userModel)
             // Settings
             SettingsView()
                 .tabItem{

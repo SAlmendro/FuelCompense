@@ -22,12 +22,18 @@ struct LoginModal: View {
             TextField(String(localized: "lm.userName"), text: $userName)
             Spacer()
             Button(action: {
-                if userModel.login(userName: userName) {
-                    showLogin = false
-                } else {
-                    loginIncorrect = true
+                DispatchQueue.main.async {
+                    userModel.login(userName: userName) { success in
+                        if success {
+                            showLogin = false
+                        } else {
+                            loginIncorrect = true
+                        }
+                    }
                 }
-            })  {Text(String(localized: "lm.login"))}
+            }) {
+                Text(String(localized: "lm.login"))
+            }
             Spacer()
             if (loginIncorrect) {
                 Text(String(localized: "lm.loginIncorrect"))

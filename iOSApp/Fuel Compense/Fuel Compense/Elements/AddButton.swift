@@ -18,29 +18,10 @@ struct AddButton: View {
     @State private var showFuelModal = false
     @State private var showCompenseModal = false
     @State private var showPicker = false
-    @State private var showLogin = false
-    @State private var showRegister = false
     @State var title : String
     
     var body: some View {
         HStack{
-            Button(action: {}) {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-            }.actionSheet(isPresented: $showingSocialActionSheet){
-                ActionSheet(title: Text(String(localized: "loginOrRegister")), message: Text(String(localized: "loginOrRegMessage")), buttons: [
-                    .default(Text(String(localized: "login"))) {
-                        showLogin = true
-                        showingSocialActionSheet = false
-                    },
-                    .default(Text(String(localized: "register"))) {
-                        showRegister = true
-                        showingSocialActionSheet = false
-                    }
-                ])
-            }
-            .frame(width: 25, height: 25)
-            .padding()
             Spacer()
             Text(title)
             Spacer()
@@ -82,11 +63,6 @@ struct AddButton: View {
                     showPicker: $showPicker,
                     selection: (globalsModel.globals.carbonPerLiter == FuelType.gasoline.rawValue) ? FuelType.gasoline : FuelType.gasoil)
                 .environmentObject(globalsModel)
-            }
-            .sheet(isPresented: $showLogin) {
-                LoginModal(
-                    showLogin: $showLogin)
-                .environmentObject(userModel)
             }
         }
         
