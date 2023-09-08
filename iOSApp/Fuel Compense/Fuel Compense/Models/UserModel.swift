@@ -53,8 +53,8 @@ class UserModel : ObservableObject {
                 if (self.user.userName == "mock") {
                     notLoggedUser = true
                 }
-                self.followers = self.getFollowers()
-                self.following = self.getFollowing()
+                self.getFollowers()
+                self.getFollowing()
                 print("User recovered")
             } catch {
                 user = User(userName: "mock")
@@ -98,8 +98,8 @@ class UserModel : ObservableObject {
                 
                 if loginCorrect {
                     self.user = User(userName: userName)
-                    self.followers = self.getFollowers()
-                    self.following = self.getFollowing()
+                    self.getFollowers()
+                    self.getFollowing()
                 }
                 
                 completion(loginCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
@@ -161,12 +161,12 @@ class UserModel : ObservableObject {
         task.resume()
     }
     
-    func getFollowers() -> [String] {
+    func getFollowers() {
         let escapedFollowers = "\(self.urlBase)\(self.getFollowersAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedFollowers!) else {
             print("Error creando la URL " + escapedFollowers!)
-            return []
+            return
         }
         
         var followers: [String] = []
@@ -200,16 +200,16 @@ class UserModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        return followers
+        self.followers = followers
     }
 
     
-    func getFollowing() -> [String] {
+    func getFollowing() {
         let escapedFollowing = "\(self.urlBase)\(self.getFollowingAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedFollowing!) else {
             print("Error creando la URL " + escapedFollowing!)
-            return []
+            return
         }
         
         var following: [String] = []
@@ -243,7 +243,7 @@ class UserModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        return following
+        self.following = following
     }
     
     func unfollow(userName: String, completion: @escaping (Bool) -> Void) {
@@ -284,8 +284,8 @@ class UserModel : ObservableObject {
                 completion(false) // Llamamos al bloque de finalización con valor false
                 return
             }
-            self.followers = self.getFollowers()
-            self.following = self.getFollowing()
+            self.getFollowers()
+            self.getFollowing()
             completion(unfollowCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
         }
         
@@ -330,8 +330,8 @@ class UserModel : ObservableObject {
                 completion(false) // Llamamos al bloque de finalización con valor false
                 return
             }
-            self.followers = self.getFollowers()
-            self.following = self.getFollowing()
+            self.getFollowers()
+            self.getFollowing()
             completion(followCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
         }
         

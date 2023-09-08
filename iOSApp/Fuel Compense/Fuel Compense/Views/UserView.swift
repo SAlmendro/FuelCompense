@@ -15,6 +15,8 @@ struct UserView: View {
 
     @State var showLogin = false
     @State var showRegister = false
+    @State var nFollowers = 0
+    @State var nFollowing = 0
     
     var body: some View {
         NavigationView {
@@ -48,13 +50,13 @@ struct UserView: View {
                         destination: FollowsSubView(followers: true)
                             .environmentObject(userModel)
                     ) {
-                        Text(String(localized: "uv.followers") + String(userModel.followers.count) )
+                        Text(String(localized: "uv.followers") + String(nFollowers) )
                     }
                     NavigationLink(
                         destination: FollowsSubView(followers: false)
                             .environmentObject(userModel)
                     ) {
-                        Text(String(localized: "uv.followed") + String(userModel.following.count) )
+                        Text(String(localized: "uv.followed") + String(nFollowing) )
                     }
                     NavigationLink(
                         destination: SearchUsersSubView()
@@ -73,6 +75,13 @@ struct UserView: View {
         .sheet(isPresented: $showRegister){
             RegisterModal(showRegister: $showRegister)
                 .environmentObject(userModel)
+        }
+        .onAppear{
+            print("Estoy apareciendo, soy UserView")
+            userModel.getFollowers()
+            userModel.getFollowing()
+            nFollowers = userModel.followers.count
+            nFollowing = userModel.following.count
         }
     }
 }
