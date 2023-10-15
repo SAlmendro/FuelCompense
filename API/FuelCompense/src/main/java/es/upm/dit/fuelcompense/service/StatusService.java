@@ -42,6 +42,7 @@ public class StatusService {
 
     public List<Status> findAllStatusesBySubscriberUserName(String userName) {
         List<String> following = this.userService.findAllFollowing(userName);
+        following.add(userName);
         List<Status> statuses = new ArrayList<Status>();
         for (String u : following) {
             User user = this.userService.findUserByUserName(u);
