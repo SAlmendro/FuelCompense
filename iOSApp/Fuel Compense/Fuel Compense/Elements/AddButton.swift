@@ -30,39 +30,38 @@ struct AddButton: View {
             }) {
                 Image(systemName: "plus")
                     .resizable()
-            }.actionSheet(isPresented: $showingAddActionSheet){
-                ActionSheet(title: Text(String(localized: "add")), message: Text(String(localized: "cv.questionAdd")), buttons: [
-                    .default(Text(String(localized: "cv.refueling"))) {
-                        if globalsModel.globals.carbonPerLiter == 0 {
-                            showPicker = true
-                        } else {
-                            showFuelModal = true
-                        }
-                    },
-                    .default(Text(String(localized: "cv.compensation"))) {
-                       showCompenseModal = true
-                    },
-                    .cancel()  { }
+            }
+            .actionSheet(isPresented: $showingAddActionSheet){
+                ActionSheet(
+                    title: Text(String(localized: "add")),
+                    message: Text(String(localized: "cv.questionAdd")),
+                    buttons: [
+                        .default(Text(String(localized: "cv.refueling"))) {
+                            if globalsModel.globals.carbonPerLiter == 0 {
+                                showPicker = true
+                            } else {
+                                showFuelModal = true
+                            }
+                        },
+                        .default(Text(String(localized: "cv.compensation"))) {
+                           showCompenseModal = true
+                        },
+                        .cancel()  { }
                 ])
             }
             .frame(width: 25, height: 25)
             .padding()
             .sheet(isPresented: $showFuelModal){
                 FuelModal(showFuelModal: $showFuelModal, editMode: false)
-                    .environmentObject(fuelModel)
-                    .environmentObject(globalsModel)
             }
             .sheet(isPresented: $showCompenseModal){
                 CompenseModal(showCompenseModal: $showCompenseModal, editMode: false)
-                    .environmentObject(carbonModel)
-                    .environmentObject(globalsModel)
             }
             .sheet(isPresented: $showPicker) {
                 FuelTypeModal(
                     showFuelModal: $showFuelModal,
                     showPicker: $showPicker,
                     selection: (globalsModel.globals.carbonPerLiter == FuelType.gasoline.rawValue) ? FuelType.gasoline : FuelType.gasoil)
-                .environmentObject(globalsModel)
             }
         }
         

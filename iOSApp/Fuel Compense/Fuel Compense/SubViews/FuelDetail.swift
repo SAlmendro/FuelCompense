@@ -97,8 +97,6 @@ struct FuelDetail: View {
                               full: refill.fullTank,
                               editMode: true,
                               index: index)
-                        .environmentObject(fuelModel)
-                        .environmentObject(globalsModel)
                 }
                 Spacer()
             }

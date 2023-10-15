@@ -55,7 +55,6 @@ struct SettingsView: View {
                     showPicker: $showPicker,
                     selection: (globalsModel.globals.carbonPerLiter == FuelType.gasoline.rawValue) ? FuelType.gasoline : FuelType.gasoil
                 )
-                    .environmentObject(globalsModel)
             }
         }
     }

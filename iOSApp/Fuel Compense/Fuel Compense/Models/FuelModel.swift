@@ -48,7 +48,18 @@ class FuelModel : ObservableObject {
         didSet {
             do {
                 let data = try encoder.encode(refills)
-                UserDefaults.standard.set(data, forKey: "refuelings")
+                UserDefaults.standard.set(data, forKey: "refills")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    @Published var unpublishedRefills : Array<Refill> {
+        didSet {
+            do {
+                let data = try encoder.encode(unpublishedRefills)
+                UserDefaults.standard.set(data, forKey: "unpublishedRefills")
             } catch {
                 print(error.localizedDescription)
             }
@@ -56,14 +67,19 @@ class FuelModel : ObservableObject {
     }
     
     var userDef : UserDefaults
+    var globalsModel : GlobalsModel
+    var userModel : UserModel
+    let refillAPI = "refills/"
     
-    init(){
+    init(globalsModel: GlobalsModel, userModel: UserModel){
         userDef = UserDefaults.standard
-        if let refillsUserDefData = (userDef.object(forKey: "refuelings") as? Data) {
+        self.globalsModel = globalsModel
+        self.userModel = userModel
+        if let refillsUserDefData = (userDef.object(forKey: "refills") as? Data) {
             do {
                 let refillsUserDef = try decoder.decode(Array<Refill>.self, from: refillsUserDefData)
                 self.refills = refillsUserDef
-                print("Refuelings recovered")
+                print("Refills recovered")
             } catch {
                 self.refills = []
                 print(error.localizedDescription)

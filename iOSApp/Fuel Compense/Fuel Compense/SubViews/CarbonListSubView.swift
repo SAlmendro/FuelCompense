@@ -17,7 +17,6 @@ struct CarbonListSubView: View {
             ForEach(carbonModel.compensations.indices, id: \.self) { i in
                 NavigationLink(
                     destination: CarbonDetail(compensation: $carbonModel.compensations[i])
-                        .environmentObject(carbonModel)
                 ) {
                     CarbonRow(compensation: $carbonModel.compensations[i])
                 }

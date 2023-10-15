@@ -27,10 +27,6 @@ struct FuelView: View {
         
         VStack{
             AddButton(title: String(localized: "fv.title"))
-                .environmentObject(fuelModel)
-                .environmentObject(carbonModel)
-                .environmentObject(globalsModel)
-                .environmentObject(userModel)
             Picker("FuelSubViews", selection: $selectedSV) {
                 ForEach(fuelSubViews) { sv in
                     Text(String(localized: sv.name)).tag(sv.number)
@@ -39,10 +35,8 @@ struct FuelView: View {
             .pickerStyle(SegmentedPickerStyle())
             if (selectedSV == "1") {
                 FuelListSubView()
-                    .environmentObject(fuelModel)
             } else {
                 FuelStatsSubView()
-                    .environmentObject(fuelModel)
             }
             Spacer()
         }

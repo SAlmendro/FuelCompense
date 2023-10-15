@@ -48,19 +48,16 @@ struct UserView: View {
                 Section(header: Text(String(localized: "uv.social"))) {
                     NavigationLink(
                         destination: FollowsSubView(followers: true)
-                            .environmentObject(userModel)
                     ) {
                         Text(String(localized: "uv.followers") + String(nFollowers) )
                     }
                     NavigationLink(
                         destination: FollowsSubView(followers: false)
-                            .environmentObject(userModel)
                     ) {
                         Text(String(localized: "uv.followed") + String(nFollowing) )
                     }
                     NavigationLink(
                         destination: SearchUsersSubView()
-                            .environmentObject(userModel)
                     ) {
                         Text(String(localized: "uv.searchUsers"))
                     }
@@ -70,11 +67,9 @@ struct UserView: View {
         .navigationTitle("uv.profile")
         .sheet(isPresented: $showLogin){
             LoginModal(showLogin: $showLogin)
-                .environmentObject(userModel)
         }
         .sheet(isPresented: $showRegister){
             RegisterModal(showRegister: $showRegister)
-                .environmentObject(userModel)
         }
         .onAppear{
             print("Estoy apareciendo, soy UserView")

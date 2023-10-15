@@ -18,6 +18,8 @@ class UserModel : ObservableObject {
     private var encoder = JSONEncoder()
     private var decoder = JSONDecoder()
     
+    var globalsModel : GlobalsModel
+    
     @Published var user : User {
         didSet {
             do {
@@ -34,18 +36,17 @@ class UserModel : ObservableObject {
     var userDef : UserDefaults
     var following : [String] = []
     var followers : [String] = []
-    private let urlBase = "http://localhost:8080"
-    private let userAPI = "/users/"
-    private let registerAPI = "/users/new/"
-    private let getFollowersAPI = "/users/followers/"
-    private let getFollowingAPI = "/users/following/"
-    private let unfollowAPI = "/users/unfollow/"
-    private let followAPI = "/users/follow/"
-    private let searchUsersAPI = "/users/search/"
-    let session = URLSession.shared
+    private let userAPI = "users/"
+    private let registerAPI = "new/"
+    private let getFollowersAPI = "followers/"
+    private let getFollowingAPI = "following/"
+    private let unfollowAPI = "unfollow/"
+    private let followAPI = "follow/"
+    private let searchUsersAPI = "search/"
     
-    init(){
+    init(globalsModel: GlobalsModel){
         userDef = UserDefaults.standard
+        self.globalsModel = globalsModel
         if let userUserDefData = (userDef.object(forKey: "user") as? Data) {
             do {
                 let userUserDef = try decoder.decode(User.self, from: userUserDefData)
@@ -69,7 +70,8 @@ class UserModel : ObservableObject {
     }
     
     func login(userName: String, completion: @escaping (Bool) -> Void) {
-        let escapedLogin = "\(self.urlBase)\(self.userAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        let escapedLogin = "\(globalsModel.urlBase)\(self.userAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedLogin!) else {
             print("Error creando la URL")
@@ -79,12 +81,12 @@ class UserModel : ObservableObject {
         
         var loginCorrect = true
         
-        let task = self.session.dataTask(with: url) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
             DispatchQueue.main.async {
                 guard error == nil else {
                     loginCorrect = false
                     print("Se recibió un error al hacer login: \(error!)")
-                    completion(false) // Llamamos al bloque de finalización con valor false
+                    completion(false)
                     return
                 }
                 
@@ -92,7 +94,7 @@ class UserModel : ObservableObject {
                 guard respuesta == 200 else {
                     loginCorrect = false
                     print("Se recibió una respuesta distinta a 200 al hacer login. Respuesta: \(respuesta)")
-                    completion(false) // Llamamos al bloque de finalización con valor false
+                    completion(false)
                     return
                 }
                 
@@ -101,8 +103,7 @@ class UserModel : ObservableObject {
                     self.getFollowers()
                     self.getFollowing()
                 }
-                
-                completion(loginCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
+                completion(loginCorrect)
             }
         }
         
@@ -111,11 +112,11 @@ class UserModel : ObservableObject {
 
     
     func register(userName: String, completion: @escaping (Bool) -> Void) {
-        let escapedLogin = "\(self.urlBase)\(self.registerAPI)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedLogin = "\(globalsModel.urlBase)\(self.userAPI)\(self.registerAPI)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedLogin!) else {
             print("Error creando la URL")
-            completion(false) // Llamamos al bloque de finalización con valor false
+            completion(false)
             return
         }
         
@@ -135,7 +136,7 @@ class UserModel : ObservableObject {
         
         var registerCorrect = true
         
-        let task = self.session.dataTask(with: request) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
             guard error == nil else {
                 print("Se recibió un error al hacer el registro: \(error!)")
                 registerCorrect = false
@@ -162,7 +163,7 @@ class UserModel : ObservableObject {
     }
     
     func getFollowers() {
-        let escapedFollowers = "\(self.urlBase)\(self.getFollowersAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedFollowers = "\(globalsModel.urlBase)\(self.userAPI)\(self.getFollowersAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedFollowers!) else {
             print("Error creando la URL " + escapedFollowers!)
@@ -173,7 +174,7 @@ class UserModel : ObservableObject {
         
         let semaphore = DispatchSemaphore(value: 0)
         
-        let task = self.session.dataTask(with: url) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
             defer {
                 semaphore.signal()
             }
@@ -205,7 +206,7 @@ class UserModel : ObservableObject {
 
     
     func getFollowing() {
-        let escapedFollowing = "\(self.urlBase)\(self.getFollowingAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedFollowing = "\(globalsModel.urlBase)\(self.userAPI)\(self.getFollowingAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedFollowing!) else {
             print("Error creando la URL " + escapedFollowing!)
@@ -216,7 +217,7 @@ class UserModel : ObservableObject {
         
         let semaphore = DispatchSemaphore(value: 0)
         
-        let task = self.session.dataTask(with: url) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
             defer {
                 semaphore.signal()
             }
@@ -247,7 +248,7 @@ class UserModel : ObservableObject {
     }
     
     func unfollow(userName: String, completion: @escaping (Bool) -> Void) {
-        let escapedUnfollow = "\(self.urlBase)\(self.unfollowAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedUnfollow = "\(globalsModel.urlBase)\(self.userAPI)\(self.unfollowAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedUnfollow!) else {
             print("Error creando la URL de unfollow")
@@ -269,11 +270,10 @@ class UserModel : ObservableObject {
         
         var unfollowCorrect = true
         
-        let task = self.session.dataTask(with: request) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
             guard error == nil else {
                 unfollowCorrect = false
                 print("Se recibió un error al hacer unfollow: \(error!)")
-                completion(false) // Llamamos al bloque de finalización con valor false
                 return
             }
             
@@ -293,7 +293,7 @@ class UserModel : ObservableObject {
     }
 
     func follow(userName: String, completion: @escaping (Bool) -> Void) {
-        let escapedFollow = "\(self.urlBase)\(self.followAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedFollow = "\(globalsModel.urlBase)\(self.userAPI)\(self.followAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedFollow!) else {
             print("Error creando la URL de follow")
@@ -315,7 +315,7 @@ class UserModel : ObservableObject {
         
         var followCorrect = true
         
-        let task = self.session.dataTask(with: request) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
             guard error == nil else {
                 followCorrect = false
                 print("Se recibió un error al hacer follow: \(error!)")
@@ -339,7 +339,7 @@ class UserModel : ObservableObject {
     }
     
     func searchUsers(keyword: String) -> [String] {
-        let escapedSearch = "\(self.urlBase)\(self.searchUsersAPI)\(keyword)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let escapedSearch = "\(globalsModel.urlBase)\(self.userAPI)\(self.searchUsersAPI)\(keyword)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedSearch!) else {
             print("Error creando la URL " + escapedSearch!)
@@ -350,7 +350,7 @@ class UserModel : ObservableObject {
         
         let semaphore = DispatchSemaphore(value: 0)
         
-        let task = self.session.dataTask(with: url) { (data, res, error) in
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
             defer {
                 semaphore.signal()
             }

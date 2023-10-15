@@ -33,10 +33,8 @@ struct FuelStatsSubView: View {
             .pickerStyle(SegmentedPickerStyle())
             if (selectedSV == "1") {
                 FuelConsumeStats()
-                    .environmentObject(fuelModel)
             } else {
                 FuelEconomyStats()
-                    .environmentObject(fuelModel)
             }
             Spacer()
         }

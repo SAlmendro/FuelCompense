@@ -67,8 +67,6 @@ struct CarbonDetail: View {
                         editMode: true,
                         index: index
                     )
-                    .environmentObject(carbonModel)
-                    .environmentObject(globalsModel)
                 }
                 Spacer()
             }
