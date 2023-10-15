@@ -34,8 +34,10 @@ class UserModel : ObservableObject {
     @Published var notLoggedUser : Bool = false
     
     var userDef : UserDefaults
-    var following : [String] = []
-    var followers : [String] = []
+    @Published var following : [String] = []
+    @Published var followers : [String] = []
+    @Published var nFollowing : Int = 0
+    @Published var nFollowers : Int = 0
     private let userAPI = "users/"
     private let registerAPI = "new/"
     private let getFollowersAPI = "followers/"
@@ -202,6 +204,7 @@ class UserModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         self.followers = followers
+        self.nFollowers = followers.count
     }
 
     
@@ -245,6 +248,7 @@ class UserModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         self.following = following
+        self.nFollowing = following.count
     }
     
     func unfollow(userName: String, completion: @escaping (Bool) -> Void) {
@@ -259,18 +263,17 @@ class UserModel : ObservableObject {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "DELETE"
-        let parameters: String = self.user.userName
-        var dataParameters = Data()
-        do {
-            dataParameters = try encoder.encode(parameters)
-        } catch {
-            print(error.localizedDescription)
-        }
-        request.httpBody = dataParameters
+        request.httpBody = self.user.userName.data(using: .utf8)
         
         var unfollowCorrect = true
         
+        let semaphore = DispatchSemaphore(value: 0)
+        
         let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            
             guard error == nil else {
                 unfollowCorrect = false
                 print("Se recibió un error al hacer unfollow: \(error!)")
@@ -284,12 +287,18 @@ class UserModel : ObservableObject {
                 completion(false) // Llamamos al bloque de finalización con valor false
                 return
             }
-            self.getFollowers()
-            self.getFollowing()
             completion(unfollowCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
         }
         
         task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if (unfollowCorrect) {
+            DispatchQueue.main.async {
+                self.getFollowing()
+            }
+        }
     }
 
     func follow(userName: String, completion: @escaping (Bool) -> Void) {
@@ -304,18 +313,16 @@ class UserModel : ObservableObject {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let parameters: String = self.user.userName
-        var dataParameters = Data()
-        do {
-            dataParameters = try encoder.encode(parameters)
-        } catch {
-            print(error.localizedDescription)
-        }
-        request.httpBody = dataParameters
-        
+        request.httpBody = self.user.userName.data(using: .utf8)
         var followCorrect = true
         
+        let semaphore = DispatchSemaphore(value: 0)
+        
         let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            
             guard error == nil else {
                 followCorrect = false
                 print("Se recibió un error al hacer follow: \(error!)")
@@ -330,12 +337,18 @@ class UserModel : ObservableObject {
                 completion(false) // Llamamos al bloque de finalización con valor false
                 return
             }
-            self.getFollowers()
-            self.getFollowing()
             completion(followCorrect) // Llamamos al bloque de finalización con el valor actual de loginCorrect (true)
         }
         
         task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if (followCorrect) {
+            DispatchQueue.main.async {
+                self.getFollowing()
+            }
+        }
     }
     
     func searchUsers(keyword: String) -> [String] {
@@ -388,10 +401,43 @@ class UserModel : ObservableObject {
     }
     
     func delete(userName: String) -> Bool {
-        if (userName == user.userName) {
-            // call the API to delete the user, returns true if delete was succesfull
+        let escapedDelete = "\(globalsModel.urlBase)\(self.userAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedDelete!) else {
+            print("Error creando la URL de unfollow")
+            return false
         }
-        return false;
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "DELETE"
+        
+        var deleteCorrect = true
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            guard error == nil else {
+                deleteCorrect = false
+                print("Se recibió un error al hacer unfollow: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                deleteCorrect = false
+                print("Se recibió una respuesta distinta a 200 al hacer unfollow. Respuesta: \(respuesta)")
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        self.logout()
+        
+        return deleteCorrect
     }
     
 }

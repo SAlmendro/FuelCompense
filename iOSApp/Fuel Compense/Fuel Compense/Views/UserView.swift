@@ -15,8 +15,6 @@ struct UserView: View {
 
     @State var showLogin = false
     @State var showRegister = false
-    @State var nFollowers = 0
-    @State var nFollowing = 0
     
     var body: some View {
         NavigationView {
@@ -49,12 +47,20 @@ struct UserView: View {
                     NavigationLink(
                         destination: FollowsSubView(followers: true)
                     ) {
-                        Text(String(localized: "uv.followers") + String(nFollowers) )
+                        HStack {
+                            Text(String(localized: "uv.followers"))
+                            Spacer()
+                            Text(String(userModel.nFollowers))
+                        }
                     }
                     NavigationLink(
                         destination: FollowsSubView(followers: false)
                     ) {
-                        Text(String(localized: "uv.followed") + String(nFollowing) )
+                        HStack {
+                            Text(String(localized: "uv.followed"))
+                            Spacer()
+                            Text(String(userModel.nFollowing))
+                        }
                     }
                     NavigationLink(
                         destination: SearchUsersSubView()
@@ -75,8 +81,6 @@ struct UserView: View {
             print("Estoy apareciendo, soy UserView")
             userModel.getFollowers()
             userModel.getFollowing()
-            nFollowers = userModel.followers.count
-            nFollowing = userModel.following.count
         }
     }
 }

@@ -41,31 +41,42 @@ struct SearchUsersSubView: View {
             }
         }
         .alert(isPresented: $showFollowAlert) {
-            Alert(
-                title: Text(String(localized: "fsv.follow")),
-                message: Text(String(localized: "fsv.questionFollow") + selectedResult),
-                primaryButton: .default(
-                    Text(String(localized: "fsv.follow")),
-                    action: {
-                        userModel.follow(userName: selectedResult) { success in
-                            if success {
-                                selectedResult = ""
-                            } else {
-                                showFollowNotSuccessAlert = true
+            if (userModel.following.contains(selectedResult)) {
+                return Alert(
+                    title: Text(String(localized: "fsv.alreadyFollowing")),
+                    message: Text(String(localized: "fsv.alreadyFollowingMessage")),
+                    dismissButton: .cancel() {
+                        selectedResult = ""
+                        showFollowAlert = false
+                    }
+                )
+            } else {
+                return Alert(
+                    title: Text(String(localized: "fsv.follow")),
+                    message: Text(String(localized: "fsv.questionFollow") + selectedResult),
+                    primaryButton: .default(
+                        Text(String(localized: "fsv.follow")),
+                        action: {
+                            userModel.follow(userName: selectedResult) { success in
+                                DispatchQueue.main.async {
+                                    if success {
+                                        selectedResult = ""
+                                        showFollowAlert = false
+                                    } else {
+                                        print("Ha habido un problema siguiendo al usuario " + selectedResult)
+                                        selectedResult = ""
+                                        showFollowAlert = false
+                                    }
+                                }
                             }
                         }
+                    ),
+                    secondaryButton: .cancel() {
+                        selectedResult = ""
+                        showFollowAlert = false
                     }
-                ),
-                secondaryButton: .cancel() {}
-               
-            )
-        }
-        .alert(isPresented: $showFollowNotSuccessAlert) {
-            Alert(
-                title: Text(String(localized: "fsv.unfollowNotSuccess")),
-                message: Text(String(localized: "fsv.errorInUnfollowing") + selectedResult),
-                dismissButton: .cancel() {}
-            )
+                )
+            }
         }
     }
 }

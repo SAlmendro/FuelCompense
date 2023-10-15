@@ -13,23 +13,27 @@ struct SocialView: View {
     
     var body: some View {
         VStack{
-            AddButton(title: String(localized: "sv.title"))
+            RefreshButton(title: String(localized: "sv.title"))
         
             NavigationView{
                 List {
-                    ForEach(statusModel.statuses.indices, id: \.self) { i in
+                    ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: SocialDetail(status: $statusModel.statuses[i])
+                            destination: SocialDetail(status: $statusModel.subscribedStatuses[i])
                         ) {
-                            SocialRow(status: $statusModel.statuses[i])
+                            SocialRow(status: $statusModel.subscribedStatuses[i])
                         }
                     }
                 }
             }
             Spacer()
         }
-        
+        .onAppear{
+            statusModel.getSubscribedStatuses()
+            statusModel.getStatuses()
+        }
     }
+    
 }
 
 

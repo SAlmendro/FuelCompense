@@ -88,6 +88,19 @@ class FuelModel : ObservableObject {
             print("There were no refuelings in userDef")
             self.refills = []
         }
+        if let unpublishedRefillsUserDefData = (userDef.object(forKey: "unpublishedRefills") as? Data) {
+            do {
+                let unpublishedRefillsUserDef = try decoder.decode(Array<Refill>.self, from: unpublishedRefillsUserDefData)
+                self.unpublishedRefills = unpublishedRefillsUserDef
+                print("Unpublished refills recovered")
+            } catch {
+                self.unpublishedRefills = []
+                print(error.localizedDescription)
+            }
+        } else {
+            print("There were no unpublished refills in userDef")
+            self.unpublishedRefills = []
+        }
     }
     
     func delete(index: Int) -> Void {
@@ -219,6 +232,60 @@ class FuelModel : ObservableObject {
             }
         }
         return n
+    }
+    
+    func publishRefill(refill: Refill) -> Bool {
+        let escapedPublishRefill = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedPublishRefill!) else {
+            print("Error creando la URL")
+            return false
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let parameters: Refill = refill
+        var dataParameters = Data()
+        do {
+            dataParameters = try encoder.encode(parameters)
+        } catch {
+            print(error.localizedDescription)
+        }
+        request.httpBody = dataParameters
+        
+        var publishRefillCorrect = true
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print("Se recibió un error al hacer el publicar el refill: \(error!)")
+                    publishRefillCorrect = false
+                    return
+                }
+                
+                let respuesta = (res as! HTTPURLResponse).statusCode
+                guard respuesta == 200 else {
+                    print("Se recibió una respuesta distinta a 200 al publicar el refill. Respuesta: \(respuesta)")
+                    publishRefillCorrect = false
+                    return
+                }
+                
+                if publishRefillCorrect {
+                    self.refills.append(refill)
+                } else {
+                    self.unpublishedRefills.append(refill)
+                }
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        return publishRefillCorrect
     }
     
 }
