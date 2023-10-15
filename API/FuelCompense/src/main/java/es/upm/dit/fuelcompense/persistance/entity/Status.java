@@ -21,7 +21,7 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User creator;
     private String iOSid;
