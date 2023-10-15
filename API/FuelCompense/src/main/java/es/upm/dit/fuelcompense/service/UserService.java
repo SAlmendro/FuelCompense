@@ -6,10 +6,7 @@ import es.upm.dit.fuelcompense.persistance.repository.UserRepository;
 import es.upm.dit.fuelcompense.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -78,6 +75,7 @@ public class UserService {
         for (User u : users) {
             userNames.add(u.getUserName());
         }
+        Collections.sort(userNames);
         return userNames;
     }
 
