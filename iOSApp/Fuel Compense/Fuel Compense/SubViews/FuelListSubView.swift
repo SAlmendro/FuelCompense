@@ -13,14 +13,32 @@ struct FuelListSubView: View {
     
     var body: some View {
         NavigationView{
-        List {
-            ForEach(fuelModel.refills.indices, id: \.self) { i in
-                NavigationLink(
-                    destination: FuelDetail(refill: $fuelModel.refills[i], index: i, fullTankData: fuelModel.getFullTankData(i: i))                ) {
-                    FuelRow(refill: $fuelModel.refills[i], index: i)
+            if (fuelModel.refills.isEmpty) {
+                VStack {
+                    Button(action: {
+                        DispatchQueue.main.async {
+                            fuelModel.getRefills()
+                        }
+                    }) {
+                        VStack {
+                            Image(systemName: "goforward")
+                                .frame(width: 25, height: 25)
+                                .padding()
+                            Text("Recuperar estados del servidor")
+                        }
+                    }
+                    .padding()
+                }
+            } else {
+                List {
+                    ForEach(fuelModel.refills.indices, id: \.self) { i in
+                        NavigationLink(
+                            destination: FuelDetail(refill: $fuelModel.refills[i], index: i, fullTankData: fuelModel.getFullTankData(i: i))                ) {
+                            FuelRow(refill: $fuelModel.refills[i], index: i)
+                        }
+                    }
                 }
             }
-        }
         }
     }
 }
