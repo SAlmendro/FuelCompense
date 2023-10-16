@@ -30,7 +30,7 @@ struct ContentView: View {
                 }
             // Social (inicio)
             if (!userModel.notLoggedUser) {
-                SocialView()
+                StatusView()
                     .tabItem{
                         Image(systemName: "person.3")
                         Text(String(localized: "cv.social"))

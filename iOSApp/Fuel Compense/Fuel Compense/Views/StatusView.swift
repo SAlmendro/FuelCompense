@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SocialView: View {
+struct StatusView: View {
     
     @EnvironmentObject var statusModel : StatusModel
     
@@ -19,9 +19,9 @@ struct SocialView: View {
                 List {
                     ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: SocialDetail(status: $statusModel.subscribedStatuses[i])
+                            destination: StatusDetail(status: $statusModel.subscribedStatuses[i])
                         ) {
-                            SocialRow(status: $statusModel.subscribedStatuses[i])
+                            StatusRow(status: $statusModel.subscribedStatuses[i])
                         }
                     }
                 }

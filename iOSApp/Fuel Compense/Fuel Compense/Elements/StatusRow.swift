@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SocialRow: View {
+struct StatusRow: View {
 
     @Binding var status : Status
     @EnvironmentObject var userModel : UserModel

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SocialDetail: View {
+struct StatusDetail: View {
     
     @Environment(\.presentationMode) var mode : Binding<PresentationMode>
     @Binding var status : Status
