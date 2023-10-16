@@ -15,7 +15,7 @@ struct CarbonDetail: View {
     @EnvironmentObject var globalsModel : GlobalsModel
     @State private var showAlert = false
     @State private var showEditSheet = false
-    var index = 0
+    @State var index : Int
     
     var body: some View {
         
