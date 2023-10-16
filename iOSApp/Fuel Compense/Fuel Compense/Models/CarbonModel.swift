@@ -61,7 +61,7 @@ class CarbonModel : ObservableObject {
         compensations.remove(at: index)
     }
     
-    func deleteAll() -> Void {
+    func deleteAllLocal() -> Void {
         compensations = []
     }
     

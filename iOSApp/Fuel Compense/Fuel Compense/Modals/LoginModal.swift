@@ -20,6 +20,8 @@ struct LoginModal: View {
             Text(String(localized: "lm.login"))
             Spacer()
             TextField(String(localized: "lm.userName"), text: $userName)
+                .padding()
+                .multilineTextAlignment(.center)
             Spacer()
             Button(action: {
                 DispatchQueue.main.async {

@@ -53,19 +53,19 @@ class UserModel : ObservableObject {
             do {
                 let userUserDef = try decoder.decode(User.self, from: userUserDefData)
                 self.user = userUserDef
-                if (self.user.userName == "mock") {
+                if (self.user.userName == "") {
                     notLoggedUser = true
                 }
                 self.getFollowers()
                 self.getFollowing()
                 print("User recovered")
             } catch {
-                user = User(userName: "mock")
+                user = User(userName: "")
                 notLoggedUser = true
             }
         } else {
             print("There was no user logged")
-            user = User(userName: "mock")
+            user = User(userName: "")
             notLoggedUser = true
         }
         // retrieve the user data from the mobile, if not, retrieve it from the API, asking the userName. If not, create a user
@@ -102,6 +102,7 @@ class UserModel : ObservableObject {
                 
                 if loginCorrect {
                     self.user = User(userName: userName)
+                    self.notLoggedUser = false
                     self.getFollowers()
                     self.getFollowing()
                 }
@@ -156,6 +157,7 @@ class UserModel : ObservableObject {
             
             if registerCorrect {
                 self.user = User(userName: userName)
+                self.notLoggedUser = false
             }
             
             completion(registerCorrect) // Llamamos al bloque de finalización con el valor actual de registerCorrect
@@ -394,7 +396,7 @@ class UserModel : ObservableObject {
     }
 
     func logout() {
-        self.user = User(userName: "mock")
+        self.user = User(userName: "")
         self.followers = []
         self.following = []
         self.notLoggedUser = true

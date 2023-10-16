@@ -20,6 +20,8 @@ struct RegisterModal: View {
             Text(String(localized: "rm.register"))
             Spacer()
             TextField(String(localized: "rm.userName"), text: $userName)
+                .padding()
+                .multilineTextAlignment(.center)
             Spacer()
             Button(action: {
                 userModel.register(userName: userName) { success in

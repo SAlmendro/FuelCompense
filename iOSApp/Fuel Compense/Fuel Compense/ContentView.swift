@@ -12,6 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var userModel : UserModel
     @State var showRegister = false
     @State var showLogin = false
+    @State var notLoggedUser : Bool
     
     var body: some View {
         TabView{
@@ -28,11 +29,13 @@ struct ContentView: View {
                     Text("CO2")
                 }
             // Social (inicio)
-            SocialView()
-                .tabItem{
-                    Image(systemName: "person.3")
-                    Text(String(localized: "cv.social"))
-                }
+            if (!userModel.notLoggedUser) {
+                SocialView()
+                    .tabItem{
+                        Image(systemName: "person.3")
+                        Text(String(localized: "cv.social"))
+                    }
+            }
             // Usuario
             UserView()
                 .tabItem{
@@ -46,14 +49,15 @@ struct ContentView: View {
                     Text(String(localized: "cv.settings"))
                 }
         }
-        .actionSheet(isPresented: $userModel.notLoggedUser){
+        .actionSheet(isPresented: $notLoggedUser){
             ActionSheet(title: Text(String(localized: "loginOrRegister")), message: Text(String(localized: "loginOrRegMessage")), buttons: [
                 .default(Text(String(localized: "login"))) {
                     showLogin = true
                 },
                 .default(Text(String(localized: "register"))) {
                    showRegister = true
-                }
+                },
+                .cancel()
             ])
         }
         .sheet(isPresented: $showLogin){

@@ -107,7 +107,7 @@ class FuelModel : ObservableObject {
         refills.remove(at: index)
     }
     
-    func deleteAll() -> Void {
+    func deleteAllLocal() -> Void {
         refills = []
     }
     

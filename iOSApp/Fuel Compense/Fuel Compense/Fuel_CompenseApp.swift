@@ -15,16 +15,18 @@ struct Fuel_CompenseApp: App {
     let carbonModel = CarbonModel()
     let globalsModel = GlobalsModel()
     let statusModel : StatusModel
+    let notLoggedUser : Bool
     
     init() {
         self.userModel = UserModel(globalsModel: globalsModel)
         self.statusModel = StatusModel(userModel: userModel, globalsModel: globalsModel)
         self.fuelModel = FuelModel(globalsModel: globalsModel, userModel: userModel)
+        self.notLoggedUser = userModel.notLoggedUser
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(notLoggedUser: notLoggedUser)
                 .environmentObject(userModel)
                 .environmentObject(fuelModel)
                 .environmentObject(carbonModel)

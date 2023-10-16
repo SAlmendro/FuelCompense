@@ -12,9 +12,13 @@ import SwiftUI
 struct UserView: View {
     
     @EnvironmentObject var userModel : UserModel
+    @EnvironmentObject var fuelModel : FuelModel
+    @EnvironmentObject var carbonModel : CarbonModel
+    @EnvironmentObject var statusModel : StatusModel
 
     @State var showLogin = false
     @State var showRegister = false
+    @State var showLogoutAlert = false
     
     var body: some View {
         NavigationView {
@@ -34,38 +38,58 @@ struct UserView: View {
                             Text(userModel.user.userName)
                         }
                         Button(action: {
-                            userModel.logout()
-                            // log out (present an alert asking if you want to delete app data also)
+                            showLogoutAlert = true
                         }) { Text("uv.logout") }
+                            .alert(isPresented: $showLogoutAlert) {
+                                Alert(title: Text(String(localized: "uv.logoutAlertTitle")),
+                                      message: Text(String(localized: "uv.logoutAlertMessage")),
+                                      primaryButton: .default(
+                                        Text(String(localized: "uv.notDeleteLocalData")),
+                                        action: {
+                                            userModel.logout()
+                                        }),
+                                      secondaryButton: .destructive(
+                                        Text(String(localized: "uv.deleteLocalData")),
+                                        action: {
+                                            userModel.logout()
+                                            fuelModel.deleteAllLocal()
+                                            carbonModel.deleteAllLocal()
+                                            statusModel.deleteAllLocal()
+                                        }
+                                    )
+                                )
+                            }
                         Button(action: {
                             userModel.logout()
                             // delete user (present an alert before deleting user)
                         }) { Text("uv.deleteUser") }
                     }
                 }
-                Section(header: Text(String(localized: "uv.social"))) {
-                    NavigationLink(
-                        destination: FollowsSubView(followers: true)
-                    ) {
-                        HStack {
-                            Text(String(localized: "uv.followers"))
-                            Spacer()
-                            Text(String(userModel.nFollowers))
+                if (!userModel.notLoggedUser) {
+                    Section(header: Text(String(localized: "uv.social"))) {
+                        NavigationLink(
+                            destination: FollowsSubView(followers: true)
+                        ) {
+                            HStack {
+                                Text(String(localized: "uv.followers"))
+                                Spacer()
+                                Text(String(userModel.nFollowers))
+                            }
                         }
-                    }
-                    NavigationLink(
-                        destination: FollowsSubView(followers: false)
-                    ) {
-                        HStack {
-                            Text(String(localized: "uv.followed"))
-                            Spacer()
-                            Text(String(userModel.nFollowing))
+                        NavigationLink(
+                            destination: FollowsSubView(followers: false)
+                        ) {
+                            HStack {
+                                Text(String(localized: "uv.followed"))
+                                Spacer()
+                                Text(String(userModel.nFollowing))
+                            }
                         }
-                    }
-                    NavigationLink(
-                        destination: SearchUsersSubView()
-                    ) {
-                        Text(String(localized: "uv.searchUsers"))
+                        NavigationLink(
+                            destination: SearchUsersSubView()
+                        ) {
+                            Text(String(localized: "uv.searchUsers"))
+                        }
                     }
                 }
             }

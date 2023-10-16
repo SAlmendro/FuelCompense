@@ -185,4 +185,9 @@ class StatusModel : ObservableObject {
         task.resume()
     }
     
+    func deleteAllLocal() -> Void {
+        self.subscribedStatuses = []
+        self.statuses = []
+    }
+    
 }
