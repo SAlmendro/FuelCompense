@@ -17,7 +17,9 @@ struct RefreshButton: View {
             Text(title)
             Spacer()
             Button(action: {
-                statusModel.getSubscribedStatuses()
+                DispatchQueue.main.async {
+                    statusModel.getSubscribedStatuses()
+                }
             }) {
                 Image(systemName: "goforward")
                     .resizable()

@@ -27,18 +27,19 @@ struct StatusRow: View {
                 .padding()
             
             HStack {
+                Spacer()
                 if (status.favs.contains(userModel.user.userName)) {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.yellow)
+                        .padding()
                 } else {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.gray)
+                        .padding()
                 }
-                Spacer()
                 Text("\(status.favs.count) FAVs")
                 Spacer()
             }
-            .padding()
             
         }
         

@@ -36,10 +36,10 @@ public class StatusController {
         return this.statusMapperOut.listMap(this.statusService.findAll());
     }
 
-    @GetMapping(value = "/{userName}")
-    public List<StatusDTO> findAllByUserName(@PathVariable("userName") String userName) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se han buscado todos los estados de " + userName);
-        return this.statusMapperOut.listMap(this.statusService.findAllStatusesByCreatorId(this.userService.findUserByUserName(userName).getId()));
+    @GetMapping(value = "/{id}")
+    public StatusDTO findById(@PathVariable("id") Long id) {
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha buscado el estado " + id);
+        return this.statusMapperOut.map(this.statusService.findById(id));
     }
 
     @GetMapping(value = "/subscribed/{userName}")
@@ -62,7 +62,7 @@ public class StatusController {
 
     @PostMapping(value = "/fav/{statusId}")
     public Boolean updateFav(@PathVariable("statusId") Long statusId, @RequestBody String userName) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se han buscado todos los estados favs de " + userName);
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se quiere cambiar el estado fav por " + userName + " en el estado " + statusId);
         return this.statusService.changeFavorite(statusId, userName).get();
     }
 

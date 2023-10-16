@@ -22,13 +22,25 @@ struct StatusDetail: View {
             Text(status.text)
                 .padding()
             HStack {
+                Spacer()
                 Button {
-                    // change FAV state, añadiendo o eliminando mi username del array de favs
+                    statusModel.changeFav(status: $status)
                 } label: {
-                    Text("\(status.favs.count) FAVs")
+                    HStack {
+                        if (status.favs.contains(userModel.user.userName)) {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color.yellow)
+                        } else {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color.gray)
+                        }
+                        Text("\(status.favs.count) FAVs")
+                    }
                 }
-
+                Spacer()
             }
+            .padding()
+
             if (status.authUserName == userModel.user.userName) {
                 Button(action: {
                     statusModel.delete(status: status) { success in

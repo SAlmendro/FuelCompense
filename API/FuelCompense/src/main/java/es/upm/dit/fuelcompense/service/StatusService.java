@@ -31,6 +31,11 @@ public class StatusService {
         return this.statusRepository.findAll();
     }
 
+    public Status findById(Long id) {
+        Status status = this.statusRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Estado no encontrado"));
+        return status;
+    }
+
     public Status createStatus(StatusDTO statusDTO) {
         Status status = statusMapperIn.map(statusDTO);
         return this.statusRepository.saveAndFlush(status);
