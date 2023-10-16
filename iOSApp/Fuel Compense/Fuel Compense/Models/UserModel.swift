@@ -55,9 +55,10 @@ class UserModel : ObservableObject {
                 self.user = userUserDef
                 if (self.user.userName == "") {
                     notLoggedUser = true
+                } else {
+                    self.getFollowers()
+                    self.getFollowing()
                 }
-                self.getFollowers()
-                self.getFollowing()
                 print("User recovered")
             } catch {
                 user = User(userName: "")
