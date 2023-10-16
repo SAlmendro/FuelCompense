@@ -38,6 +38,22 @@ struct FuelView: View {
             } else {
                 FuelStatsSubView()
             }
+            if (fuelModel.refills.isEmpty) {
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        DispatchQueue.main.async {
+                            fuelModel.getRefills()
+                        }
+                    }) {
+                        Image(systemName: "goforward")
+                            .resizable()
+                    }
+                    .frame(width: 25, height: 25)
+                    .padding()
+                    Spacer()
+                }
+            }
             Spacer()
         }
     }

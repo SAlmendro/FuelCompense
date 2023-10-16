@@ -7,24 +7,64 @@
 
 import Foundation
 
-
 struct Refill: Codable, Comparable {
-    
-    var id = UUID()
-    var odometer : Int
-    var liters : Float
-    var eurosLiter : Float
-    var total : Float
-    var date : Date
-    var fullTank : Bool
-    var totalCarbon : Float
+    var date: Date
+    var eurosLiter: Float
+    var fullTank: Bool
+    var id: UUID
+    var liters: Float
+    var odometer: Int
+    var total: Float
+    var totalCarbon: Float
     
     static func <(lhs: Refill, rhs: Refill) -> Bool {
             return lhs.odometer < rhs.odometer
     }
+
+    enum CodingKeys: String, CodingKey {
+        case date
+        case eurosLiter
+        case fullTank
+        case id
+        case liters
+        case odometer
+        case total
+        case totalCarbon
+    }
+
+    init(date: Date, eurosLiter: Float, fullTank: Bool, liters: Float, odometer: Int, total: Float, totalCarbon: Float) {
+        self.date = date
+        self.eurosLiter = eurosLiter
+        self.fullTank = fullTank
+        self.id = UUID()
+        self.liters = liters
+        self.odometer = odometer
+        self.total = total
+        self.totalCarbon = totalCarbon
+    }
     
-    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        let dateString = try container.decode(String.self, forKey: .date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        if let date = dateFormatter.date(from: dateString) {
+            self.date = date
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .date, in: container, debugDescription: "Date string is not in the expected format")
+        }
+
+        self.eurosLiter = try container.decode(Float.self, forKey: .eurosLiter)
+        self.fullTank = try container.decode(Bool.self, forKey: .fullTank)
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.liters = try container.decode(Float.self, forKey: .liters)
+        self.odometer = try container.decode(Int.self, forKey: .odometer)
+        self.total = try container.decode(Float.self, forKey: .total)
+        self.totalCarbon = try container.decode(Float.self, forKey: .totalCarbon)
+    }
 }
+
 
 struct FullTankData {
     
@@ -72,6 +112,10 @@ class FuelModel : ObservableObject {
     let refillAPI = "refills/"
     
     init(globalsModel: GlobalsModel, userModel: UserModel){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         userDef = UserDefaults.standard
         self.globalsModel = globalsModel
         self.userModel = userModel
@@ -234,12 +278,12 @@ class FuelModel : ObservableObject {
         return n
     }
     
-    func publishRefill(refill: Refill) -> Bool {
+    func publishRefill(refill: Refill) -> Void {
         let escapedPublishRefill = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedPublishRefill!) else {
             print("Error creando la URL")
-            return false
+            return
         }
         
         var request = URLRequest(url: url)
@@ -259,25 +303,20 @@ class FuelModel : ObservableObject {
         let semaphore = DispatchSemaphore(value: 0)
         
         let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    print("Se recibió un error al hacer el publicar el refill: \(error!)")
-                    publishRefillCorrect = false
-                    return
-                }
-                
-                let respuesta = (res as! HTTPURLResponse).statusCode
-                guard respuesta == 200 else {
-                    print("Se recibió una respuesta distinta a 200 al publicar el refill. Respuesta: \(respuesta)")
-                    publishRefillCorrect = false
-                    return
-                }
-                
-                if publishRefillCorrect {
-                    self.refills.append(refill)
-                } else {
-                    self.unpublishedRefills.append(refill)
-                }
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                print("Se recibió un error al publicar el refill: \(error!)")
+                publishRefillCorrect = false
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al publicar el refill. Respuesta: \(respuesta)")
+                publishRefillCorrect = false
+                return
             }
         }
         
@@ -285,7 +324,58 @@ class FuelModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        return publishRefillCorrect
+        var refillsTemp = self.refills
+        refillsTemp.append(refill)
+        let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
+            return ref0 > ref1
+        })
+        DispatchQueue.main.async {
+            self.refills = refillsSorted
+            
+            if (!publishRefillCorrect) {
+                self.unpublishedRefills.append(refill)
+            }
+        }
+    }
+    
+    func getRefills() {
+        let escapedRefills = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedRefills!) else {
+            print("Error creando la URL para recuperar los refills propios: \(escapedRefills!)")
+            return
+        }
+        
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
+            guard error == nil else {
+                print("Se recibió un error al recuperar los refills propios: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al recuperar los refills propios. Respuesta: \(respuesta)")
+                return
+            }
+            
+            do {
+                if let data = data {
+                    let refillsRetrieved = try JSONDecoder().decode([Refill].self, from: data)
+                    let refillsSorted = refillsRetrieved.sorted(by: { (ref0, ref1) in
+                        return ref0 > ref1
+                    })
+                    DispatchQueue.main.async {
+                        self.refills = refillsSorted
+                    }
+                } else {
+                    print("No se recibieron datos al recuperar los refills propios.")
+                }
+            } catch {
+                print("Error al decodificar el JSON de refills: \(error)")
+            }
+        }
+        
+        task.resume()
     }
     
 }
