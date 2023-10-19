@@ -19,6 +19,7 @@ struct AddButton: View {
     @State private var showCompenseModal = false
     @State private var showPicker = false
     @State var title : String
+    @State var falseIndex : Int = -1
     
     var body: some View {
         HStack{
@@ -52,7 +53,7 @@ struct AddButton: View {
             .frame(width: 25, height: 25)
             .padding()
             .sheet(isPresented: $showFuelModal){
-                FuelModal(showFuelModal: $showFuelModal, editMode: false)
+                FuelModal(showFuelModal: $showFuelModal, editMode: false, index: $falseIndex)
             }
             .sheet(isPresented: $showCompenseModal){
                 CompenseModal(showCompenseModal: $showCompenseModal, editMode: false)

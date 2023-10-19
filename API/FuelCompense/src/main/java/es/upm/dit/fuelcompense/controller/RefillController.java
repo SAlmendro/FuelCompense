@@ -30,6 +30,12 @@ public class RefillController {
         return refillMapperOut.map(refill);
     }
 
+    @PutMapping(value = "/{userName}")
+    public RefillDTO updateRefill(@PathVariable String userName, @RequestBody RefillDTO refillDTO) {
+        Refill refill = this.refillService.updateRefill(refillDTO, userName);
+        return refillMapperOut.map(refill);
+    }
+
     @GetMapping
     public List<RefillDTO> findAll() {
         return refillMapperOut.listMap(this.refillService.findAll());

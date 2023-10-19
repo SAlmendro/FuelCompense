@@ -106,6 +106,17 @@ class FuelModel : ObservableObject {
         }
     }
     
+    @Published var unpublishedUpdateRefills : Array<Refill> {
+        didSet {
+            do {
+                let data = try encoder.encode(unpublishedUpdateRefills)
+                UserDefaults.standard.set(data, forKey: "unpublishedUpdateRefills")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     var userDef : UserDefaults
     var globalsModel : GlobalsModel
     var userModel : UserModel
@@ -144,6 +155,19 @@ class FuelModel : ObservableObject {
         } else {
             print("There were no unpublished refills in userDef")
             self.unpublishedRefills = []
+        }
+        if let unpublishedUpdateRefillsUserDefData = (userDef.object(forKey: "unpublishedUpdateRefills") as? Data) {
+            do {
+                let unpublishedUpdateRefillsUserDef = try decoder.decode(Array<Refill>.self, from: unpublishedUpdateRefillsUserDefData)
+                self.unpublishedUpdateRefills = unpublishedUpdateRefillsUserDef
+                print("Unpublished refills recovered")
+            } catch {
+                self.unpublishedUpdateRefills = []
+                print(error.localizedDescription)
+            }
+        } else {
+            print("There were no unpublished refills in userDef")
+            self.unpublishedUpdateRefills = []
         }
     }
     
@@ -334,6 +358,59 @@ class FuelModel : ObservableObject {
             
             if (!publishRefillCorrect) {
                 self.unpublishedRefills.append(refill)
+            }
+        }
+    }
+    
+    func updateRefill(refill: Refill) -> Void {
+        let escapedUpdateRefill = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedUpdateRefill!) else {
+            print("Error creando la URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        let parameters: Refill = refill
+        var dataParameters = Data()
+        do {
+            dataParameters = try encoder.encode(parameters)
+        } catch {
+            print(error.localizedDescription)
+        }
+        request.httpBody = dataParameters
+        
+        var updateRefillCorrect = true
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                print("Se recibió un error al actualizar el refill: \(error!)")
+                updateRefillCorrect = false
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al actualizar el refill. Respuesta: \(respuesta)")
+                updateRefillCorrect = false
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+
+        DispatchQueue.main.async {
+            if (!updateRefillCorrect) {
+                self.unpublishedUpdateRefills.append(refill)
             }
         }
     }

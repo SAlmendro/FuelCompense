@@ -12,7 +12,6 @@ struct FuelModal: View {
     @Binding var showFuelModal: Bool
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var globalsModel : GlobalsModel
-   // @State var lastOdometer = (globalsModel.globals.lastRefuel?.odometer ?? 0)
     @State var odometer = ""
     @State var liters = ""
     @State var eurosLiter = 0.0
@@ -20,7 +19,7 @@ struct FuelModal: View {
     @State var date = Date()
     @State var full = true
     var editMode : Bool
-    var index = 0
+    @Binding var index : Int
     
     var body: some View {
         VStack{
@@ -48,6 +47,7 @@ struct FuelModal: View {
                                     if ((odometer == "") || (liters == "") || (total == "")) {
                                         self.showFuelModal = false
                                     } else {
+                                        let id = fuelModel.refills[index].id
                                         fuelModel.refills[index].odometer = Int(odometer)!
                                         fuelModel.refills[index].liters = Float(liters.commaToPoint())!
                                         fuelModel.refills[index].eurosLiter = (Float(total.commaToPoint())!)/(Float(liters.commaToPoint())!)
@@ -55,11 +55,15 @@ struct FuelModal: View {
                                         fuelModel.refills[index].date = date
                                         fuelModel.refills[index].fullTank = full
                                         fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
+                                        fuelModel.updateRefill(refill: fuelModel.refills[index])
                                         let refillsTemp = fuelModel.refills
                                         let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
                                             return ref0 > ref1
                                         })
                                         fuelModel.refills = refillsSorted
+                                        
+                                        index = fuelModel.refills.firstIndex(where: {$0.id == id}).unsafelyUnwrapped
+                                        
                                         self.showFuelModal = false
                                     }
                                 }) {Text(String(localized: "fm.save"))}
@@ -78,7 +82,6 @@ struct FuelModal: View {
                                             totalCarbon: (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
                                         )
                                         fuelModel.publishRefill(refill: refill)
-                                        // guardar datos convirtiendo a float primero todos los string
                                         self.showFuelModal = false
                                     }
                                 }) {Text(String(localized: "add"))}
