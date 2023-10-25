@@ -224,7 +224,7 @@ class CarbonModel : ObservableObject {
                 if let data = data {
                     let compensationsRetrieved = try JSONDecoder().decode([Compensation].self, from: data)
                     let compensationsSorted = compensationsRetrieved.sorted(by: { (com0, com1) in
-                        return com0 > com1
+                        return com0 < com1
                     })
                     DispatchQueue.main.async {
                         self.compensations = compensationsSorted
