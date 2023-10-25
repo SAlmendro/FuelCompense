@@ -45,4 +45,9 @@ public class RefillController {
     public List<RefillDTO> findAllByUserName(@PathVariable("userName") String userName) {
         return refillMapperOut.listMap(this.refillService.findAllRefillsByUserId(this.userService.findUserByUserName(userName).getId()));
     }
+
+    @DeleteMapping(value = "/{iOSid}")
+    public void delete(@PathVariable("iOSid") String iOSid, @RequestBody String userName) {
+        refillService.deleteRefill(iOSid, userName);
+    }
 }

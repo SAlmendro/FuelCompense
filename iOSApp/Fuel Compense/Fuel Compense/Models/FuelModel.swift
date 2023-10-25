@@ -172,7 +172,47 @@ class FuelModel : ObservableObject {
     }
     
     func delete(index: Int) -> Void {
-        refills.remove(at: index)
+        let refill = self.refills[index]
+        let escapedDelete = "\(globalsModel.urlBase)\(self.refillAPI)\(refill.id)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedDelete!) else {
+            print("Error creando la URL de delete de refill")
+            return
+        }
+        
+        var deleteSuccess = true
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.httpBody = userModel.user.userName.data(using: .utf8)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                deleteSuccess = false
+                print("Se recibió un error al borrar un refill: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                deleteSuccess = false
+                print("Se recibió una respuesta distinta a 200 al borrar un refill. Respuesta: \(respuesta)")
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if deleteSuccess {
+            refills.remove(at: index)
+        }
     }
     
     func deleteAllLocal() -> Void {

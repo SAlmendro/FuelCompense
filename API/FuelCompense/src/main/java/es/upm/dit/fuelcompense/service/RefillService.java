@@ -45,4 +45,10 @@ public class RefillService {
     public List<Refill> findAllRefillsByUserId(Long id) {
         return this.refillRepository.findAllByUserId(id);
     }
+
+    public void deleteRefill(String iOSid, String userName) {
+        User user = userService.findUserByUserName(userName);
+        Refill refill = refillRepository.findByiOSidAndUser(iOSid, user);
+        refillRepository.delete(refill);
+    }
 }
