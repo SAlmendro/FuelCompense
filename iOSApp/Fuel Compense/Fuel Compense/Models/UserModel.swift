@@ -56,8 +56,10 @@ class UserModel : ObservableObject {
                 if (self.user.userName == "") {
                     notLoggedUser = true
                 } else {
-                    self.getFollowers()
-                    self.getFollowing()
+                    DispatchQueue.global().async {
+                        self.getFollowers()
+                        self.getFollowing()
+                    }
                 }
                 print("User recovered")
             } catch {
@@ -206,8 +208,10 @@ class UserModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        self.followers = followers
-        self.nFollowers = followers.count
+        DispatchQueue.main.async {
+            self.followers = followers
+            self.nFollowers = followers.count
+        }
     }
 
     
@@ -250,8 +254,10 @@ class UserModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        self.following = following
-        self.nFollowing = following.count
+        DispatchQueue.main.async {
+            self.following = following
+            self.nFollowing = following.count
+        }
     }
     
     func unfollow(userName: String, completion: @escaping (Bool) -> Void) {
@@ -298,7 +304,7 @@ class UserModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         if (unfollowCorrect) {
-            DispatchQueue.main.async {
+            DispatchQueue.global().async {
                 self.getFollowing()
             }
         }
@@ -348,7 +354,7 @@ class UserModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         if (followCorrect) {
-            DispatchQueue.main.async {
+            DispatchQueue.global().async {
                 self.getFollowing()
             }
         }

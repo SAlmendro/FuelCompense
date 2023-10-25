@@ -24,7 +24,7 @@ struct LoginModal: View {
                 .multilineTextAlignment(.center)
             Spacer()
             Button(action: {
-                DispatchQueue.main.async {
+                DispatchQueue.global().async {
                     userModel.login(userName: userName) { success in
                         if success {
                             showLogin = false

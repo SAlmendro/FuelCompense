@@ -24,11 +24,13 @@ struct RegisterModal: View {
                 .multilineTextAlignment(.center)
             Spacer()
             Button(action: {
-                userModel.register(userName: userName) { success in
-                    if success {
-                        showRegister = false
-                    } else {
-                        registerIncorrect = true
+                DispatchQueue.global().async {
+                    userModel.register(userName: userName) { success in
+                        if success {
+                            showRegister = false
+                        } else {
+                            registerIncorrect = true
+                        }
                     }
                 }
             })  {Text(String(localized: "rm.register"))}

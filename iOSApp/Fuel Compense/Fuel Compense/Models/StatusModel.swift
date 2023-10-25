@@ -100,9 +100,9 @@ class StatusModel : ObservableObject {
         task.resume()
         
         _ = semaphore.wait(timeout: .distantFuture)
-        
-        self.subscribedStatuses = statuses
-        print(statuses)
+        DispatchQueue.main.async {
+            self.subscribedStatuses = statuses
+        }
 
     }
     
@@ -145,7 +145,9 @@ class StatusModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        self.statuses = statuses
+        DispatchQueue.main.async {
+            self.statuses = statuses
+        }
 
     }
     
@@ -194,9 +196,7 @@ class StatusModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         if (favState != favStart) {
-            DispatchQueue.main.async {
-                self.getStatus(status: status.wrappedValue)
-            }
+            self.getStatus(status: status.wrappedValue)
         }
     }
     

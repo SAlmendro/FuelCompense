@@ -59,8 +59,9 @@ struct FollowsSubView: View {
                             userModel.unfollow(userName: unfollow) { success in
                                 if success {
                                     unfollow = ""
-                                    DispatchQueue.main.async {
-                                        userModel.getFollowers()                                    }
+                                    DispatchQueue.global().async {
+                                        userModel.getFollowers()
+                                    }
                                     showUnfollowAlert = false
                                     showAlert = false
                                 } else {
@@ -83,7 +84,7 @@ struct FollowsSubView: View {
                             userModel.follow(userName: follow) { success in
                                 if success {
                                     follow = ""
-                                    DispatchQueue.main.async {
+                                    DispatchQueue.global().async {
                                         userModel.getFollowing()
                                     }
                                     showFollowAlert = false

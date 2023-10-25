@@ -160,13 +160,13 @@ class FuelModel : ObservableObject {
             do {
                 let unpublishedUpdateRefillsUserDef = try decoder.decode(Array<Refill>.self, from: unpublishedUpdateRefillsUserDefData)
                 self.unpublishedUpdateRefills = unpublishedUpdateRefillsUserDef
-                print("Unpublished refills recovered")
+                print("Unpublished update refills recovered")
             } catch {
                 self.unpublishedUpdateRefills = []
                 print(error.localizedDescription)
             }
         } else {
-            print("There were no unpublished refills in userDef")
+            print("There were no unpublished update refills in userDef")
             self.unpublishedUpdateRefills = []
         }
     }

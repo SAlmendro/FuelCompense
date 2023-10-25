@@ -103,8 +103,10 @@ struct UserView: View {
         }
         .onAppear{
             print("Estoy apareciendo, soy UserView")
-            userModel.getFollowers()
-            userModel.getFollowing()
+            DispatchQueue.global().async {
+                userModel.getFollowers()
+                userModel.getFollowing()
+            }
         }
     }
 }

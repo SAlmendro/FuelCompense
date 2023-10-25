@@ -16,7 +16,7 @@ struct FuelListSubView: View {
             if (fuelModel.refills.isEmpty) {
                 VStack {
                     Button(action: {
-                        DispatchQueue.main.async {
+                        DispatchQueue.global().async {
                             fuelModel.getRefills()
                         }
                     }) {

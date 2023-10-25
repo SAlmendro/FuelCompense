@@ -24,7 +24,9 @@ struct StatusDetail: View {
             HStack {
                 Spacer()
                 Button {
-                    statusModel.changeFav(status: $status)
+                    DispatchQueue.global().async {
+                        statusModel.changeFav(status: $status)
+                    }
                 } label: {
                     HStack {
                         if (status.favs.contains(userModel.user.userName)) {
@@ -44,15 +46,15 @@ struct StatusDetail: View {
             if (status.authUserName == userModel.user.userName) {
                 Button(action: {
                     statusModel.delete(status: status) { success in
-                        DispatchQueue.main.async {
-                            if success {
+                        if success {
+                            DispatchQueue.global().async {
                                 statusModel.getStatuses()
                                 statusModel.getSubscribedStatuses()
-                                self.mode.wrappedValue.dismiss()
-                            } else {
-                                // lanzar alerta de fallo
-                                print("He fallado borrando un estado")
                             }
+                            self.mode.wrappedValue.dismiss()
+                        } else {
+                            print("He fallado borrando un estado")
+                            self.mode.wrappedValue.dismiss()
                         }
                     }
                     

@@ -29,8 +29,10 @@ struct StatusView: View {
             Spacer()
         }
         .onAppear{
-            statusModel.getSubscribedStatuses()
-            statusModel.getStatuses()
+            DispatchQueue.global().async {
+                statusModel.getSubscribedStatuses()
+                statusModel.getStatuses()
+            }
         }
     }
     

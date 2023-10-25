@@ -17,7 +17,7 @@ struct RefreshButton: View {
             Text(title)
             Spacer()
             Button(action: {
-                DispatchQueue.main.async {
+                DispatchQueue.global().async {
                     statusModel.getSubscribedStatuses()
                 }
             }) {
