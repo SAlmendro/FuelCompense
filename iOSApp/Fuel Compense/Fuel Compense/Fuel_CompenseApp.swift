@@ -12,7 +12,7 @@ struct Fuel_CompenseApp: App {
     
     let userModel : UserModel
     let fuelModel : FuelModel
-    let carbonModel = CarbonModel()
+    let carbonModel : CarbonModel
     let globalsModel = GlobalsModel()
     let statusModel : StatusModel
     let notLoggedUser : Bool
@@ -21,6 +21,7 @@ struct Fuel_CompenseApp: App {
         self.userModel = UserModel(globalsModel: globalsModel)
         self.statusModel = StatusModel(userModel: userModel, globalsModel: globalsModel)
         self.fuelModel = FuelModel(globalsModel: globalsModel, userModel: userModel)
+        self.carbonModel = CarbonModel(globalsModel: globalsModel, userModel: userModel)
         self.notLoggedUser = userModel.notLoggedUser
     }
     

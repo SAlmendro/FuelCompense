@@ -53,12 +53,9 @@ struct CompenseModal: View {
                                         tons: Float(CO2tons.commaToPoint())!,
                                         comment: comment
                                     )
-                                    var compensationsTemp = carbonModel.compensations
-                                    compensationsTemp.append(compensation)
-                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
-                                        return com0 < com1
-                                    })
-                                    carbonModel.compensations = compensationsSorted
+                                    DispatchQueue.global().async {
+                                        carbonModel.publishCompensation(compensation: compensation)
+                                    }
                                     self.showCompenseModal = false
                                 }
                             }) {Text(String(localized: "add"))}

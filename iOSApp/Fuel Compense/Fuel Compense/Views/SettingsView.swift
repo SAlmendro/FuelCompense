@@ -36,6 +36,7 @@ struct SettingsView: View {
                 }
                 Section(header: Text(String(localized: "sv.sync"))) {
                     Text("Refills no enviados         " + String(fuelModel.unpublishedRefills.count))
+                    Text("Compensaciones no enviadas         " + String(carbonModel.unpublishedCompensations.count))
                 }
             }
             .navigationTitle("cv.settings")
