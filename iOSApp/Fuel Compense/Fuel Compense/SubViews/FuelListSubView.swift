@@ -24,7 +24,7 @@ struct FuelListSubView: View {
                             Image(systemName: "goforward")
                                 .frame(width: 25, height: 25)
                                 .padding()
-                            Text("Recuperar estados del servidor")
+                            Text("flsv.retrieveFromServer")
                         }
                     }
                     .padding()

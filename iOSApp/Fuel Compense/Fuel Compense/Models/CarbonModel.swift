@@ -9,16 +9,46 @@ import Foundation
 
 
 struct Compensation: Codable, Comparable {
-    
-    var id = UUID()
-    var date : Date
-    var tons : Float
+
     var comment : String
+    var date : Date
+    var id = UUID()
+    var tons : Float
     
     static func <(lhs: Compensation, rhs: Compensation) -> Bool {
         return lhs.date.compare(rhs.date).rawValue > 0
     }
     
+    enum CodingKeys: String, CodingKey {
+        case comment
+        case date
+        case id
+        case tons
+    }
+    
+    init(comment: String, date: Date, id: UUID = UUID(), tons: Float) {
+        self.comment = comment
+        self.date = date
+        self.id = id
+        self.tons = tons
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.comment = try container.decode(String.self, forKey: .comment)
+        
+        let dateString = try container.decode(String.self, forKey: .date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        if let date = dateFormatter.date(from: dateString) {
+            self.date = date
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .date, in: container, debugDescription: "Date string is not in the expected format")
+        }
+        
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.tons = try container.decode(Float.self, forKey: .tons)
+    }
 }
 
 
@@ -169,4 +199,44 @@ class CarbonModel : ObservableObject {
         }
     }
    
+    
+    func getCompensations() {
+        let escapedRefills = "\(globalsModel.urlBase)\(self.compensationAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedRefills!) else {
+            print("Error creando la URL para recuperar las compensaciones propias: \(escapedRefills!)")
+            return
+        }
+        
+        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
+            guard error == nil else {
+                print("Se recibió un error al recuperar las compensaciones propias: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al recuperar las compensaciones propias. Respuesta: \(respuesta)")
+                return
+            }
+            
+            do {
+                if let data = data {
+                    let compensationsRetrieved = try JSONDecoder().decode([Compensation].self, from: data)
+                    let compensationsSorted = compensationsRetrieved.sorted(by: { (com0, com1) in
+                        return com0 > com1
+                    })
+                    DispatchQueue.main.async {
+                        self.compensations = compensationsSorted
+                    }
+                } else {
+                    print("No se recibieron datos al recuperar las compensaciones propias.")
+                }
+            } catch {
+                print("Error al decodificar el JSON de compensaciones: \(error)")
+            }
+        }
+        
+        task.resume()
+    }
 }

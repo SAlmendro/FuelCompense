@@ -49,9 +49,9 @@ struct CompenseModal: View {
                                     self.showCompenseModal = false
                                 } else {
                                     let compensation = Compensation(
+                                        comment: comment,
                                         date: date,
-                                        tons: Float(CO2tons.commaToPoint())!,
-                                        comment: comment
+                                        tons: Float(CO2tons.commaToPoint())!
                                     )
                                     DispatchQueue.global().async {
                                         carbonModel.publishCompensation(compensation: compensation)
