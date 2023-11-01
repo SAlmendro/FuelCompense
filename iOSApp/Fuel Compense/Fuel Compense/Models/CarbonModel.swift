@@ -79,6 +79,17 @@ class CarbonModel : ObservableObject {
         }
     }
     
+    @Published var unpublishedUpdateCompensations : Array<Compensation> {
+        didSet {
+            do {
+                let data = try encoder.encode(unpublishedUpdateCompensations)
+                UserDefaults.standard.set(data, forKey: "unpublishedUpdateCompensations")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     var userDef : UserDefaults
     let compensationAPI = "compensations/"
     var globalsModel : GlobalsModel
@@ -117,6 +128,19 @@ class CarbonModel : ObservableObject {
         } else {
             print("There were no unpublished compensations in userDef")
             self.unpublishedCompensations = []
+        }
+        if let unpublishedUpdateCompensationsUserDefData = (userDef.object(forKey: "unpublishedUpdateCompensations") as? Data) {
+            do {
+                let unpublishedUpdateCompensationsUserDef = try decoder.decode(Array<Compensation>.self, from: unpublishedUpdateCompensationsUserDefData)
+                self.unpublishedUpdateCompensations = unpublishedUpdateCompensationsUserDef
+                print("Unpublished update compensations recovered")
+            } catch {
+                self.unpublishedUpdateCompensations = []
+                print(error.localizedDescription)
+            }
+        } else {
+            print("There were no unpublished update compensations in userDef")
+            self.unpublishedUpdateCompensations = []
         }
     }
     
@@ -198,7 +222,59 @@ class CarbonModel : ObservableObject {
             }
         }
     }
-   
+    
+    func updateCompensation(compensation: Compensation) -> Void {
+        let escapedUpdateCompensation = "\(globalsModel.urlBase)\(self.compensationAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedUpdateCompensation!) else {
+            print("Error creando la URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        let parameters: Compensation = compensation
+        var dataParameters = Data()
+        do {
+            dataParameters = try encoder.encode(parameters)
+        } catch {
+            print(error.localizedDescription)
+        }
+        request.httpBody = dataParameters
+        
+        var updateCompensationCorrect = true
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                print("Se recibió un error al actualizar el refill: \(error!)")
+                updateCompensationCorrect = false
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al actualizar el refill. Respuesta: \(respuesta)")
+                updateCompensationCorrect = false
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+
+        DispatchQueue.main.async {
+            if (!updateCompensationCorrect) {
+                self.unpublishedUpdateCompensations.append(compensation)
+            }
+        }
+    }
     
     func getCompensations() {
         let escapedRefills = "\(globalsModel.urlBase)\(self.compensationAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

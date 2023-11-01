@@ -39,4 +39,10 @@ public class CompensationController {
         return compensationMapperOut.listMap(this.compensationService.findAllCompensationsByUserId(this.userService.findUserByUserName(userName).getId()));
     }
 
+    @PutMapping(value = "/{userName}")
+    public CompensationDTO updateCompensation(@PathVariable String userName, @RequestBody CompensationDTO compensationDTO) {
+        Compensation compensation = this.compensationService.updateCompensation(compensationDTO, userName);
+        return compensationMapperOut.map(compensation);
+    }
+
 }

@@ -35,6 +35,9 @@ struct CompenseModal: View {
                                 } else {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
                                     carbonModel.compensations[index].date = date
+                                    DispatchQueue.global().async {
+                                        carbonModel.updateCompensation(compensation: carbonModel.compensations[index])
+                                    }
                                     let compensationsTemp = carbonModel.compensations
                                     let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
                                         return com0 < com1

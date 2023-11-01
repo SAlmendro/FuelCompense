@@ -3,6 +3,7 @@ package es.upm.dit.fuelcompense.service;
 import es.upm.dit.fuelcompense.mapper.CompensationDTOtoCompensation;
 import es.upm.dit.fuelcompense.mapper.CompensationToCompensationDTO;
 import es.upm.dit.fuelcompense.persistance.entity.Compensation;
+import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.persistance.repository.CompensationRepository;
 import es.upm.dit.fuelcompense.service.dto.CompensationDTO;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,15 @@ public class CompensationService {
     public Compensation createCompensation(CompensationDTO compensationDTO, String userName) {
         Compensation compensation = compensationMapperIn.map(compensationDTO);
         compensation.setUser(userService.findUserByUserName(userName));
+        return this.compensationRepository.saveAndFlush(compensation);
+    }
+
+    public Compensation updateCompensation(CompensationDTO compensationDTO, String userName) {
+        Compensation compensation = compensationMapperIn.map(compensationDTO);
+        User creator = userService.findUserByUserName(userName);
+        Compensation compensationInternal = compensationRepository.findByiOSidAndUser(compensation.getIOSid(), creator);
+        compensation.setId(compensationInternal.getId());
+        compensation.setUser(creator);
         return this.compensationRepository.saveAndFlush(compensation);
     }
 
