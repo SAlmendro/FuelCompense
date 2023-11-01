@@ -409,11 +409,11 @@ class UserModel : ObservableObject {
         self.notLoggedUser = true
     }
     
-    func delete(userName: String) -> Bool {
-        let escapedDelete = "\(globalsModel.urlBase)\(self.userAPI)\(userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    func delete() -> Bool {
+        let escapedDelete = "\(globalsModel.urlBase)\(self.userAPI)\(self.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedDelete!) else {
-            print("Error creando la URL de unfollow")
+            print("Error creando la URL de borrar usuario")
             return false
         }
         
@@ -426,16 +426,19 @@ class UserModel : ObservableObject {
         let semaphore = DispatchSemaphore(value: 0)
         
         let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
             guard error == nil else {
                 deleteCorrect = false
-                print("Se recibió un error al hacer unfollow: \(error!)")
+                print("Se recibió un error al borrar usuario: \(error!)")
                 return
             }
             
             let respuesta = (res as! HTTPURLResponse).statusCode
             guard respuesta == 200 else {
                 deleteCorrect = false
-                print("Se recibió una respuesta distinta a 200 al hacer unfollow. Respuesta: \(respuesta)")
+                print("Se recibió una respuesta distinta a 200 al borrar usuario. Respuesta: \(respuesta)")
                 return
             }
         }
@@ -444,7 +447,11 @@ class UserModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        self.logout()
+        if (deleteCorrect) {
+            DispatchQueue.main.async {
+                self.logout()
+            }
+        }
         
         return deleteCorrect
     }

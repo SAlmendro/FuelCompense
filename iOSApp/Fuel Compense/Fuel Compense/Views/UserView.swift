@@ -19,6 +19,7 @@ struct UserView: View {
     @State var showLogin = false
     @State var showRegister = false
     @State var showLogoutAlert = false
+    @State var showDeleteAlert = false
     
     var body: some View {
         NavigationView {
@@ -60,9 +61,24 @@ struct UserView: View {
                                 )
                             }
                         Button(action: {
-                            userModel.logout()
-                            // delete user (present an alert before deleting user)
+                            showDeleteAlert = true
                         }) { Text("uv.deleteUser") }
+                            .alert(isPresented: $showDeleteAlert) {
+                                Alert(title: Text(String(localized: "uv.deleteAlertTitle")),
+                                      message: Text(String(localized: "uv.deleteAlertMessage")),
+                                      primaryButton: .cancel(),
+                                      secondaryButton: .destructive(
+                                        Text(String(localized: "uv.deleteUser")),
+                                        action: {
+                                            if userModel.delete() {
+                                                fuelModel.deleteAllLocal()
+                                                carbonModel.deleteAllLocal()
+                                                statusModel.deleteAllLocal()
+                                            }
+                                        }
+                                    )
+                                )
+                            }
                     }
                 }
                 if (!userModel.notLoggedUser) {
