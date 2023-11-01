@@ -47,4 +47,10 @@ public class CompensationService {
     public List<Compensation> findAllCompensationsByUserId(Long id) {
         return this.compensationRepository.findAllByUserId(id);
     }
+
+    public void deleteCompensation(String iOSid, String userName) {
+        User user = userService.findUserByUserName(userName);
+        Compensation compensation = compensationRepository.findByiOSidAndUser(iOSid, user);
+        compensationRepository.delete(compensation);
+    }
 }

@@ -211,7 +211,7 @@ class FuelModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         
         if deleteSuccess {
-            refills.remove(at: index)
+            self.refills.remove(at: index)
         }
     }
     

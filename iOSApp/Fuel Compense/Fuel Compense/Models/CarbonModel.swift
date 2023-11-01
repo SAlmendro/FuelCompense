@@ -145,7 +145,47 @@ class CarbonModel : ObservableObject {
     }
     
     func delete(index: Int) -> Void {
-        compensations.remove(at: index)
+        let compensation = self.compensations[index]
+        let escapedDelete = "\(globalsModel.urlBase)\(self.compensationAPI)\(compensation.id)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedDelete!) else {
+            print("Error creando la URL de delete de compensacion")
+            return
+        }
+        
+        var deleteSuccess = true
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.httpBody = userModel.user.userName.data(using: .utf8)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                deleteSuccess = false
+                print("Se recibió un error al borrar una compensacion: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                deleteSuccess = false
+                print("Se recibió una respuesta distinta a 200 al borrar una compensacion. Respuesta: \(respuesta)")
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if deleteSuccess {
+            self.compensations.remove(at: index)
+        }
     }
     
     func deleteAllLocal() -> Void {
@@ -252,14 +292,14 @@ class CarbonModel : ObservableObject {
                 semaphore.signal()
             }
             guard error == nil else {
-                print("Se recibió un error al actualizar el refill: \(error!)")
+                print("Se recibió un error al actualizar la compensacion: \(error!)")
                 updateCompensationCorrect = false
                 return
             }
             
             let respuesta = (res as! HTTPURLResponse).statusCode
             guard respuesta == 200 else {
-                print("Se recibió una respuesta distinta a 200 al actualizar el refill. Respuesta: \(respuesta)")
+                print("Se recibió una respuesta distinta a 200 al actualizar la compensacion. Respuesta: \(respuesta)")
                 updateCompensationCorrect = false
                 return
             }

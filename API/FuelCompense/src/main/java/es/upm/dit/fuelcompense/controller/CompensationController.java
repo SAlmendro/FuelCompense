@@ -45,4 +45,9 @@ public class CompensationController {
         return compensationMapperOut.map(compensation);
     }
 
+    @DeleteMapping(value = "/{iOSid}")
+    public void delete(@PathVariable("iOSid") String iOSid, @RequestBody String userName) {
+        compensationService.deleteCompensation(iOSid, userName);
+    }
+
 }
