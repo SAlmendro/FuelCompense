@@ -121,6 +121,7 @@ class FuelModel : ObservableObject {
     var globalsModel : GlobalsModel
     var userModel : UserModel
     let refillAPI = "refills/"
+    let deleteAllAPI = "deleteAll/"
     
     init(globalsModel: GlobalsModel, userModel: UserModel){
         let dateFormatter = DateFormatter()
@@ -217,6 +218,48 @@ class FuelModel : ObservableObject {
     
     func deleteAllLocal() -> Void {
         refills = []
+    }
+    
+    func deleteAll() -> Void {
+        let escapedDeleteAll = "\(globalsModel.urlBase)\(self.refillAPI)\(self.deleteAllAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedDeleteAll!) else {
+            print("Error creando la URL de delete de todos los refill")
+            return
+        }
+        
+        var deleteAllSuccess = true
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                deleteAllSuccess = false
+                print("Se recibió un error al borrar todos los refills: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                deleteAllSuccess = false
+                print("Se recibió una respuesta distinta a 200 al borrar todos los refills. Respuesta: \(respuesta)")
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if deleteAllSuccess {
+            self.deleteAllLocal()
+        }
     }
     
     func getTrip(i: Int) -> Int {

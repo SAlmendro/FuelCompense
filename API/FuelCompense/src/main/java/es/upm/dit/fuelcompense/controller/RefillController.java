@@ -50,4 +50,9 @@ public class RefillController {
     public void delete(@PathVariable("iOSid") String iOSid, @RequestBody String userName) {
         refillService.deleteRefill(iOSid, userName);
     }
+
+    @DeleteMapping(value = "/deleteAll/{userName}")
+    public void delete(@PathVariable("userName") String userName) {
+        refillService.deleteAllByUserName(userName);
+    }
 }

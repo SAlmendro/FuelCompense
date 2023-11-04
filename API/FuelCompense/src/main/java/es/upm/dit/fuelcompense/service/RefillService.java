@@ -5,6 +5,7 @@ import es.upm.dit.fuelcompense.persistance.entity.Compensation;
 import es.upm.dit.fuelcompense.persistance.entity.Refill;
 import es.upm.dit.fuelcompense.persistance.entity.User;
 import es.upm.dit.fuelcompense.persistance.repository.RefillRepository;
+import es.upm.dit.fuelcompense.persistance.repository.UserRepository;
 import es.upm.dit.fuelcompense.service.dto.RefillDTO;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,14 @@ public class RefillService {
     private RefillRepository refillRepository;
     private RefillDTOtoRefill refillMapperIn;
     private UserService userService;
+    private final UserRepository userRepository;
 
-    public RefillService(RefillRepository refillRepository, RefillDTOtoRefill refillMapperIn, UserService userService) {
+    public RefillService(RefillRepository refillRepository, RefillDTOtoRefill refillMapperIn, UserService userService,
+                         UserRepository userRepository) {
         this.refillRepository = refillRepository;
         this.refillMapperIn = refillMapperIn;
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     public List<Refill> findAll() {;
@@ -50,5 +54,13 @@ public class RefillService {
         User user = userService.findUserByUserName(userName);
         Refill refill = refillRepository.findByiOSidAndUser(iOSid, user);
         refillRepository.delete(refill);
+    }
+
+    public void deleteAllByUserName(String userName) {
+        User user = userService.findUserByUserName(userName);
+        List<Refill> refills = refillRepository.findAllByUserId(user.getId());
+        for(Refill refill : refills) {
+            refillRepository.delete(refill);
+        }
     }
 }
