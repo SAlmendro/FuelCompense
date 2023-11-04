@@ -1,7 +1,9 @@
 package es.upm.dit.fuelcompense.service;
 
 import es.upm.dit.fuelcompense.mapper.UserDTOtoUser;
+import es.upm.dit.fuelcompense.persistance.entity.Status;
 import es.upm.dit.fuelcompense.persistance.entity.User;
+import es.upm.dit.fuelcompense.persistance.repository.StatusRepository;
 import es.upm.dit.fuelcompense.persistance.repository.UserRepository;
 import es.upm.dit.fuelcompense.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,13 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserDTOtoUser userMapperIn;
+    private final StatusRepository statusRepository;
 
-    public UserService(UserRepository userRepository, UserDTOtoUser userMapperIn) {
+    public UserService(UserRepository userRepository, UserDTOtoUser userMapperIn,
+                       StatusRepository statusRepository) {
         this.userRepository = userRepository;
         this.userMapperIn = userMapperIn;
+        this.statusRepository = statusRepository;
     }
 
     public User createUser(UserDTO userDTO) {
@@ -80,11 +85,26 @@ public class UserService {
     }
 
     public boolean deleteUserById(Long userId) {
-        Optional<User> userOpt = userRepository.findById(userId);
-        if (userOpt.isPresent()) {
-            userRepository.delete(userOpt.get());
-            return true;
+        Optional<User> userOpt = userRepository.findByIdWithFavorites(userId);
+        if (!userOpt.isPresent()) {
+            return false;
         }
-        return false;
+        User user = userOpt.get();
+        user.setFollowing(null);
+        userRepository.saveAndFlush(user);
+        for (Status status : user.getFavorites()) {
+            if (status.getFavorites().contains(user)) {
+                status.getFavorites().remove(user);
+                statusRepository.saveAndFlush(status);
+            }
+        }
+        List<String> followers = findAllFollowers(user.getUserName());
+        for (String follower : followers) {
+            if (!unfollow(follower, user.getUserName())) {
+                return false;
+            }
+        }
+        userRepository.delete(user);
+        return true;
     }
 }

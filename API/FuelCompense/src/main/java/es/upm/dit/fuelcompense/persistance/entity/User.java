@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String userName;
     @ToString.Exclude
-    @OneToMany(mappedBy = "creator", orphanRemoval = false)
+    @OneToMany(mappedBy = "creator", orphanRemoval = true)
     @OrderBy("creationDate")
     private List<Status> statuses = new ArrayList<>();
     @ToString.Exclude

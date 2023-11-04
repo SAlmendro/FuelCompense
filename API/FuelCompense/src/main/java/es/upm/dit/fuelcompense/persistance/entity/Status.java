@@ -24,7 +24,6 @@ public class Status {
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User creator;
-    private String iOSid;
     private String content;
     private LocalDateTime creationDate;
     @ToString.Exclude
