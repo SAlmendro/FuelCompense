@@ -50,4 +50,9 @@ public class CompensationController {
         compensationService.deleteCompensation(iOSid, userName);
     }
 
+    @DeleteMapping(value = "/deleteAll/{userName}")
+    public void deleteAll(@PathVariable("userName") String userName) {
+        compensationService.deleteAllByUserName(userName);
+    }
+
 }

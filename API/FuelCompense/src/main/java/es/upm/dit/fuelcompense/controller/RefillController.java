@@ -52,7 +52,7 @@ public class RefillController {
     }
 
     @DeleteMapping(value = "/deleteAll/{userName}")
-    public void delete(@PathVariable("userName") String userName) {
+    public void deleteAll(@PathVariable("userName") String userName) {
         refillService.deleteAllByUserName(userName);
     }
 }

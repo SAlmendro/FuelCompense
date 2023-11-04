@@ -10,6 +10,7 @@ import SwiftUI
 struct CarbonListSubView: View {
     
     @EnvironmentObject var carbonModel : CarbonModel
+    @State var showDeleteAllAlert = false
     
     var body: some View {
         NavigationView{
@@ -30,13 +31,35 @@ struct CarbonListSubView: View {
                     .padding()
                 }
             } else {
-                List {
-                    ForEach(carbonModel.compensations.indices, id: \.self) { i in
-                        NavigationLink(
-                            destination: CarbonDetail(compensation: $carbonModel.compensations[i], index: i)
-                        ) {
-                            CarbonRow(compensation: $carbonModel.compensations[i])
+                VStack {
+                    List {
+                        ForEach(carbonModel.compensations.indices, id: \.self) { i in
+                            NavigationLink(
+                                destination: CarbonDetail(compensation: $carbonModel.compensations[i], index: i)
+                            ) {
+                                CarbonRow(compensation: $carbonModel.compensations[i])
+                            }
                         }
+                    }
+                    Button(action: {
+                        showDeleteAllAlert = true
+                    }) {
+                        Text(String(localized: "clsv.deleteAll"))
+                    }
+                    .padding()
+                    .foregroundColor(Color(uiColor: .red))
+                    .alert(isPresented: $showDeleteAllAlert) {
+                        Alert(
+                            title: Text(String(localized: "clsv.deleteAll")),
+                            message: Text(String(localized: "clsv.deleteAllMessage")),
+                            primaryButton: .cancel() {},
+                            secondaryButton: .destructive(
+                                Text(String(localized: "clsv.delete")),
+                                action: {
+                                    carbonModel.deleteAll()
+                                }
+                            )
+                        )
                     }
                 }
             }

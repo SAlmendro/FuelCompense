@@ -53,4 +53,12 @@ public class CompensationService {
         Compensation compensation = compensationRepository.findByiOSidAndUser(iOSid, user);
         compensationRepository.delete(compensation);
     }
+
+    public void deleteAllByUserName(String userName) {
+        User user = userService.findUserByUserName(userName);
+        List<Compensation> compensations = compensationRepository.findAllByUserId(user.getId());
+        for(Compensation compensation : compensations) {
+            compensationRepository.delete(compensation);
+        }
+    }
 }
