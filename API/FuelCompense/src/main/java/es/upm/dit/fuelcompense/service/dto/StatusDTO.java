@@ -12,6 +12,7 @@ import java.util.Set;
 public class StatusDTO {
 
     private Long id;
+    private String iOSid;
     private String text;
     private Set<String> favs;
     private String authUserName;

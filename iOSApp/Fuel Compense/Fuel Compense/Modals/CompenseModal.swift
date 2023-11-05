@@ -11,10 +11,13 @@ struct CompenseModal: View {
     
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var globalsModel : GlobalsModel
+    @EnvironmentObject var statusModel : StatusModel
+    @EnvironmentObject var userModel : UserModel
     @Binding var showCompenseModal: Bool
     @State var date = Date()
     @State var CO2tons = ""
     @State var comment = ""
+    @State var status = ""
     var editMode : Bool
     var index = 0
     
@@ -26,13 +29,18 @@ struct CompenseModal: View {
                         .keyboardType(.decimalPad)
                     TextField(String(localized: "cm.comment"), text: $comment)
                     DatePicker(String(localized: "date"), selection: $date)
-                    HStack{
-                        Spacer()
-                        if (editMode) {
-                            Button(action: {
-                                if (CO2tons == "") {
-                                    self.showCompenseModal = false
-                                } else {
+                }
+                Section {
+                    TextField(String(localized: "cm.status"), text: $status)
+                }
+                Section {
+                    if (CO2tons != "" &&
+                        Float(CO2tons.commaToPoint()) != Float(0) && 
+                        (editMode && (Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons))) {
+                        HStack{
+                            if (editMode) {
+                                Spacer()
+                                Button(action: {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
                                     carbonModel.compensations[index].date = date
                                     DispatchQueue.global().async {
@@ -44,13 +52,10 @@ struct CompenseModal: View {
                                     })
                                     carbonModel.compensations = compensationsSorted
                                     self.showCompenseModal = false
-                                }
-                            }) {Text(String(localized: "fm.save"))}
-                        } else {
-                            Button(action: {
-                                if (CO2tons == "") {
-                                    self.showCompenseModal = false
-                                } else {
+                                }) {Text(String(localized: "fm.save"))}
+                            } else {
+                                Spacer()
+                                Button(action: {
                                     let compensation = Compensation(
                                         comment: comment,
                                         date: date,
@@ -60,16 +65,54 @@ struct CompenseModal: View {
                                         carbonModel.publishCompensation(compensation: compensation)
                                     }
                                     self.showCompenseModal = false
-                                }
-                            }) {Text(String(localized: "add"))}
+                                }) {Text(String(localized: "add"))}
+                            }
+                            Spacer()
+                            if (editMode) {
+                                Spacer()
+                                Button(action: {
+                                    let status = Status(text: status, authUserName: userModel.user.userName)
+                                    carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
+                                    carbonModel.compensations[index].date = date
+                                    DispatchQueue.global().async {
+                                        carbonModel.updateCompensation(compensation: carbonModel.compensations[index])
+                                        statusModel.publish(status: status)
+                                    }
+                                    let compensationsTemp = carbonModel.compensations
+                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
+                                        return com0 < com1
+                                    })
+                                    carbonModel.compensations = compensationsSorted
+                                    self.showCompenseModal = false
+                                }) {Text(String(localized: "fm.saveAndPublish"))}
+                            } else {
+                                Spacer()
+                                Button(action: {
+                                    let status = Status(text: status, authUserName: userModel.user.userName)
+                                    let compensation = Compensation(
+                                        comment: comment,
+                                        date: date,
+                                        tons: Float(CO2tons.commaToPoint())!
+                                    )
+                                    DispatchQueue.global().async {
+                                        carbonModel.publishCompensation(compensation: compensation)
+                                        statusModel.publish(status: status)
+                                    }
+                                    self.showCompenseModal = false
+                                }) {Text(String(localized: "addAndPublish"))}
+                            }
+                            Spacer()
                         }
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
+                    HStack {
                         Spacer()
                         Button(action: {
                             self.showCompenseModal = false
                         }) {Text(String(localized: "cancel"))}
+                        .buttonStyle(BorderlessButtonStyle())
                         Spacer()
                     }
-                    .buttonStyle(BorderlessButtonStyle())
                 }
             }
         }

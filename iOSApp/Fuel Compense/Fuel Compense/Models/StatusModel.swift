@@ -9,11 +9,12 @@ import Foundation
 import SwiftUI
 
 struct Status: Codable, Equatable {
-    var id: Int
-    var text: String
-    var favs: [String]
     var authUserName: String
     var creationDate: Date
+    var favs: [String]
+    var id : Int
+    var iOSid = UUID()
+    var text: String
     
     private enum CodingKeys: String, CodingKey {
         case id, text, favs, authUserName, creationDate
@@ -22,6 +23,14 @@ struct Status: Codable, Equatable {
     static func == (lhs: Status, rhs: Status) -> Bool {
             return
                 lhs.id == rhs.id
+    }
+    
+    init(text: String, authUserName: String) {
+        id = 0
+        self.text = text
+        favs = []
+        self.authUserName = authUserName
+        creationDate = Date()
     }
     
     init(from decoder: Decoder) throws {
@@ -51,15 +60,45 @@ class StatusModel : ObservableObject {
     private let statusAPI = "statuses/"
     private let subscribedAPI = "subscribed/"
     private let favAPI = "fav/"
+    private let newAPI = "new/"
+    var userDef : UserDefaults
     
     @Published var statuses : Array<Status>
     @Published var subscribedStatuses : Array<Status>
+    @Published var unpublishedStatuses : Array<Status> {
+        didSet {
+            do {
+                let data = try encoder.encode(unpublishedStatuses)
+                UserDefaults.standard.set(data, forKey: "unpublishedStatuses")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     init(userModel: UserModel, globalsModel: GlobalsModel){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         self.userModel = userModel
         self.globalsModel = globalsModel
         statuses = []
         subscribedStatuses = []
+        userDef = UserDefaults.standard
+        if let unpublishedStatusesUserDefData = (userDef.object(forKey: "unpublishedStatuses") as? Data) {
+            do {
+                let unpublishedStatusesUserDef = try decoder.decode(Array<Status>.self, from: unpublishedStatusesUserDefData)
+                self.unpublishedStatuses = unpublishedStatusesUserDef
+                print("Unpublished statuses recovered")
+            } catch {
+                self.unpublishedStatuses = []
+                print(error.localizedDescription)
+            }
+        } else {
+            print("There were no unpublished statuses in userDef")
+            self.unpublishedStatuses = []
+        }
     }
     
     func getSubscribedStatuses() {
@@ -247,11 +286,68 @@ class StatusModel : ObservableObject {
         }
     }
     
-    func publish(status: Status) -> Void {
-        // publish the new social unit to the API and then, retrieve the social units to have it complete.
-        // statuses.append(status); append the status received from the API, as it has the creationDate
-        self.getSubscribedStatuses()
-        self.getStatuses()
+    func publish(status: Status, retry: Bool = false) -> Void {
+        let escapedPublishStatus = "\(globalsModel.urlBase)\(self.statusAPI)\(self.newAPI)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedPublishStatus!) else {
+            print("Error creando la URL de publicar estado")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let parameters: Status = status
+        var dataParameters = Data()
+        do {
+            dataParameters = try encoder.encode(parameters)
+        } catch {
+            print(error.localizedDescription)
+        }
+        request.httpBody = dataParameters
+        
+        var publishStatusCorrect = true
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                print("Se recibió un error al publicar el estado: \(error!)")
+                publishStatusCorrect = false
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                print("Se recibió una respuesta distinta a 200 al publicar el estado. Respuesta: \(respuesta)")
+                publishStatusCorrect = false
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if (!retry) {
+            if (publishStatusCorrect) {
+                self.getSubscribedStatuses()
+                self.getStatuses()
+            } else {
+                DispatchQueue.main.async {
+                    self.unpublishedStatuses.append(status)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if (publishStatusCorrect) {
+                    self.subscribedStatuses.removeAll(where: {$0.iOSid == status.iOSid})
+                }
+            }
+        }
     }
     
     func delete(status: Status, completion: @escaping (Bool) -> Void) {

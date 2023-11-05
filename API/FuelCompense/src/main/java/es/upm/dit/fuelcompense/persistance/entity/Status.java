@@ -20,6 +20,7 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    private String iOSid;
     @ToString.Exclude
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)

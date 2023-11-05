@@ -20,6 +20,7 @@ public class StatusDTOtoStatus implements IMapper<StatusDTO, Status> {
     public Status map(StatusDTO in){
         Status status = new Status();
         status.setContent(in.getText());
+        status.setIOSid(in.getIOSid());
         status.setCreator(userService.findUserByUserName(in.getAuthUserName()));
         status.setCreationDate(LocalDateTime.now());
         return status;
