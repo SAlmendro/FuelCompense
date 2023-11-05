@@ -32,6 +32,18 @@ struct CarbonListSubView: View {
                 }
             } else {
                 VStack {
+                    if (!carbonModel.unpublishedCompensations.isEmpty || !carbonModel.unpublishedUpdateCompensations.isEmpty) {
+                        Button(action: {
+                            DispatchQueue.global().async {
+                                carbonModel.uploadUnpublished()
+                            }
+                        }) {
+                            Text(String(localized: "clsv.retryUpload"))
+                        }
+                        .padding()
+                        .buttonStyle(.bordered)
+                        .tint(.yellow)
+                    }
                     List {
                         ForEach(carbonModel.compensations.indices, id: \.self) { i in
                             NavigationLink(

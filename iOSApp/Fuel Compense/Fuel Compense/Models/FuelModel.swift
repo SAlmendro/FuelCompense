@@ -385,7 +385,7 @@ class FuelModel : ObservableObject {
         return n
     }
     
-    func publishRefill(refill: Refill) -> Void {
+    func publishRefill(refill: Refill, retry: Bool = false) -> Void {
         let escapedPublishRefill = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedPublishRefill!) else {
@@ -431,21 +431,30 @@ class FuelModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        var refillsTemp = self.refills
-        refillsTemp.append(refill)
-        let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
-            return ref0 > ref1
-        })
-        DispatchQueue.main.async {
-            self.refills = refillsSorted
-            
-            if (!publishRefillCorrect) {
-                self.unpublishedRefills.append(refill)
+        if (!retry) {
+            var refillsTemp = self.refills
+            refillsTemp.append(refill)
+            let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
+                return ref0 > ref1
+            })
+            DispatchQueue.main.async {
+                self.refills = refillsSorted
+                
+                if (!publishRefillCorrect) {
+                    self.unpublishedRefills.append(refill)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if (publishRefillCorrect) {
+                    self.unpublishedRefills.removeAll(where: {$0.id == refill.id})
+                }
             }
         }
+        
     }
     
-    func updateRefill(refill: Refill) -> Void {
+    func updateRefill(refill: Refill, retry: Bool = false) -> Void {
         let escapedUpdateRefill = "\(globalsModel.urlBase)\(self.refillAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedUpdateRefill!) else {
@@ -491,9 +500,17 @@ class FuelModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
 
-        DispatchQueue.main.async {
-            if (!updateRefillCorrect) {
-                self.unpublishedUpdateRefills.append(refill)
+        if (!retry) {
+            DispatchQueue.main.async {
+                if (!updateRefillCorrect) {
+                    self.unpublishedUpdateRefills.append(refill)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if (updateRefillCorrect) {
+                    self.unpublishedUpdateRefills.removeAll(where: {$0.id == refill.id})
+                }
             }
         }
     }
@@ -536,6 +553,19 @@ class FuelModel : ObservableObject {
         }
         
         task.resume()
+    }
+    
+    func uploadUnpublished() {
+        if (!self.unpublishedRefills.isEmpty) {
+            self.unpublishedRefills.forEach { refill in
+                publishRefill(refill: refill, retry: true)
+            }
+        }
+        if (!self.unpublishedUpdateRefills.isEmpty) {
+            self.unpublishedUpdateRefills.forEach { refill in
+                updateRefill(refill: refill, retry: true)
+            }
+        }
     }
     
 }

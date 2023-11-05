@@ -246,7 +246,7 @@ class CarbonModel : ObservableObject {
         return totalCompensed*1000
     }
     
-    func publishCompensation(compensation: Compensation) -> Void {
+    func publishCompensation(compensation: Compensation, retry: Bool = false) -> Void {
         let escapedPublishRefill = "\(globalsModel.urlBase)\(self.compensationAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedPublishRefill!) else {
@@ -292,21 +292,29 @@ class CarbonModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
         
-        var compensationsTemp = self.compensations
-        compensationsTemp.append(compensation)
-        let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
-            return com0 < com1
-        })
-        DispatchQueue.main.async {
-            self.compensations = compensationsSorted
-            
-            if (!publishCompensationCorrect) {
-                self.unpublishedCompensations.append(compensation)
+        if (!retry) {
+            var compensationsTemp = self.compensations
+            compensationsTemp.append(compensation)
+            let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
+                return com0 < com1
+            })
+            DispatchQueue.main.async {
+                self.compensations = compensationsSorted
+                
+                if (!publishCompensationCorrect) {
+                    self.unpublishedCompensations.append(compensation)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if (publishCompensationCorrect) {
+                    self.unpublishedCompensations.removeAll(where: {$0.id == compensation.id})
+                }
             }
         }
     }
     
-    func updateCompensation(compensation: Compensation) -> Void {
+    func updateCompensation(compensation: Compensation, retry : Bool = false) -> Void {
         let escapedUpdateCompensation = "\(globalsModel.urlBase)\(self.compensationAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         guard let url = URL(string: escapedUpdateCompensation!) else {
@@ -352,11 +360,20 @@ class CarbonModel : ObservableObject {
         
         _ = semaphore.wait(timeout: .distantFuture)
 
-        DispatchQueue.main.async {
-            if (!updateCompensationCorrect) {
-                self.unpublishedUpdateCompensations.append(compensation)
+        if (!retry) {
+            DispatchQueue.main.async {
+                if (!updateCompensationCorrect) {
+                    self.unpublishedUpdateCompensations.append(compensation)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if (updateCompensationCorrect) {
+                    self.unpublishedUpdateCompensations.removeAll(where: {$0.id == compensation.id})
+                }
             }
         }
+        
     }
     
     func getCompensations() {
@@ -398,4 +415,18 @@ class CarbonModel : ObservableObject {
         
         task.resume()
     }
+    
+    func uploadUnpublished() {
+        if (!self.unpublishedCompensations.isEmpty) {
+            self.unpublishedCompensations.forEach { compensation in
+                publishCompensation(compensation: compensation, retry: true)
+            }
+        }
+        if (!self.unpublishedUpdateCompensations.isEmpty) {
+            self.unpublishedUpdateCompensations.forEach { compensation in
+                updateCompensation(compensation: compensation, retry: true)
+            }
+        }
+    }
+    
 }

@@ -32,6 +32,18 @@ struct FuelListSubView: View {
                 }
             } else {
                 VStack {
+                    if (!fuelModel.unpublishedRefills.isEmpty || !fuelModel.unpublishedUpdateRefills.isEmpty) {
+                        Button(action: {
+                            DispatchQueue.global().async {
+                                fuelModel.uploadUnpublished()
+                            }
+                        }) {
+                            Text(String(localized: "flsv.retryUpload"))
+                        }
+                        .padding()
+                        .buttonStyle(.bordered)
+                        .tint(.yellow)
+                    }
                     List {
                         ForEach(fuelModel.refills.indices, id: \.self) { i in
                             NavigationLink(
