@@ -21,7 +21,6 @@ struct StatusRow: View {
                 Text(status.authUserName)
                 Spacer()
             }
-            .padding()
             
             Text(status.text)
                 .padding()
@@ -31,13 +30,15 @@ struct StatusRow: View {
                 if (status.favs.contains(userModel.user.userName)) {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.yellow)
-                        .padding()
                 } else {
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.gray)
-                        .padding()
                 }
-                Text("\(status.favs.count) FAVs")
+                if (status.favs.count == 1) {
+                    Text("1 FAV")
+                } else {
+                    Text("\(status.favs.count) FAVs")
+                }
                 Spacer()
             }
             

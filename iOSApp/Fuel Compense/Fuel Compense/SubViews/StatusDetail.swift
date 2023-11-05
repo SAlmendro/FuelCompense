@@ -13,6 +13,7 @@ struct StatusDetail: View {
     @Binding var status : Status
     @EnvironmentObject var statusModel : StatusModel
     @EnvironmentObject var userModel : UserModel
+    @State private var showFavsModal = false
     
     var body: some View {
         
@@ -23,20 +24,35 @@ struct StatusDetail: View {
                 .padding()
             HStack {
                 Spacer()
+                if (status.favs.isEmpty) {
+                    Text("0 FAVs")
+                        .padding()
+                } else {
+                    Button {
+                        showFavsModal = true
+                    } label: {
+                        if (status.favs.count == 1) {
+                            Text("1 FAV")
+                        } else {
+                            Text("\(status.favs.count) FAVs")
+                        }
+                    }
+                    .padding()
+                    .sheet(isPresented: $showFavsModal){
+                        FavsModal(favs: status.favs)
+                    }
+                }
                 Button {
                     DispatchQueue.global().async {
                         statusModel.changeFav(status: $status)
                     }
                 } label: {
-                    HStack {
-                        if (status.favs.contains(userModel.user.userName)) {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(Color.yellow)
-                        } else {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(Color.gray)
-                        }
-                        Text("\(status.favs.count) FAVs")
+                    if (status.favs.contains(userModel.user.userName)) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                    } else {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.gray)
                     }
                 }
                 Spacer()
@@ -65,6 +81,7 @@ struct StatusDetail: View {
                             .font(.footnote)
                     }
                 })
+                .padding()
             }
         }
         
