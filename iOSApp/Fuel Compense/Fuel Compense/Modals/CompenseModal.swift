@@ -38,8 +38,8 @@ struct CompenseModal: View {
                         Float(CO2tons.commaToPoint()) != Float(0) && 
                         (editMode && (Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons))) {
                         HStack{
+                            Spacer()
                             if (editMode) {
-                                Spacer()
                                 Button(action: {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
                                     carbonModel.compensations[index].date = date
@@ -52,9 +52,8 @@ struct CompenseModal: View {
                                     })
                                     carbonModel.compensations = compensationsSorted
                                     self.showCompenseModal = false
-                                }) {Text(String(localized: "fm.save"))}
+                                }) {Text(String(localized: "save"))}
                             } else {
-                                Spacer()
                                 Button(action: {
                                     let compensation = Compensation(
                                         comment: comment,
@@ -69,7 +68,6 @@ struct CompenseModal: View {
                             }
                             Spacer()
                             if (editMode) {
-                                Spacer()
                                 Button(action: {
                                     let status = Status(text: status, authUserName: userModel.user.userName)
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
@@ -84,9 +82,8 @@ struct CompenseModal: View {
                                     })
                                     carbonModel.compensations = compensationsSorted
                                     self.showCompenseModal = false
-                                }) {Text(String(localized: "fm.saveAndPublish"))}
+                                }) {Text(String(localized: "saveAndPublish"))}
                             } else {
-                                Spacer()
                                 Button(action: {
                                     let status = Status(text: status, authUserName: userModel.user.userName)
                                     let compensation = Compensation(
@@ -101,9 +98,9 @@ struct CompenseModal: View {
                                     self.showCompenseModal = false
                                 }) {Text(String(localized: "addAndPublish"))}
                             }
-                            Spacer()
                         }
                         .buttonStyle(BorderlessButtonStyle())
+                        Spacer()
                     }
                     HStack {
                         Spacer()
