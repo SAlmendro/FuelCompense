@@ -16,12 +16,26 @@ struct StatusView: View {
             RefreshButton(title: String(localized: "sv.title"))
         
             NavigationView{
-                List {
-                    ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
-                        NavigationLink(
-                            destination: StatusDetail(status: $statusModel.subscribedStatuses[i])
-                        ) {
-                            StatusRow(status: $statusModel.subscribedStatuses[i])
+                VStack {
+                    if (!statusModel.unpublishedStatuses.isEmpty) {
+                        Button(action: {
+                            DispatchQueue.global().async {
+                                statusModel.uploadUnpublished()
+                            }
+                        }) {
+                            Text(String(localized: "sv.retryUpload"))
+                        }
+                        .padding()
+                        .buttonStyle(.bordered)
+                        .tint(.yellow)
+                    }
+                    List {
+                        ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
+                            NavigationLink(
+                                destination: StatusDetail(status: $statusModel.subscribedStatuses[i])
+                            ) {
+                                StatusRow(status: $statusModel.subscribedStatuses[i])
+                            }
                         }
                     }
                 }

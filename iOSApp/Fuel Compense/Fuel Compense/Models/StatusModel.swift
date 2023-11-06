@@ -344,7 +344,9 @@ class StatusModel : ObservableObject {
         } else {
             DispatchQueue.main.async {
                 if (publishStatusCorrect) {
-                    self.subscribedStatuses.removeAll(where: {$0.iOSid == status.iOSid})
+                    self.getSubscribedStatuses()
+                    self.getStatuses()
+                    self.unpublishedStatuses.removeAll(where: {$0.iOSid == status.iOSid})
                 }
             }
         }
@@ -389,6 +391,14 @@ class StatusModel : ObservableObject {
     func deleteAllLocal() -> Void {
         self.subscribedStatuses = []
         self.statuses = []
+    }
+    
+    func uploadUnpublished() {
+        if (!self.unpublishedStatuses.isEmpty) {
+            self.unpublishedStatuses.forEach { status in
+                publish(status: status, retry: true)
+            }
+        }
     }
     
 }
