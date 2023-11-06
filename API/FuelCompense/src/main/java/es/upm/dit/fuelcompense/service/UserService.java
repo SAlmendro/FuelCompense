@@ -36,6 +36,10 @@ public class UserService {
     public User findUserByUserName(String userName) {
         return this.userRepository.findUserByUserName(userName);
     }
+    public User findUserByUserNameWithStatuses(String userName) {
+        User user = this.findUserByUserName(userName);
+        return this.userRepository.findUserByIdWithStatuses(user.getId());
+    }
 
     public List<String> follow(String followerUserName, String followedUserName) {
         User follower = userRepository.findUserByUserName(followerUserName);

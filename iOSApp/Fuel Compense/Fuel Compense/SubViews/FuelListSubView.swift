@@ -67,7 +67,9 @@ struct FuelListSubView: View {
                             secondaryButton: .destructive(
                                 Text(String(localized: "flsv.delete")),
                                 action: {
-                                    fuelModel.deleteAll()
+                                    DispatchQueue.global().async {
+                                        fuelModel.deleteAll()
+                                    }
                                 }
                             )
                         )

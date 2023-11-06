@@ -64,7 +64,6 @@ struct StatusDetail: View {
                     statusModel.delete(status: status) { success in
                         if success {
                             DispatchQueue.global().async {
-                                statusModel.getStatuses()
                                 statusModel.getSubscribedStatuses()
                             }
                             self.mode.wrappedValue.dismiss()

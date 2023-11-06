@@ -19,4 +19,6 @@ public interface StatusRepository extends JpaRepository<Status, Long> {
     @Query("SELECT s FROM Status s LEFT JOIN FETCH s.favorites WHERE s.id = :id")
     Optional<Status> findByIdWithFavorites(@Param("id") Long id);
 
+    public void deleteAllByCreator(User user);
+
 }

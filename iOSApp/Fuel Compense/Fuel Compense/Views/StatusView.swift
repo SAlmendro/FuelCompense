@@ -10,11 +10,16 @@ import SwiftUI
 struct StatusView: View {
     
     @EnvironmentObject var statusModel : StatusModel
+    @State var myStatuses : Bool = false
+    @State var showDeleteAllAlert = false
     
     var body: some View {
         VStack{
             RefreshButton(title: String(localized: "sv.title"))
-        
+            Toggle(isOn: $myStatuses) {
+                Text(String(localized: "sv.myStatuses"))
+            }
+            .padding()
             NavigationView{
                 VStack {
                     if (!statusModel.unpublishedStatuses.isEmpty) {
@@ -30,12 +35,46 @@ struct StatusView: View {
                         .tint(.yellow)
                     }
                     List {
-                        ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
-                            NavigationLink(
-                                destination: StatusDetail(status: $statusModel.subscribedStatuses[i])
-                            ) {
-                                StatusRow(status: $statusModel.subscribedStatuses[i])
+                        if (myStatuses) {
+                            ForEach(statusModel.statuses.indices, id: \.self) { i in
+                                NavigationLink(
+                                    destination: StatusDetail(status: $statusModel.statuses[i])
+                                ) {
+                                    StatusRow(status: $statusModel.statuses[i])
+                                }
                             }
+                        } else {
+                            ForEach(statusModel.subscribedStatuses.indices, id: \.self) { i in
+                                NavigationLink(
+                                    destination: StatusDetail(status: $statusModel.subscribedStatuses[i])
+                                ) {
+                                    StatusRow(status: $statusModel.subscribedStatuses[i])
+                                }
+                            }
+                        }
+                    }
+                    if (myStatuses) {
+                        Button(action: {
+                            showDeleteAllAlert = true
+                        }) {
+                            Text(String(localized: "sv.deleteAll"))
+                        }
+                        .padding()
+                        .foregroundColor(Color(uiColor: .red))
+                        .alert(isPresented: $showDeleteAllAlert) {
+                            Alert(
+                                title: Text(String(localized: "sv.deleteAll")),
+                                message: Text(String(localized: "sv.deleteAllMessage")),
+                                primaryButton: .cancel() {},
+                                secondaryButton: .destructive(
+                                    Text(String(localized: "sv.delete")),
+                                    action: {
+                                        DispatchQueue.global().async {
+                                            statusModel.deleteAll()
+                                        }
+                                    }
+                                )
+                            )
                         }
                     }
                 }
@@ -45,7 +84,6 @@ struct StatusView: View {
         .onAppear{
             DispatchQueue.global().async {
                 statusModel.getSubscribedStatuses()
-                statusModel.getStatuses()
             }
         }
     }

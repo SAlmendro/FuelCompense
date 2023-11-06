@@ -60,6 +60,18 @@ public class StatusController {
         }
     }
 
+    @DeleteMapping(value = "/deleteAll/{userName}")
+    public Boolean deleteStatus(@PathVariable("userName") String userName) {
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se intenta borrar todos los estados de  " + userName);
+        try {
+            this.statusService.deleteAllStatus(userName);
+            return true;
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.SEVERE, "Ha habido un error borrando el estado. Traza: " + e.getMessage());
+            return false;
+        }
+    }
+
     @PostMapping(value = "/fav/{statusId}")
     public Boolean updateFav(@PathVariable("statusId") Long statusId, @RequestBody String userName) {
         Logger.getAnonymousLogger().log(Level.WARNING, "Se quiere cambiar el estado fav por " + userName + " en el estado " + statusId);

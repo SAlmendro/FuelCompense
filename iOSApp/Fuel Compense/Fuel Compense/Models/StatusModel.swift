@@ -61,6 +61,7 @@ class StatusModel : ObservableObject {
     private let subscribedAPI = "subscribed/"
     private let favAPI = "fav/"
     private let newAPI = "new/"
+    private let deleteAllAPI = "deleteAll/"
     var userDef : UserDefaults
     
     @Published var statuses : Array<Status>
@@ -141,51 +142,9 @@ class StatusModel : ObservableObject {
         _ = semaphore.wait(timeout: .distantFuture)
         DispatchQueue.main.async {
             self.subscribedStatuses = statuses
-        }
-
-    }
-    
-    func getStatuses() {
-        let escapedStatuses = "\(globalsModel.urlBase)\(self.statusAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
-        guard let url = URL(string: escapedStatuses!) else {
-            print("Error creando la URL para recuperar los estados propios" + escapedStatuses!)
-            return
-        }
-        
-        var statuses: [Status] = []
-        
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        let task = globalsModel.session.dataTask(with: url) { (data, res, error) in
-            defer {
-                semaphore.signal()
-            }
-            
-            guard error == nil else {
-                print("Se recibió un error al recuperar los estados propios: \(error!)")
-                return
-            }
-            
-            let respuesta = (res as! HTTPURLResponse).statusCode
-            guard respuesta == 200 else {
-                print("Se recibió una respuesta distinta a 200 al recuperar los estados propios. Respuesta: \(respuesta)")
-                return
-            }
-            
-            do {
-                statuses = try JSONDecoder().decode([Status].self, from: data!)
-            } catch {
-                print("Error al decodificar el JSON de estados: \(error)")
-            }
-        }
-        
-        task.resume()
-        
-        _ = semaphore.wait(timeout: .distantFuture)
-        
-        DispatchQueue.main.async {
-            self.statuses = statuses
+            self.statuses = statuses.filter({ status in
+                status.authUserName == self.userModel.user.userName
+            })
         }
 
     }
@@ -335,17 +294,16 @@ class StatusModel : ObservableObject {
         if (!retry) {
             if (publishStatusCorrect) {
                 self.getSubscribedStatuses()
-                self.getStatuses()
             } else {
                 DispatchQueue.main.async {
                     self.unpublishedStatuses.append(status)
                 }
             }
         } else {
-            DispatchQueue.main.async {
-                if (publishStatusCorrect) {
-                    self.getSubscribedStatuses()
-                    self.getStatuses()
+            
+            if (publishStatusCorrect) {
+                self.getSubscribedStatuses()
+                DispatchQueue.main.async {
                     self.unpublishedStatuses.removeAll(where: {$0.iOSid == status.iOSid})
                 }
             }
@@ -386,6 +344,48 @@ class StatusModel : ObservableObject {
         }
         
         task.resume()
+    }
+    
+    func deleteAll() -> Void {
+        let escapedDeleteAll = "\(globalsModel.urlBase)\(self.statusAPI)\(self.deleteAllAPI)\(userModel.user.userName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: escapedDeleteAll!) else {
+            print("Error creando la URL de delete de todos los estados")
+            return
+        }
+        
+        var deleteSuccess = true
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = globalsModel.session.dataTask(with: request) { (data, res, error) in
+            defer {
+                semaphore.signal()
+            }
+            guard error == nil else {
+                deleteSuccess = false
+                print("Se recibió un error al borrar todos los estados: \(error!)")
+                return
+            }
+            
+            let respuesta = (res as! HTTPURLResponse).statusCode
+            guard respuesta == 200 else {
+                deleteSuccess = false
+                print("Se recibió una respuesta distinta a 200 al borrar todos los estados. Respuesta: \(respuesta)")
+                return
+            }
+        }
+        
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        if (deleteSuccess) {
+            self.getSubscribedStatuses()
+        }
     }
     
     func deleteAllLocal() -> Void {

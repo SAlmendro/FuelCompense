@@ -63,6 +63,12 @@ public class StatusService {
     public void deleteStatus(Long statusId) {
         statusRepository.deleteById(statusId);
     }
+    public void deleteAllStatus(String userName) {
+        User user = this.userService.findUserByUserNameWithStatuses(userName);
+        for(Status status : user.getStatuses()) {
+            deleteStatus(status.getId());
+        }
+    }
 
     public Optional<Boolean> changeFavorite(Long statusId, String userName) {
         Optional<Status> optionalStatus = statusRepository.findByIdWithFavorites(statusId);

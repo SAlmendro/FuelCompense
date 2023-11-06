@@ -17,4 +17,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public List<User> findAllByUserNameContainingIgnoreCase(String keyword);
     @Query("SELECT s FROM User s LEFT JOIN FETCH s.favorites WHERE s.id = :id")
     public Optional<User> findByIdWithFavorites(@Param("id") Long id);
+    @Query("SELECT s FROM User s LEFT JOIN FETCH s.statuses WHERE s.id = :id")
+    public User findUserByIdWithStatuses(@Param("id") Long id);
 }
