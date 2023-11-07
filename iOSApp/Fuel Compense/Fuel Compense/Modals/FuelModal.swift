@@ -54,16 +54,6 @@ struct FuelModal: View {
                              Float(liters.commaToPoint()) != fuelModel.refills[index].liters ||
                              Float(total.commaToPoint()) != fuelModel.refills[index].total)) ||
                             (!editMode && odometer != "" && liters != "" && total != "") {
-                            Button(action: {
-                                
-                                print("editMode: " +  String(editMode))
-                                print("odometer: " + String(Int(odometer)!))
-                                print("odometer original: " + String(fuelModel.refills[index].odometer))
-                                print("liters: " + String(Float(liters.commaToPoint())!))
-                                print("liters original: " + String(fuelModel.refills[index].liters))
-                                print("total: " + String(Float(total.commaToPoint())!))
-                                print("total original: " + String(fuelModel.refills[index].total))
-                            }) {Text("imprime valores")}
                             HStack{
                                 Spacer()
                                 if (editMode) {
