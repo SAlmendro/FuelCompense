@@ -34,10 +34,6 @@ struct SettingsView: View {
                         showAlert = true
                     }) { Text("sv.changeFuel") }
                 }
-                Section(header: Text(String(localized: "sv.sync"))) {
-                    Text("Refills no enviados         " + String(fuelModel.unpublishedRefills.count))
-                    Text("Compensaciones no enviadas         " + String(carbonModel.unpublishedCompensations.count))
-                }
             }
             .navigationTitle("cv.settings")
             .alert(isPresented: $showAlert) {
