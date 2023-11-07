@@ -15,6 +15,7 @@ struct UserView: View {
     @EnvironmentObject var fuelModel : FuelModel
     @EnvironmentObject var carbonModel : CarbonModel
     @EnvironmentObject var statusModel : StatusModel
+    @EnvironmentObject var globalsModel : GlobalsModel
 
     @State var showLogin = false
     @State var showRegister = false
@@ -56,6 +57,7 @@ struct UserView: View {
                                             fuelModel.deleteAllLocal()
                                             carbonModel.deleteAllLocal()
                                             statusModel.deleteAllLocal()
+                                            globalsModel.deleteAll()
                                         }
                                     )
                                 )
@@ -74,6 +76,7 @@ struct UserView: View {
                                                 fuelModel.deleteAllLocal()
                                                 carbonModel.deleteAllLocal()
                                                 statusModel.deleteAllLocal()
+                                                globalsModel.deleteAll()
                                             }
                                         }
                                     )
