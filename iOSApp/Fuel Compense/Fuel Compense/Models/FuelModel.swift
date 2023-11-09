@@ -48,7 +48,7 @@ struct Refill: Codable, Comparable {
 
         let dateString = try container.decode(String.self, forKey: .date)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         if let date = dateFormatter.date(from: dateString) {
             self.date = date
         } else {
