@@ -15,6 +15,7 @@ struct RefreshButton: View {
         HStack{
             Spacer()
             Text(title)
+                .font(.title)
             Spacer()
             Button(action: {
                 DispatchQueue.global().async {

@@ -112,8 +112,8 @@ struct UserView: View {
                     }
                 }
             }
+            .navigationTitle("uv.profile")
         }
-        .navigationTitle("uv.profile")
         .sheet(isPresented: $showLogin){
             LoginModal(showLogin: $showLogin)
         }

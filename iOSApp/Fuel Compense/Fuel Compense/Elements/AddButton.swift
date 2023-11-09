@@ -25,6 +25,7 @@ struct AddButton: View {
         HStack{
             Spacer()
             Text(title)
+                .font(.title)
             Spacer()
             Button(action: {
                 showingAddActionSheet = true

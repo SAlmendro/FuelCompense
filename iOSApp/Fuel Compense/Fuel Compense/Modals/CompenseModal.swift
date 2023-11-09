@@ -37,7 +37,6 @@ struct CompenseModal: View {
                     if ((!editMode && CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)) ||
                         (editMode && (Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons) && (CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)))) {
                         HStack{
-                            Spacer()
                             if (editMode) {
                                 Button(action: {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
@@ -52,6 +51,7 @@ struct CompenseModal: View {
                                     carbonModel.compensations = compensationsSorted
                                     self.showCompenseModal = false
                                 }) {Text(String(localized: "save"))}
+                                    .padding(.horizontal)
                             } else {
                                 Button(action: {
                                     let compensation = Compensation(
@@ -64,6 +64,7 @@ struct CompenseModal: View {
                                     }
                                     self.showCompenseModal = false
                                 }) {Text(String(localized: "add"))}
+                                    .padding(.horizontal)
                             }
                             Spacer()
                             if (editMode) {
@@ -82,6 +83,7 @@ struct CompenseModal: View {
                                     carbonModel.compensations = compensationsSorted
                                     self.showCompenseModal = false
                                 }) {Text(String(localized: "saveAndPublish"))}
+                                    .padding(.horizontal)
                             } else {
                                 Button(action: {
                                     let status = Status(text: status, authUserName: userModel.user.userName)
@@ -96,10 +98,10 @@ struct CompenseModal: View {
                                     }
                                     self.showCompenseModal = false
                                 }) {Text(String(localized: "addAndPublish"))}
+                                    .padding(.horizontal)
                             }
                         }
                         .buttonStyle(BorderlessButtonStyle())
-                        Spacer()
                     }
                     HStack {
                         Spacer()

@@ -55,7 +55,6 @@ struct FuelModal: View {
                              Float(total.commaToPoint()) != fuelModel.refills[index].total)) ||
                             (!editMode && odometer != "" && liters != "" && total != "") {
                             HStack{
-                                Spacer()
                                 if (editMode) {
                                     Button(action: {
                                         if ((odometer == "") || (liters == "") || (total == "")) {
@@ -83,6 +82,7 @@ struct FuelModal: View {
                                             self.showFuelModal = false
                                         }
                                     }) {Text(String(localized: "fm.save"))}
+                                        .padding(.horizontal)
                                 } else {
                                     Button(action: {
                                         if ((odometer == "") || (liters == "") || (total == "")) {
@@ -103,6 +103,7 @@ struct FuelModal: View {
                                             self.showFuelModal = false
                                         }
                                     }) {Text(String(localized: "add"))}
+                                        .padding(.horizontal)
                                 }
                                 Spacer()
                                 if (editMode) {
@@ -134,6 +135,7 @@ struct FuelModal: View {
                                             self.showFuelModal = false
                                         }
                                     }) {Text(String(localized: "saveAndPublish"))}
+                                        .padding(.horizontal)
                                 } else {
                                     Button(action: {
                                         if ((odometer == "") || (liters == "") || (total == "")) {
@@ -156,8 +158,8 @@ struct FuelModal: View {
                                             self.showFuelModal = false
                                         }
                                     }) {Text(String(localized: "addAndPublish"))}
+                                        .padding(.horizontal)
                                 }
-                                Spacer()
                             }
                             .buttonStyle(BorderlessButtonStyle())
                         }
