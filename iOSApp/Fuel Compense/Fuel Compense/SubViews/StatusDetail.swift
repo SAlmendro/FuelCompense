@@ -14,6 +14,7 @@ struct StatusDetail: View {
     @EnvironmentObject var statusModel : StatusModel
     @EnvironmentObject var userModel : UserModel
     @State private var showFavsModal = false
+    @State private var showDeleteAlert = false
     
     var body: some View {
         
@@ -61,18 +62,7 @@ struct StatusDetail: View {
 
             if (status.authUserName == userModel.user.userName) {
                 Button(action: {
-                    statusModel.delete(status: status) { success in
-                        if success {
-                            DispatchQueue.global().async {
-                                statusModel.getSubscribedStatuses()
-                            }
-                            self.mode.wrappedValue.dismiss()
-                        } else {
-                            print("He fallado borrando un estado")
-                            self.mode.wrappedValue.dismiss()
-                        }
-                    }
-                    
+                    showDeleteAlert = true
                 }, label: {
                     VStack{
                         Image(systemName: "trash")
@@ -81,6 +71,29 @@ struct StatusDetail: View {
                     }
                 })
                 .padding()
+                .alert(isPresented: $showDeleteAlert) {
+                    Alert(
+                        title: Text(String(localized: "sd.delete")),
+                        message: Text(String(localized: "sd.questionDelete")),
+                        primaryButton: .cancel() {},
+                        secondaryButton: .destructive(
+                            Text("delete"),
+                            action: {
+                                statusModel.delete(status: status) { success in
+                                    if success {
+                                        DispatchQueue.global().async {
+                                            statusModel.getSubscribedStatuses()
+                                        }
+                                        self.mode.wrappedValue.dismiss()
+                                    } else {
+                                        print("He fallado borrando un estado")
+                                        self.mode.wrappedValue.dismiss()
+                                    }
+                                }
+                            }
+                        )
+                    )
+                }
             }
         }
         
