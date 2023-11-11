@@ -17,9 +17,9 @@ struct LoginModal: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(String(localized: "lm.login"))
+            Text(String(localized: "login"))
             Spacer()
-            TextField(String(localized: "lm.userName"), text: $userName)
+            TextField(String(localized: "uv.userName"), text: $userName)
                 .padding()
                 .multilineTextAlignment(.center)
             Spacer()
@@ -34,7 +34,7 @@ struct LoginModal: View {
                     }
                 }
             }) {
-                Text(String(localized: "lm.login"))
+                Text(String(localized: "login"))
             }
             Spacer()
             if (loginIncorrect) {

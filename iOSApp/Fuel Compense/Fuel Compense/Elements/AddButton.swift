@@ -36,16 +36,16 @@ struct AddButton: View {
             .actionSheet(isPresented: $showingAddActionSheet){
                 ActionSheet(
                     title: Text(String(localized: "add")),
-                    message: Text(String(localized: "cv.questionAdd")),
+                    message: Text(String(localized: "ab.questionAdd")),
                     buttons: [
-                        .default(Text(String(localized: "cv.refueling"))) {
+                        .default(Text(String(localized: "ab.refueling"))) {
                             if globalsModel.globals.carbonPerLiter == 0 {
                                 showPicker = true
                             } else {
                                 showFuelModal = true
                             }
                         },
-                        .default(Text(String(localized: "cv.compensation"))) {
+                        .default(Text(String(localized: "ab.compensation"))) {
                            showCompenseModal = true
                         },
                         .cancel()  { }

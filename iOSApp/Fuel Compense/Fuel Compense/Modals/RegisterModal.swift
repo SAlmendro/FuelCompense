@@ -17,9 +17,9 @@ struct RegisterModal: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(String(localized: "rm.register"))
+            Text(String(localized: "register"))
             Spacer()
-            TextField(String(localized: "rm.userName"), text: $userName)
+            TextField(String(localized: "uv.userName"), text: $userName)
                 .padding()
                 .multilineTextAlignment(.center)
             Spacer()
@@ -33,7 +33,7 @@ struct RegisterModal: View {
                         }
                     }
                 }
-            })  {Text(String(localized: "rm.register"))}
+            })  {Text(String(localized: "register"))}
             Spacer()
             if (registerIncorrect) {
                 Text(String(localized: "rm.registerIncorrect"))

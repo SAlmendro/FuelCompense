@@ -15,9 +15,9 @@ struct StatusView: View {
     
     var body: some View {
         VStack{
-            RefreshButton(title: String(localized: "sv.title"))
+            RefreshButton(title: String(localized: "stv.title"))
             Toggle(isOn: $myStatuses) {
-                Text(String(localized: "sv.myStatuses"))
+                Text(String(localized: "stv.myStatuses"))
             }
             .padding()
             NavigationView{
@@ -28,7 +28,7 @@ struct StatusView: View {
                                 statusModel.uploadUnpublished()
                             }
                         }) {
-                            Text(String(localized: "sv.retryUpload"))
+                            Text(String(localized: "stv.retryUpload"))
                         }
                         .padding()
                         .buttonStyle(.bordered)
@@ -57,17 +57,17 @@ struct StatusView: View {
                         Button(action: {
                             showDeleteAllAlert = true
                         }) {
-                            Text(String(localized: "sv.deleteAll"))
+                            Text(String(localized: "stv.deleteAll"))
                         }
                         .padding()
                         .foregroundColor(Color(uiColor: .red))
                         .alert(isPresented: $showDeleteAllAlert) {
                             Alert(
-                                title: Text(String(localized: "sv.deleteAll")),
-                                message: Text(String(localized: "sv.deleteAllMessage")),
+                                title: Text(String(localized: "stv.deleteAll")),
+                                message: Text(String(localized: "stv.deleteAllMessage")),
                                 primaryButton: .cancel() {},
                                 secondaryButton: .destructive(
-                                    Text(String(localized: "sv.delete")),
+                                    Text(String(localized: "delete")),
                                     action: {
                                         DispatchQueue.global().async {
                                             statusModel.deleteAll()

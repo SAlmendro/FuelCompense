@@ -66,7 +66,7 @@ struct CarbonListSubView: View {
                             message: Text(String(localized: "clsv.deleteAllMessage")),
                             primaryButton: .cancel() {},
                             secondaryButton: .destructive(
-                                Text(String(localized: "clsv.delete")),
+                                Text(String(localized: "delete")),
                                 action: {
                                     carbonModel.deleteAll()
                                 }

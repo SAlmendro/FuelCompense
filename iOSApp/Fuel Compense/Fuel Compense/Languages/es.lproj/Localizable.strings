@@ -8,28 +8,37 @@
 
 // ----> Spanish
 
-"add" = "Añadir";
 "cancel" = "Cancelar";
+"delete" = "Borrar";
 "date" = "Fecha";
 "gasoil" = "Diésel";
 "gasoline" = "Gasolina";
+"login" = "Iniciar sesión";
+"register" = "Registrarse";
+"status" = "Estado";
+"save" = "Guardar";
+"add" = "Añadir";
+"saveAndPublish" = "Guardar y publicar estado";
+"addAndPublish" = "Añadir y publicar estado";
 
 // Content view
-
-"cv.questionAdd" = "¿Qué quieres añadir?";
-"cv.refueling" = "Repostaje";
-"cv.compensation" = "Compensación";
 "cv.fuel" = "Combustible";
 "cv.social" = "Social";
+"cv.user" = "Usuario";
 "cv.settings" = "Ajustes";
+"loginOrRegister" = "Iniciar sesión o Registrarse";
+"loginOrRegMessage" = "¿Quieres iniciar sesión o registrarte?";
+
+
+// CarbonView
+"cav.statSV" = "Estadísticas y compensación";
+"cav.listSV" = "Lista";
+"cav.title" = "Compensaciones";
 
 // FuelView
-"fv.title" = "Repostajes";
 "fv.listSV" = "Lista";
 "fv.statSV" = "Estadísticas";
-
-// SocialView
-"sv.title" = "Social";
+"fv.title" = "Repostajes";
 
 // SettingsView
 "sv.fuel" = "Combustible";
@@ -38,59 +47,115 @@
 "sv.questionChangeFuel" = "¿Seguro que quiere cambiar el tipo de combustible? Los nuevos repostajes calcularán las emisiones en base al nuevo tipo de combustible.";
 "sv.change" = "Cambiar";
 
+// StatusView
+"stv.title" = "Estados";
+"stv.myStatuses" = "Mis estados";
+"stv.retryUpload" = "Reintentar subir estados";
+"stv.deleteAll" = "Borrar todos mis estados";
+"stv.deleteAllMessage" = "¿Seguro que quiere borrar todos sus estados?";
+
+// UserView
+"uv.user" = "Usuario";
+"uv.userName" = "Nombre de usuario";
+"uv.logout" = "Cerrar sesión";
+"uv.logoutAlertMessage" = "¿Quiere borrar todos los datos almacenados en el teléfono?";
+"uv.notDeleteLocalData" = "No borrarlos";
+"uv.deleteLocalData" = "Borrarlos";
+"uv.deleteUser" = "Borrar usuario";
+"uv.deleteAlertMessage" = "Al borrar el usuario se borrarán todos sus datos relacionados.";
+"uv.social" = "Social";
+"uv.followers" = "Seguidores";
+"uv.followed" = "Seguidos";
+"uv.searchUsers" = "Buscar usuarios";
+"uv.profile" = "Perfil";
+
+// CarbonListSubView
+"clsv.retrieveFromServer" = "Recuperar compensaciones almacenadas en el servidor";
+"clsv.retryUpload" = "Reintentar subir compensaciones";
+"clsv.deleteAll" = "Borrar todas mis compensaciones";
+"clsv.deleteAllMessage" = "¿Seguro que quiere borrar todas sus compensaciones?";
+
+// FuelListSubView
+"flsv.retrieveFromServer" = "Recuperar repostajes almacenados en el servidor";
+"flsv.retryUpload" = "Reintentar subir repostajes";
+"flsv.deleteAll" = "Borrar todos mis repostajes";
+"flsv.deleteAllMessage" = "¿Seguro que quiere borrar todos sus repostajes?";
+
+// FuelDetail
+"fd.trip" = "Viaje";
+"fd.meanConsume" = "Consumo medio:";
+"fd.meanEmissions" = "Emisiones medias:";
+"fd.partial" = "Este es un repostaje parcial, no podemos calcular la media de consumo y emisiones.";
+"fd.totalCarbon" = "CO2 en este repostaje:";
+"fd.delete" = "Borrar repostaje";
+"fd.questionDelete" = "¿Seguro que quiere borrar el repostaje?";
+"fd.edit" = "Editar repostaje";
+
+// CarbonDetail
+"cd.delete" = "Borrar compensación";
+"cd.questionDelete" = "¿Seguro que quiere borrar la compensación?";
+"cd.edit" = "Editar compensación";
+
+// StatusDetail
+"sd.delete" = "Borrar estado";
+"sd.questionDelete" = "¿Seguro que quiere borrar el estado?";
+
+// FuelStatsSubView
+"fssv.consume" = "Consumo";
+"fssv.economic" = "Economía";
+
+// CarbonStatsSubView
+"cssv.avgEmissions" = "Tus emisiones medias son ";
+"cssv.netEmissions" = "Tienes unas emisiones netas de ";
+"cssv.of" = " de ";
+"cssv.congrats" = "¡Felicidades! ¡Estás ayudando al planeta!";
+"cssv.compense" = "Compensar ";
+
+// FuelConsumeStats
+"fcs.avgConsume" = "Tu consumo medio es ";
+"fcs.totalKm" = "La distancia total que has recorrido es ";
+"fcs.totalLiters" = "El total de combustible que has repostado es ";
+"fcs.totalEmissions" = "La cantidad total de CO2 que has emitido al planeta es ";
+"fcs.tonsCarbon" = " toneladas.";
+
+// FuelEconomyStats
+"fes.avgConsume" = "Gasto medio: ";
+"fes.totalEur" = "Gasto total: ";
+
+// FollowsSubView
+"fsv.unfollow" = "Dejar de seguir";
+"fsv.questionUnfollow" = "¿Quiere dejar de seguir al usuario ";
+"fsv.follow" = "Seguir";
+"fsv.questionFollow" = "¿Quiere empezar a seguir al usuario ";
+
+// SearchUsersSubView
+"search" = "Buscar";
+"susv.alreadyFollowing" = "Seguido";
+"susv.alreadyFollowingMessage" = "Ya está siguiendo al usuario ";
+
 // FuelModal
 "fm.odometer" = "Odómetro";
 "fm.liters" = "Litros";
 "fm.total" = "Total (€)";
 "fm.full" = "Depósito lleno";
-"fm.save" = "Guardar";
+
+// CompenseModal
 "cm.tons" = "Toneladas de CO2";
 "cm.comment" = "Comentario";
 
-// FuelRow
-"fr.lastKM" = "en los últimos ";
+// FuelTypeModal
+"ftm.selectFuelType" = "Por favor, seleccione el tipo de combustible de su vehículo.";
+
+// LoginModal
+"lm.loginIncorrect" = "Ha habido un error iniciando sesión.";
+
+// RegisterModal
+"rm.registerIncorrect" = "Ha habido un error en el registro.";
+
+// AddButton
+"ab.questionAdd" = "¿Qué quieres añadir?";
+"ab.refueling" = "Repostaje";
+"ab.compensation" = "Compensación";
 
 // CarbonRow
 "cr.tonsCompensed" = " toneladas compensadas";
-
-// CarbonView
-"cav.title" = "Compensaciones";
-"cav.listSV" = "Lista";
-"cav.statSV" = "Estadísticas y compensación";
-
-// FuelDetail
-"fd.trip" = "Viaje";
-"fd.partial" = "Este es un repostaje parcial, no podemos calcular la media de consumo y emisiones.";
-"fd.meanConsume" = "Consumo medio:";
-"fd.meanEmissions" = "Emisiones medias:";
-"fd.totalCarbon" = "CO2 en este repostaje:";
-"fd.delete" = "Borrar";
-"fd.questionDelete" = "¿Seguro que quiere borrar el repostaje?";
-"fd.yes" = "Borrar";
-"fd.edit" = "Editar";
-
-//CarbonDetail
-"cd.questionDelete" = "¿Seguro que quiere borrar la compensación?";
-
-//CarbonStatsSubView
-"cssv.avgEmissions" = "Tus emisiones medias son ";
-"cssv.netEmissions" = "Tienes unas emisiones netas de ";
-"cssv.compense" = "Compensar ";
-"cssv.of" = " de ";
-"cssv.congrats" = "¡Felicidades! ¡Estás ayudando al planeta!";
-
-//FuelStatsSubView
-"fssv.avgConsume" = "Tu consumo medio es ";
-"fssv.totalKm" = "La distancia total que has recorrido es ";
-"fssv.totalLiters" = "El total de combustible que has repostado es ";
-"fssv.totalEmissions" = "La cantidad total de CO2 que has emitido al planeta es ";
-"fssv.tonsCarbon" = " toneladas.";
-"fes.avgConsume" = "Gasto medio: ";
-"fes.totalEur" = "Gasto total: ";
-
-//FuelTypeModal
-"ftm.selectFuelType" = "Por favor, seleccione el tipo de combustible de su vehículo.";
-
-//FuelStatsSubView
-"fssv.consume" = "Consumo";
-"fssv.economic" = "Economía";

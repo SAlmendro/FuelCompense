@@ -76,7 +76,7 @@ struct StatusDetail: View {
                 }, label: {
                     VStack{
                         Image(systemName: "trash")
-                        Text(String(localized: "fd.delete"))
+                        Text(String(localized: "sd.delete"))
                             .font(.footnote)
                     }
                 })

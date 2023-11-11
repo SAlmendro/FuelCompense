@@ -33,7 +33,7 @@ struct FuelTypeModal: View {
                         globalsModel.globals.carbonPerLiter = selection.rawValue
                         showFuelModal = true
                         showPicker = false
-                    }) {Text(String(localized: "fm.save"))}
+                    }) {Text(String(localized: "save"))}
                 Spacer()
                 Button(action: {
                     showPicker = false

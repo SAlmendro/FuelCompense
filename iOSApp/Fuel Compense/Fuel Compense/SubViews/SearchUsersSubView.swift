@@ -17,7 +17,7 @@ struct SearchUsersSubView: View {
 
     var body: some View {
         VStack {
-            TextField(String(localized: "susv.searchUser"), text: $keyword)
+            TextField(String(localized: "uv.searchUsers"), text: $keyword)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
@@ -43,8 +43,8 @@ struct SearchUsersSubView: View {
         .alert(isPresented: $showFollowAlert) {
             if (userModel.following.contains(selectedResult)) {
                 return Alert(
-                    title: Text(String(localized: "fsv.alreadyFollowing")),
-                    message: Text(String(localized: "fsv.alreadyFollowingMessage")),
+                    title: Text(String(localized: "susv.alreadyFollowing")),
+                    message: Text(String(localized: "susv.alreadyFollowingMessage") + selectedResult),
                     dismissButton: .cancel() {
                         selectedResult = ""
                         showFollowAlert = false
@@ -53,7 +53,7 @@ struct SearchUsersSubView: View {
             } else {
                 return Alert(
                     title: Text(String(localized: "fsv.follow")),
-                    message: Text(String(localized: "fsv.questionFollow") + selectedResult),
+                    message: Text(String(localized: "fsv.questionFollow") + selectedResult + " ?"),
                     primaryButton: .default(
                         Text(String(localized: "fsv.follow")),
                         action: {

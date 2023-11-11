@@ -43,7 +43,7 @@ struct UserView: View {
                             showLogoutAlert = true
                         }) { Text("uv.logout") }
                             .alert(isPresented: $showLogoutAlert) {
-                                Alert(title: Text(String(localized: "uv.logoutAlertTitle")),
+                                Alert(title: Text(String(localized: "uv.logout")),
                                       message: Text(String(localized: "uv.logoutAlertMessage")),
                                       primaryButton: .default(
                                         Text(String(localized: "uv.notDeleteLocalData")),
@@ -66,7 +66,7 @@ struct UserView: View {
                             showDeleteAlert = true
                         }) { Text("uv.deleteUser") }
                             .alert(isPresented: $showDeleteAlert) {
-                                Alert(title: Text(String(localized: "uv.deleteAlertTitle")),
+                                Alert(title: Text(String(localized: "uv.deleteUser")),
                                       message: Text(String(localized: "uv.deleteAlertMessage")),
                                       primaryButton: .cancel(),
                                       secondaryButton: .destructive(
@@ -121,7 +121,6 @@ struct UserView: View {
             RegisterModal(showRegister: $showRegister)
         }
         .onAppear{
-            print("Estoy apareciendo, soy UserView")
             DispatchQueue.global().async {
                 userModel.getFollowers()
                 userModel.getFollowing()

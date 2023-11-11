@@ -43,13 +43,13 @@ struct FuelConsumeStats: View {
             .frame(height: 300)
             .padding()
             
-            Text(String(localized: "fssv.avgConsume") +  averageConsume.round(amountOfDecimals: 2) + " L/100km.")
+            Text(String(localized: "fcs.avgConsume") +  averageConsume.round(amountOfDecimals: 2) + " L/100km.")
                 .padding()
-            Text(String(localized: "fssv.totalKm") + "\(fuelModel.getTotalKm()) km.")
+            Text(String(localized: "fcs.totalKm") + "\(fuelModel.getTotalKm()) km.")
                 .padding()
-            Text(String(localized: "fssv.totalLiters") + "\(fuelModel.getTotalConsume().round(amountOfDecimals: 2)) L.")
+            Text(String(localized: "fcs.totalLiters") + "\(fuelModel.getTotalConsume().round(amountOfDecimals: 2)) L.")
                 .padding()
-            Text(String(localized: "fssv.totalEmissions") + "\((fuelModel.getTotalEmissions()/1000).round(amountOfDecimals: 3))" + String(localized: "fssv.tonsCarbon"))
+            Text(String(localized: "fcs.totalEmissions") + "\((fuelModel.getTotalEmissions()/1000).round(amountOfDecimals: 3))" + String(localized: "fcs.tonsCarbon"))
                 .padding()
         }
     }

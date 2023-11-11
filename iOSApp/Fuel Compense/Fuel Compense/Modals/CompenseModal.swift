@@ -31,7 +31,7 @@ struct CompenseModal: View {
                     DatePicker(String(localized: "date"), selection: $date)
                 }
                 Section {
-                    TextField(String(localized: "cm.status"), text: $status)
+                    TextField(String(localized: "status"), text: $status)
                 }
                 Section {
                     if ((!editMode && CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)) ||

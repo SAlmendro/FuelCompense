@@ -8,90 +8,153 @@
 
 // ----> English
 
-"add" = "Add";
 "cancel" = "Cancel";
+"delete" = "Delete";
 "date" = "Date";
 "gasoil" = "Diesel";
 "gasoline" = "Gasoline";
+"login" = "Log in";
+"register" = "Register";
+"status" = "Status";
+"save" = "Save";
+"add" = "Add";
+"saveAndPublish" = "Save and publish Status";
+"addAndPublish" = "Add and publish Status";
 
 // Content view
-
-"cv.questionAdd" = "What do you want to add?";
-"cv.refueling" = "Refueling";
-"cv.compensation" = "Compensation";
 "cv.fuel" = "Fuel";
 "cv.social" = "Social";
+"cv.user" = "User";
 "cv.settings" = "Settings";
+"loginOrRegister" = "Log in or Register";
+"loginOrRegMessage" = "Do you want to log in or register?";
+
+// CarbonView
+"cav.statSV" = "Statistics and Compensation";
+"cav.listSV" = "List";
+"cav.title" = "Compensations";
 
 // FuelView
-"fv.title" = "Refuelings";
 "fv.listSV" = "List";
-"fv.statSV" = "Stats";
-
-// SocialView
-"sv.title" = "Social";
+"fv.statSV" = "Statistics";
+"fv.title" = "Refills";
 
 // SettingsView
 "sv.fuel" = "Fuel";
-"sv.fuelSelected" = "Fuel selected";
-"sv.changeFuel" = "Change fuel type";
-"sv.questionChangeFuel" = "Are you sure you want to change fuel type? New refuelings will calculate emissions based on the new type of fuel.";
+"sv.fuelSelected" = "Selected fuel";
+"sv.changeFuel" = "Change fuel";
+"sv.questionChangeFuel" = "Are you sure you want to change the fuel type? New refills will calculate emissions based on the new fuel type.";
 "sv.change" = "Change";
+
+// StatusView
+"stv.title" = "Status";
+"stv.myStatuses" = "My Statuses";
+"stv.retryUpload" = "Retry upload";
+"stv.deleteAll" = "Delete all my statuses";
+"stv.deleteAllMessage" = "Are you sure you want to delete all your statuses?";
+
+// UserView
+"uv.user" = "User";
+"uv.userName" = "Username";
+"uv.logout" = "Log out";
+"uv.logoutAlertMessage" = "Do you want to delete all data stored on the phone?";
+"uv.notDeleteLocalData" = "Do not delete it";
+"uv.deleteLocalData" = "Delete it";
+"uv.deleteUser" = "Delete User";
+"uv.deleteAlertMessage" = "Deleting the user will also delete all related data.";
+"uv.social" = "Social";
+"uv.followers" = "Followers";
+"uv.followed" = "Followed";
+"uv.searchUsers" = "Search Users";
+"uv.profile" = "Profile";
+
+// CarbonListSubView
+"clsv.retrieveFromServer" = "Retrieve stored compensations from the server";
+"clsv.retryUpload" = "Retry Upload";
+"clsv.deleteAll" = "Delete all my compensations";
+"clsv.deleteAllMessage" = "Are you sure you want to delete all your compensations?";
+
+// FuelListSubView
+"flsv.retrieveFromServer" = "Retrieve stored refills from the server";
+"flsv.retryUpload" = "Retry Upload";
+"flsv.deleteAll" = "Delete all my refills";
+"flsv.deleteAllMessage" = "Are you sure you want to delete all your refills?";
+
+// FuelDetail
+"fd.trip" = "Trip";
+"fd.meanConsume" = "Average Consumption:";
+"fd.meanEmissions" = "Average Emissions:";
+"fd.partial" = "This is a partial refill; we cannot calculate average consumption and emissions.";
+"fd.totalCarbon" = "CO2 in this refill:";
+"fd.delete" = "Delete Refill";
+"fd.questionDelete" = "Are you sure you want to delete the refill?";
+"fd.edit" = "Edit Refill";
+
+// CarbonDetail
+"cd.delete" = "Delete Compensation";
+"cd.questionDelete" = "Are you sure you want to delete the compensation?";
+"cd.edit" = "Edit Compensation";
+
+// StatusDetail
+"sd.delete" = "Delete Status";
+"sd.questionDelete" = "Are you sure you want to delete the status?";
+
+// FuelStatsSubView
+"fssv.consume" = "Consumption";
+"fssv.economic" = "Economy";
+
+// CarbonStatsSubView
+"cssv.avgEmissions" = "Your average emissions are ";
+"cssv.netEmissions" = "You have net emissions of ";
+"cssv.of" = " of ";
+"cssv.congrats" = "Congratulations! You are helping the planet!";
+"cssv.compense" = "Compensate ";
+
+// FuelConsumeStats
+"fcs.avgConsume" = "Your average consumption is ";
+"fcs.totalKm" = "The total distance you have traveled is ";
+"fcs.totalLiters" = "The total fuel you have refilled is ";
+"fcs.totalEmissions" = "The total amount of CO2 you have emitted to the planet is ";
+"fcs.tonsCarbon" = " tons.";
+
+// FuelEconomyStats
+"fes.avgConsume" = "Average spending: ";
+"fes.totalEur" = "Total spending: ";
+
+// FollowsSubView
+"fsv.unfollow" = "Unfollow";
+"fsv.questionUnfollow" = "Do you want to unfollow the user ";
+"fsv.follow" = "Follow";
+"fsv.questionFollow" = "Do you want to start following the user ";
+
+// SearchUsersSubView
+"search" = "Search";
+"susv.alreadyFollowing" = "Following";
+"susv.alreadyFollowingMessage" = "You are already following the user ";
 
 // FuelModal
 "fm.odometer" = "Odometer";
 "fm.liters" = "Liters";
 "fm.total" = "Total (€)";
-"fm.full" = "Full tank";
-"fm.save" = "Save";
-"cm.tons" = "CO2 tons";
+"fm.full" = "Full Tank";
+
+// CompenseModal
+"cm.tons" = "Tons of CO2";
 "cm.comment" = "Comment";
 
-// FuelRow
-"fr.lastKM" = "in the last ";
+// FuelTypeModal
+"ftm.selectFuelType" = "Please select your vehicle's fuel type.";
+
+// LoginModal
+"lm.loginIncorrect" = "There was an error logging in.";
+
+// RegisterModal
+"rm.registerIncorrect" = "There was an error during registration.";
+
+// AddButton
+"ab.questionAdd" = "What do you want to add?";
+"ab.refueling" = "Refill";
+"ab.compensation" = "Compensation";
 
 // CarbonRow
-"cr.tonsCompensed" = " tons compensed";
-
-// CarbonView
-"cav.title" = "Compensations";
-"cav.listSV" = "List";
-"cav.statSV" = "Stats and compense";
-
-// FuelDetail
-"fd.trip" = "Trip";
-"fd.partial" = "This is a partial refill, we can't calculate mean consume and emissions.";
-"fd.meanConsume" = "Mean consume:";
-"fd.meanEmissions" = "Mean emissions:";
-"fd.totalCarbon" = "CO2 in this refueling:";
-"fd.delete" = "Delete";
-"fd.questionDelete" = "Are you sure you want to delete the refueling?";
-"fd.yes" = "Delete";
-"fd.edit" = "Edit";
-
-//CarbonDetail
-"cd.questionDelete" = "Are you sure you want to delete the compensation?";
-
-//CarbonStatsSubView
-"cssv.avgEmissions" = "Your average emissions are ";
-"cssv.netEmissions" = "Your net emissions are ";
-"cssv.compense" = "Compense ";
-"cssv.of" = " of ";
-"cssv.congrats" = "Congratulations! You are doing well for the planet!";
-
-//FuelStatsSubView
-"fssv.avgConsume" = "Your average fuel consume is ";
-"fssv.totalKm" = "The total distance you have traveled is ";
-"fssv.totalLiters" = "The total fuel you have refueled is ";
-"fssv.totalEmissions" = "The total carbon you have emitted to the planet is ";
-"fssv.tonsCarbon" = " tons of CO2.";
-"fes.avgConsume" = "Average waste: ";
-"fes.totalEur" = "Total waste: ";
-
-//FuelTypeModal
-"ftm.selectFuelType" = "Please, select the fuel type of your vehicle.";
-
-//FuelStatsSubView
-"fssv.consume" = "Consume";
-"fssv.economic" = "Economy";
-
+"cr.tonsCompensed" = " tons compensated";

@@ -33,17 +33,17 @@ struct CarbonDetail: View {
                 }, label: {
                     VStack{
                         Image(systemName: "trash")
-                        Text(String(localized: "fd.delete"))
+                        Text(String(localized: "cd.delete"))
                             .font(.footnote)
                     }
                 })
                 .alert(isPresented: $showAlert) {
                     Alert(
-                        title: Text(String(localized: "fd.delete")),
+                        title: Text(String(localized: "cd.delete")),
                         message: Text(String(localized: "cd.questionDelete")),
                         primaryButton: .cancel() {},
                         secondaryButton: .destructive(
-                            Text("fd.delete"),
+                            Text("delete"),
                             action: { carbonModel.delete(index: index) }
                         )
                     )
@@ -54,7 +54,7 @@ struct CarbonDetail: View {
                 }, label: {
                     VStack{
                         Image(systemName: "square.and.pencil")
-                        Text(String(localized: "fd.edit"))
+                        Text(String(localized: "cd.edit"))
                             .font(.footnote)
                     }
                 })
