@@ -19,6 +19,7 @@ struct StatusRow: View {
             
             HStack {
                 Text(status.authUserName)
+                    .font(.footnote)
                 Spacer()
             }
             

@@ -9,6 +9,8 @@ import es.upm.dit.fuelcompense.service.dto.RefillDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/refills")
@@ -32,6 +34,7 @@ public class RefillController {
 
     @PutMapping(value = "/{userName}")
     public RefillDTO updateRefill(@PathVariable String userName, @RequestBody RefillDTO refillDTO) {
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado modificar el refill: " + refillDTO.getId());
         Refill refill = this.refillService.updateRefill(refillDTO, userName);
         return refillMapperOut.map(refill);
     }

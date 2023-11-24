@@ -16,12 +16,12 @@ struct StatusView: View {
     var body: some View {
         VStack{
             RefreshButton(title: String(localized: "stv.title"))
-            Toggle(isOn: $myStatuses) {
-                Text(String(localized: "stv.myStatuses"))
-            }
-            .padding()
             NavigationView{
                 VStack {
+                    Toggle(isOn: $myStatuses) {
+                        Text(String(localized: "stv.myStatuses"))
+                    }
+                    .padding()
                     if (!statusModel.unpublishedStatuses.isEmpty) {
                         Button(action: {
                             DispatchQueue.global().async {

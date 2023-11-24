@@ -19,10 +19,17 @@ struct StatusDetail: View {
     var body: some View {
         
         VStack {
-            Text(status.authUserName)
-                .padding()
+            HStack {
+                Spacer()
+                Text(status.authUserName)
+                    .padding()
+                    .font(.footnote)
+            }
+            Spacer()
             Text(status.text)
                 .padding()
+                .background(.gray)
+                .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
             HStack {
                 Spacer()
                 if (status.favs.isEmpty) {
@@ -59,6 +66,8 @@ struct StatusDetail: View {
                 Spacer()
             }
             .padding()
+            
+            Spacer()
 
             if (status.authUserName == userModel.user.userName) {
                 Button(action: {

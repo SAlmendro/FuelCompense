@@ -28,7 +28,7 @@ class GlobalsModel : ObservableObject {
     private var decoder = JSONDecoder()
     
     let session = URLSession.shared
-    var urlBase = "http://192.168.1.101:8080/"
+    var urlBase = "http://172.20.10.6:8080/"
     
     @Published var globals : Globals {
         didSet {
