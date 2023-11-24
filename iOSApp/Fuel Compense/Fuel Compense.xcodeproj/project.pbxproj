@@ -1,0 +1,803 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5927E64E5300915F26 /* FuelView.swift */; };
+		F41E1B5C27E64E7000915F26 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5B27E64E7000915F26 /* StatusView.swift */; };
+		F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5D27E64E8400915F26 /* CarbonView.swift */; };
+		F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B5F27E6578700915F26 /* SettingsView.swift */; };
+		F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6127E65F9D00915F26 /* FuelModal.swift */; };
+		F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E1B6327E6612C00915F26 /* CompenseModal.swift */; };
+		F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41E1B6E27E6692800915F26 /* Localizable.strings */; };
+		F42CF95528F49AAA00DC232E /* FuelStatsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42CF95428F49AAA00DC232E /* FuelStatsSubView.swift */; };
+		F42CF95728F49CF400DC232E /* CarbonStatsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42CF95628F49CF400DC232E /* CarbonStatsSubView.swift */; };
+		F430FDF62A03E2BC005A0900 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430FDF52A03E2BC005A0900 /* UserModel.swift */; };
+		F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */; };
+		F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */; };
+		F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E027F8624A00D8EFCD /* FuelDetail.swift */; };
+		F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E227F8633600D8EFCD /* CarbonDetail.swift */; };
+		F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454F2E427F863E800D8EFCD /* CarbonRow.swift */; };
+		F4620C3E28F8742600A79374 /* FuelConsumeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */; };
+		F4620C4028F8779600A79374 /* FuelEconomyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */; };
+		F478DFA92A06652F00E96A5A /* LoginModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478DFA82A06652F00E96A5A /* LoginModal.swift */; };
+		F47FD9EB28F5CC3F00C2ABC7 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47FD9E928F5CC3D00C2ABC7 /* Charts.framework */; };
+		F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488B6502801F13B007934CA /* GlobalsModel.swift */; };
+		F4947CF92AF7C2DD00BF0B07 /* FavsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4947CF82AF7C2DD00BF0B07 /* FavsModal.swift */; };
+		F498DC4E2AA85DFE000568C4 /* FollowsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498DC4D2AA85DFE000568C4 /* FollowsSubView.swift */; };
+		F498DC502AA8B3E8000568C4 /* SearchUsersSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498DC4F2AA8B3E8000568C4 /* SearchUsersSubView.swift */; };
+		F498DC522AB31FF5000568C4 /* RefreshButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498DC512AB31FF5000568C4 /* RefreshButton.swift */; };
+		F4A89CA828F3345A00F9169F /* Rounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A89CA728F3345A00F9169F /* Rounder.swift */; };
+		F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2833127E7A91900DD0E75 /* AddButton.swift */; };
+		F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE227F4F90500CA0639 /* FuelRow.swift */; };
+		F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */; };
+		F4C84AE727F5005C00CA0639 /* FuelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C84AE627F5005C00CA0639 /* FuelModel.swift */; };
+		F4D2D27028F765B800F1ED26 /* FuelTypeModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D2D26F28F765B800F1ED26 /* FuelTypeModal.swift */; };
+		F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */; };
+		F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3402527DFD3DD0003CEB8 /* ContentView.swift */; };
+		F4D3402827DFD3DE0003CEB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */; };
+		F4D3402B27DFD3DE0003CEB8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D3402A27DFD3DE0003CEB8 /* Preview Assets.xcassets */; };
+		F4D3403527DFD3DE0003CEB8 /* Fuel_CompenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403427DFD3DE0003CEB8 /* Fuel_CompenseTests.swift */; };
+		F4D3403F27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */; };
+		F4D3404127DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */; };
+		F4D3DE5A2A9CF94000059D86 /* RegisterModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3DE592A9CF94000059D86 /* RegisterModal.swift */; };
+		F4D3DE5C2A9FBE8500059D86 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3DE5B2A9FBE8500059D86 /* UserView.swift */; };
+		F4F4C710282C31D2008452FF /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C70F282C31D2008452FF /* StatusModel.swift */; };
+		F4F4C712282C36E7008452FF /* StatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C711282C36E7008452FF /* StatusRow.swift */; };
+		F4F4C714282C3E1C008452FF /* StatusDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4C713282C3E1C008452FF /* StatusDetail.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4D3403127DFD3DE0003CEB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4D3401827DFD3DD0003CEB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D3401F27DFD3DD0003CEB8;
+			remoteInfo = "Fuel Compense";
+		};
+		F4D3403B27DFD3DE0003CEB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4D3401827DFD3DD0003CEB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D3401F27DFD3DD0003CEB8;
+			remoteInfo = "Fuel Compense";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F41E1B5927E64E5300915F26 /* FuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelView.swift; sourceTree = "<group>"; };
+		F41E1B5B27E64E7000915F26 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		F41E1B5D27E64E8400915F26 /* CarbonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonView.swift; sourceTree = "<group>"; };
+		F41E1B5F27E6578700915F26 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F41E1B6127E65F9D00915F26 /* FuelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelModal.swift; sourceTree = "<group>"; };
+		F41E1B6327E6612C00915F26 /* CompenseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompenseModal.swift; sourceTree = "<group>"; };
+		F41E1B6D27E6692800915F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F42CF95428F49AAA00DC232E /* FuelStatsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelStatsSubView.swift; sourceTree = "<group>"; };
+		F42CF95628F49CF400DC232E /* CarbonStatsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonStatsSubView.swift; sourceTree = "<group>"; };
+		F42F092A2822DEF6007E2AC3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F430FDF52A03E2BC005A0900 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonListSubView.swift; sourceTree = "<group>"; };
+		F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListSubView.swift; sourceTree = "<group>"; };
+		F454F2E027F8624A00D8EFCD /* FuelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetail.swift; sourceTree = "<group>"; };
+		F454F2E227F8633600D8EFCD /* CarbonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDetail.swift; sourceTree = "<group>"; };
+		F454F2E427F863E800D8EFCD /* CarbonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonRow.swift; sourceTree = "<group>"; };
+		F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelConsumeStats.swift; sourceTree = "<group>"; };
+		F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEconomyStats.swift; sourceTree = "<group>"; };
+		F478DFA82A06652F00E96A5A /* LoginModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModal.swift; sourceTree = "<group>"; };
+		F47FD9E928F5CC3D00C2ABC7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
+		F488B6502801F13B007934CA /* GlobalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalsModel.swift; sourceTree = "<group>"; };
+		F4947CF82AF7C2DD00BF0B07 /* FavsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsModal.swift; sourceTree = "<group>"; };
+		F498DC4D2AA85DFE000568C4 /* FollowsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsSubView.swift; sourceTree = "<group>"; };
+		F498DC4F2AA8B3E8000568C4 /* SearchUsersSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersSubView.swift; sourceTree = "<group>"; };
+		F498DC512AB31FF5000568C4 /* RefreshButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButton.swift; sourceTree = "<group>"; };
+		F4A89CA728F3345A00F9169F /* Rounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounder.swift; sourceTree = "<group>"; };
+		F4B2833127E7A91900DD0E75 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		F4C84AE227F4F90500CA0639 /* FuelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRow.swift; sourceTree = "<group>"; };
+		F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonModel.swift; sourceTree = "<group>"; };
+		F4C84AE627F5005C00CA0639 /* FuelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelModel.swift; sourceTree = "<group>"; };
+		F4D2D26F28F765B800F1ED26 /* FuelTypeModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelTypeModal.swift; sourceTree = "<group>"; };
+		F4D3402027DFD3DD0003CEB8 /* Fuel Compense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuel Compense.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseApp.swift; sourceTree = "<group>"; };
+		F4D3402527DFD3DD0003CEB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4D3402A27DFD3DE0003CEB8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F4D3403027DFD3DE0003CEB8 /* Fuel CompenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fuel CompenseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D3403427DFD3DE0003CEB8 /* Fuel_CompenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseTests.swift; sourceTree = "<group>"; };
+		F4D3403A27DFD3DE0003CEB8 /* Fuel CompenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fuel CompenseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITests.swift; sourceTree = "<group>"; };
+		F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel_CompenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4D3DE592A9CF94000059D86 /* RegisterModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModal.swift; sourceTree = "<group>"; };
+		F4D3DE5B2A9FBE8500059D86 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		F4F4C70F282C31D2008452FF /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
+		F4F4C711282C36E7008452FF /* StatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRow.swift; sourceTree = "<group>"; };
+		F4F4C713282C3E1C008452FF /* StatusDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetail.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4D3401D27DFD3DD0003CEB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F47FD9EB28F5CC3F00C2ABC7 /* Charts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3402D27DFD3DE0003CEB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3403727DFD3DE0003CEB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F454F2D627F85C1400D8EFCD /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				F4C84AE227F4F90500CA0639 /* FuelRow.swift */,
+				F4B2833127E7A91900DD0E75 /* AddButton.swift */,
+				F454F2E427F863E800D8EFCD /* CarbonRow.swift */,
+				F4F4C711282C36E7008452FF /* StatusRow.swift */,
+				F498DC512AB31FF5000568C4 /* RefreshButton.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		F454F2D727F85C6800D8EFCD /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B6127E65F9D00915F26 /* FuelModal.swift */,
+				F41E1B6327E6612C00915F26 /* CompenseModal.swift */,
+				F4D2D26F28F765B800F1ED26 /* FuelTypeModal.swift */,
+				F478DFA82A06652F00E96A5A /* LoginModal.swift */,
+				F4D3DE592A9CF94000059D86 /* RegisterModal.swift */,
+				F4947CF82AF7C2DD00BF0B07 /* FavsModal.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		F454F2D827F85C9700D8EFCD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4C84AE627F5005C00CA0639 /* FuelModel.swift */,
+				F4C84AE427F4FDC300CA0639 /* CarbonModel.swift */,
+				F488B6502801F13B007934CA /* GlobalsModel.swift */,
+				F4F4C70F282C31D2008452FF /* StatusModel.swift */,
+				F430FDF52A03E2BC005A0900 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F454F2D927F85CB000D8EFCD /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B6E27E6692800915F26 /* Localizable.strings */,
+			);
+			path = Languages;
+			sourceTree = "<group>";
+		};
+		F454F2DA27F85D1A00D8EFCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F41E1B5D27E64E8400915F26 /* CarbonView.swift */,
+				F41E1B5927E64E5300915F26 /* FuelView.swift */,
+				F41E1B5F27E6578700915F26 /* SettingsView.swift */,
+				F41E1B5B27E64E7000915F26 /* StatusView.swift */,
+				F4D3DE5B2A9FBE8500059D86 /* UserView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F454F2DB27F85D9E00D8EFCD /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F454F2DC27F85DFA00D8EFCD /* CarbonListSubView.swift */,
+				F454F2DE27F85E0F00D8EFCD /* FuelListSubView.swift */,
+				F454F2E027F8624A00D8EFCD /* FuelDetail.swift */,
+				F454F2E227F8633600D8EFCD /* CarbonDetail.swift */,
+				F4F4C713282C3E1C008452FF /* StatusDetail.swift */,
+				F42CF95428F49AAA00DC232E /* FuelStatsSubView.swift */,
+				F42CF95628F49CF400DC232E /* CarbonStatsSubView.swift */,
+				F4620C3D28F8742600A79374 /* FuelConsumeStats.swift */,
+				F4620C3F28F8779600A79374 /* FuelEconomyStats.swift */,
+				F498DC4D2AA85DFE000568C4 /* FollowsSubView.swift */,
+				F498DC4F2AA8B3E8000568C4 /* SearchUsersSubView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		F47FD9E828F5CC3C00C2ABC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F47FD9E928F5CC3D00C2ABC7 /* Charts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4D3401727DFD3DD0003CEB8 = {
+			isa = PBXGroup;
+			children = (
+				F4D3402227DFD3DD0003CEB8 /* Fuel Compense */,
+				F4D3403327DFD3DE0003CEB8 /* Fuel CompenseTests */,
+				F4D3403D27DFD3DE0003CEB8 /* Fuel CompenseUITests */,
+				F4D3402127DFD3DD0003CEB8 /* Products */,
+				F47FD9E828F5CC3C00C2ABC7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F4D3402127DFD3DD0003CEB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3402027DFD3DD0003CEB8 /* Fuel Compense.app */,
+				F4D3403027DFD3DE0003CEB8 /* Fuel CompenseTests.xctest */,
+				F4D3403A27DFD3DE0003CEB8 /* Fuel CompenseUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4D3402227DFD3DD0003CEB8 /* Fuel Compense */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3402327DFD3DD0003CEB8 /* Fuel_CompenseApp.swift */,
+				F4D3402527DFD3DD0003CEB8 /* ContentView.swift */,
+				F454F2DA27F85D1A00D8EFCD /* Views */,
+				F454F2DB27F85D9E00D8EFCD /* SubViews */,
+				F454F2D727F85C6800D8EFCD /* Modals */,
+				F454F2D627F85C1400D8EFCD /* Elements */,
+				F454F2D827F85C9700D8EFCD /* Models */,
+				F454F2D927F85CB000D8EFCD /* Languages */,
+				F4D3402727DFD3DE0003CEB8 /* Assets.xcassets */,
+				F4D3402927DFD3DE0003CEB8 /* Preview Content */,
+				F4A89CA728F3345A00F9169F /* Rounder.swift */,
+			);
+			path = "Fuel Compense";
+			sourceTree = "<group>";
+		};
+		F4D3402927DFD3DE0003CEB8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3402A27DFD3DE0003CEB8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F4D3403327DFD3DE0003CEB8 /* Fuel CompenseTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3403427DFD3DE0003CEB8 /* Fuel_CompenseTests.swift */,
+			);
+			path = "Fuel CompenseTests";
+			sourceTree = "<group>";
+		};
+		F4D3403D27DFD3DE0003CEB8 /* Fuel CompenseUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3403E27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift */,
+				F4D3404027DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift */,
+			);
+			path = "Fuel CompenseUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4D3401F27DFD3DD0003CEB8 /* Fuel Compense */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D3404427DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel Compense" */;
+			buildPhases = (
+				F4D3401C27DFD3DD0003CEB8 /* Sources */,
+				F4D3401D27DFD3DD0003CEB8 /* Frameworks */,
+				F4D3401E27DFD3DD0003CEB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fuel Compense";
+			productName = "Fuel Compense";
+			productReference = F4D3402027DFD3DD0003CEB8 /* Fuel Compense.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4D3402F27DFD3DE0003CEB8 /* Fuel CompenseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D3404727DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel CompenseTests" */;
+			buildPhases = (
+				F4D3402C27DFD3DE0003CEB8 /* Sources */,
+				F4D3402D27DFD3DE0003CEB8 /* Frameworks */,
+				F4D3402E27DFD3DE0003CEB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4D3403227DFD3DE0003CEB8 /* PBXTargetDependency */,
+			);
+			name = "Fuel CompenseTests";
+			productName = "Fuel CompenseTests";
+			productReference = F4D3403027DFD3DE0003CEB8 /* Fuel CompenseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F4D3403927DFD3DE0003CEB8 /* Fuel CompenseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D3404A27DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel CompenseUITests" */;
+			buildPhases = (
+				F4D3403627DFD3DE0003CEB8 /* Sources */,
+				F4D3403727DFD3DE0003CEB8 /* Frameworks */,
+				F4D3403827DFD3DE0003CEB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4D3403C27DFD3DE0003CEB8 /* PBXTargetDependency */,
+			);
+			name = "Fuel CompenseUITests";
+			productName = "Fuel CompenseUITests";
+			productReference = F4D3403A27DFD3DE0003CEB8 /* Fuel CompenseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4D3401827DFD3DD0003CEB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					F4D3401F27DFD3DD0003CEB8 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					F4D3402F27DFD3DE0003CEB8 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F4D3401F27DFD3DD0003CEB8;
+					};
+					F4D3403927DFD3DE0003CEB8 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F4D3401F27DFD3DD0003CEB8;
+					};
+				};
+			};
+			buildConfigurationList = F4D3401B27DFD3DD0003CEB8 /* Build configuration list for PBXProject "Fuel Compense" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+			);
+			mainGroup = F4D3401727DFD3DD0003CEB8;
+			productRefGroup = F4D3402127DFD3DD0003CEB8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4D3401F27DFD3DD0003CEB8 /* Fuel Compense */,
+				F4D3402F27DFD3DE0003CEB8 /* Fuel CompenseTests */,
+				F4D3403927DFD3DE0003CEB8 /* Fuel CompenseUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4D3401E27DFD3DD0003CEB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D3402B27DFD3DE0003CEB8 /* Preview Assets.xcassets in Resources */,
+				F41E1B6C27E6692800915F26 /* Localizable.strings in Resources */,
+				F4D3402827DFD3DE0003CEB8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3402E27DFD3DE0003CEB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3403827DFD3DE0003CEB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4D3401C27DFD3DD0003CEB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D3402627DFD3DD0003CEB8 /* ContentView.swift in Sources */,
+				F4A89CA828F3345A00F9169F /* Rounder.swift in Sources */,
+				F41E1B5C27E64E7000915F26 /* StatusView.swift in Sources */,
+				F4D2D27028F765B800F1ED26 /* FuelTypeModal.swift in Sources */,
+				F4D3402427DFD3DD0003CEB8 /* Fuel_CompenseApp.swift in Sources */,
+				F478DFA92A06652F00E96A5A /* LoginModal.swift in Sources */,
+				F4F4C714282C3E1C008452FF /* StatusDetail.swift in Sources */,
+				F4C84AE727F5005C00CA0639 /* FuelModel.swift in Sources */,
+				F4B2833227E7A91900DD0E75 /* AddButton.swift in Sources */,
+				F41E1B6027E6578700915F26 /* SettingsView.swift in Sources */,
+				F41E1B5E27E64E8400915F26 /* CarbonView.swift in Sources */,
+				F41E1B6427E6612C00915F26 /* CompenseModal.swift in Sources */,
+				F488B6512801F13B007934CA /* GlobalsModel.swift in Sources */,
+				F4620C4028F8779600A79374 /* FuelEconomyStats.swift in Sources */,
+				F454F2E327F8633600D8EFCD /* CarbonDetail.swift in Sources */,
+				F42CF95728F49CF400DC232E /* CarbonStatsSubView.swift in Sources */,
+				F454F2DD27F85DFA00D8EFCD /* CarbonListSubView.swift in Sources */,
+				F4947CF92AF7C2DD00BF0B07 /* FavsModal.swift in Sources */,
+				F41E1B6227E65F9D00915F26 /* FuelModal.swift in Sources */,
+				F454F2E527F863E800D8EFCD /* CarbonRow.swift in Sources */,
+				F498DC522AB31FF5000568C4 /* RefreshButton.swift in Sources */,
+				F454F2E127F8624A00D8EFCD /* FuelDetail.swift in Sources */,
+				F498DC502AA8B3E8000568C4 /* SearchUsersSubView.swift in Sources */,
+				F42CF95528F49AAA00DC232E /* FuelStatsSubView.swift in Sources */,
+				F41E1B5A27E64E5300915F26 /* FuelView.swift in Sources */,
+				F4D3DE5A2A9CF94000059D86 /* RegisterModal.swift in Sources */,
+				F454F2DF27F85E0F00D8EFCD /* FuelListSubView.swift in Sources */,
+				F430FDF62A03E2BC005A0900 /* UserModel.swift in Sources */,
+				F4F4C710282C31D2008452FF /* StatusModel.swift in Sources */,
+				F498DC4E2AA85DFE000568C4 /* FollowsSubView.swift in Sources */,
+				F4620C3E28F8742600A79374 /* FuelConsumeStats.swift in Sources */,
+				F4C84AE527F4FDC300CA0639 /* CarbonModel.swift in Sources */,
+				F4D3DE5C2A9FBE8500059D86 /* UserView.swift in Sources */,
+				F4F4C712282C36E7008452FF /* StatusRow.swift in Sources */,
+				F4C84AE327F4F90500CA0639 /* FuelRow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3402C27DFD3DE0003CEB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D3403527DFD3DE0003CEB8 /* Fuel_CompenseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D3403627DFD3DE0003CEB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D3404127DFD3DE0003CEB8 /* Fuel_CompenseUITestsLaunchTests.swift in Sources */,
+				F4D3403F27DFD3DE0003CEB8 /* Fuel_CompenseUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4D3403227DFD3DE0003CEB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4D3401F27DFD3DD0003CEB8 /* Fuel Compense */;
+			targetProxy = F4D3403127DFD3DE0003CEB8 /* PBXContainerItemProxy */;
+		};
+		F4D3403C27DFD3DE0003CEB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4D3401F27DFD3DD0003CEB8 /* Fuel Compense */;
+			targetProxy = F4D3403B27DFD3DE0003CEB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F41E1B6E27E6692800915F26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F41E1B6D27E6692800915F26 /* en */,
+				F42F092A2822DEF6007E2AC3 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4D3404227DFD3DE0003CEB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F4D3404327DFD3DE0003CEB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4D3404527DFD3DE0003CEB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fuel Compense/Preview Content\"";
+				DEVELOPMENT_TEAM = WJ65G7C839;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-Compense";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4D3404627DFD3DE0003CEB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fuel Compense/Preview Content\"";
+				DEVELOPMENT_TEAM = WJ65G7C839;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-Compense";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F4D3404827DFD3DE0003CEB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-CompenseTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fuel Compense.app/Fuel Compense";
+			};
+			name = Debug;
+		};
+		F4D3404927DFD3DE0003CEB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-CompenseTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fuel Compense.app/Fuel Compense";
+			};
+			name = Release;
+		};
+		F4D3404B27DFD3DE0003CEB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-CompenseUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fuel Compense";
+			};
+			name = Debug;
+		};
+		F4D3404C27DFD3DE0003CEB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upm.dit.Fuel-CompenseUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fuel Compense";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4D3401B27DFD3DD0003CEB8 /* Build configuration list for PBXProject "Fuel Compense" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D3404227DFD3DE0003CEB8 /* Debug */,
+				F4D3404327DFD3DE0003CEB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D3404427DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel Compense" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D3404527DFD3DE0003CEB8 /* Debug */,
+				F4D3404627DFD3DE0003CEB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D3404727DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel CompenseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D3404827DFD3DE0003CEB8 /* Debug */,
+				F4D3404927DFD3DE0003CEB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D3404A27DFD3DE0003CEB8 /* Build configuration list for PBXNativeTarget "Fuel CompenseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D3404B27DFD3DE0003CEB8 /* Debug */,
+				F4D3404C27DFD3DE0003CEB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4D3401827DFD3DD0003CEB8 /* Project object */;
+}
