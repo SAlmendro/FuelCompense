@@ -24,13 +24,13 @@ public class UserController {
 
     @PostMapping(value = "/new")
     public User createUser(@RequestBody UserDTO userDTO) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha llamado al endpoint de crear usuario con el username: " + userDTO.getUserName());
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado crear usuario con el username: " + userDTO.getUserName());
         return this.userService.createUser(userDTO);
     }
 
     @PostMapping(value = "/follow/{followedUserName}")
     public List<String> follow(@RequestBody String followerUserName, @PathVariable("followedUserName") String followedUserName) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha llamado al endpoint de seguir a un usuario. Seguidor: " + followerUserName + " Seguido: " + followedUserName);
+        Logger.getAnonymousLogger().log(Level.WARNING, followerUserName + " ha solicitado seguir al usuario " + followedUserName);
         return this.userService.follow(followerUserName, followedUserName);
     }
 
@@ -44,12 +44,6 @@ public class UserController {
     public List<String> findAllFollowers(@PathVariable("followedUserName") String followedUserName) {
         Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado la lista de seguidores para el usuario " + followedUserName);
         return this.userService.findAllFollowers(followedUserName);
-    }
-
-    @GetMapping
-    public List<UserDTO> findAll() {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado la lista completa de usuarios");
-        return userMapperOut.listMap(this.userService.findAll());
     }
 
     @GetMapping(value = "/{userName}")
@@ -66,7 +60,7 @@ public class UserController {
 
     @DeleteMapping("/unfollow/{followedUserName}")
     public Boolean unfollow(@RequestBody String followerUserName, @PathVariable("followedUserName") String followedUserName) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado que el usuaario " + followerUserName + " deje de seguir al usuario " + followedUserName);
+        Logger.getAnonymousLogger().log(Level.WARNING, "Se ha solicitado que el usuario " + followerUserName + " deje de seguir al usuario " + followedUserName);
         return this.userService.unfollow(followerUserName, followedUserName);
     }
 

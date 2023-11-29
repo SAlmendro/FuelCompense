@@ -26,14 +26,8 @@ public class StatusController {
 
     @PostMapping(value = "/new")
     public StatusDTO createStatus(@RequestBody StatusDTO statusDTO) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se esta intentando crear un estado. Usuario " + statusDTO.getAuthUserName());
+        Logger.getAnonymousLogger().log(Level.WARNING, statusDTO.getAuthUserName() + " ha solicitado crear un estado.");
         return this.statusMapperOut.map(this.statusService.createStatus(statusDTO));
-    }
-
-    @GetMapping
-    public List<StatusDTO> findAll() {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se han buscado todos los estados");
-        return this.statusMapperOut.listMap(this.statusService.findAll());
     }
 
     @GetMapping(value = "/{id}")
@@ -61,7 +55,7 @@ public class StatusController {
     }
 
     @DeleteMapping(value = "/deleteAll/{userName}")
-    public Boolean deleteStatus(@PathVariable("userName") String userName) {
+    public Boolean deleteAllStatuses(@PathVariable("userName") String userName) {
         Logger.getAnonymousLogger().log(Level.WARNING, "Se intenta borrar todos los estados de  " + userName);
         try {
             this.statusService.deleteAllStatus(userName);
@@ -74,7 +68,7 @@ public class StatusController {
 
     @PostMapping(value = "/fav/{statusId}")
     public Boolean updateFav(@PathVariable("statusId") Long statusId, @RequestBody String userName) {
-        Logger.getAnonymousLogger().log(Level.WARNING, "Se quiere cambiar el estado fav por " + userName + " en el estado " + statusId);
+        Logger.getAnonymousLogger().log(Level.WARNING, userName + " solicita cambiar su fav en el estado " + statusId);
         return this.statusService.changeFavorite(statusId, userName).get();
     }
 

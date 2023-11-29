@@ -25,10 +25,6 @@ public class CompensationService {
         this.userService = userService;
     }
 
-    public List<Compensation> findAll() {;
-        return this.compensationRepository.findAll();
-    }
-
     public Compensation createCompensation(CompensationDTO compensationDTO, String userName) {
         Compensation compensation = compensationMapperIn.map(compensationDTO);
         compensation.setUser(userService.findUserByUserName(userName));

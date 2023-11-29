@@ -27,10 +27,6 @@ public class StatusService {
         this.userService = userService;
     }
 
-    public List<Status> findAll() {;
-        return this.statusRepository.findAll();
-    }
-
     public Status findById(Long id) {
         Status status = this.statusRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Estado no encontrado"));
         return status;

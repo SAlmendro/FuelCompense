@@ -27,10 +27,6 @@ public class RefillService {
         this.userRepository = userRepository;
     }
 
-    public List<Refill> findAll() {;
-        return this.refillRepository.findAll();
-    }
-
     public Refill createRefill(RefillDTO refillDTO, String userName) {
         Refill refill = refillMapperIn.map(refillDTO);
         refill.setUser(userService.findUserByUserName(userName));
