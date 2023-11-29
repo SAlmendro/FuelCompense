@@ -37,6 +37,9 @@ struct CompenseModal: View {
                     if ((!editMode && CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)) ||
                         (editMode && (Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons) && (CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)))) {
                         HStack{
+                            if (status == "") {
+                                Spacer()
+                            }
                             if (editMode) {
                                 Button(action: {
                                     carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
@@ -66,39 +69,43 @@ struct CompenseModal: View {
                                 }) {Text(String(localized: "add"))}
                                     .padding(.horizontal)
                             }
-                            Spacer()
-                            if (editMode) {
-                                Button(action: {
-                                    let status = Status(text: status, authUserName: userModel.user.userName)
-                                    carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
-                                    carbonModel.compensations[index].date = date
-                                    DispatchQueue.global().async {
-                                        carbonModel.updateCompensation(compensation: carbonModel.compensations[index])
-                                        statusModel.publish(status: status)
-                                    }
-                                    let compensationsTemp = carbonModel.compensations
-                                    let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
-                                        return com0 < com1
-                                    })
-                                    carbonModel.compensations = compensationsSorted
-                                    self.showCompenseModal = false
-                                }) {Text(String(localized: "saveAndPublish"))}
-                                    .padding(.horizontal)
+                            if (status == "") {
+                                Spacer()
                             } else {
-                                Button(action: {
-                                    let status = Status(text: status, authUserName: userModel.user.userName)
-                                    let compensation = Compensation(
-                                        comment: comment,
-                                        date: date,
-                                        tons: Float(CO2tons.commaToPoint())!
-                                    )
-                                    DispatchQueue.global().async {
-                                        carbonModel.publishCompensation(compensation: compensation)
-                                        statusModel.publish(status: status)
-                                    }
-                                    self.showCompenseModal = false
-                                }) {Text(String(localized: "addAndPublish"))}
-                                    .padding(.horizontal)
+                                Spacer()
+                                if (editMode) {
+                                    Button(action: {
+                                        let status = Status(text: status, authUserName: userModel.user.userName)
+                                        carbonModel.compensations[index].tons = Float(CO2tons.commaToPoint())!
+                                        carbonModel.compensations[index].date = date
+                                        DispatchQueue.global().async {
+                                            carbonModel.updateCompensation(compensation: carbonModel.compensations[index])
+                                            statusModel.publish(status: status)
+                                        }
+                                        let compensationsTemp = carbonModel.compensations
+                                        let compensationsSorted = compensationsTemp.sorted(by: { (com0: Compensation, com1: Compensation) -> Bool in
+                                            return com0 < com1
+                                        })
+                                        carbonModel.compensations = compensationsSorted
+                                        self.showCompenseModal = false
+                                    }) {Text(String(localized: "saveAndPublish"))}
+                                        .padding(.horizontal)
+                                } else {
+                                    Button(action: {
+                                        let status = Status(text: status, authUserName: userModel.user.userName)
+                                        let compensation = Compensation(
+                                            comment: comment,
+                                            date: date,
+                                            tons: Float(CO2tons.commaToPoint())!
+                                        )
+                                        DispatchQueue.global().async {
+                                            carbonModel.publishCompensation(compensation: compensation)
+                                            statusModel.publish(status: status)
+                                        }
+                                        self.showCompenseModal = false
+                                    }) {Text(String(localized: "addAndPublish"))}
+                                        .padding(.horizontal)
+                                }
                             }
                         }
                         .buttonStyle(BorderlessButtonStyle())

@@ -55,6 +55,9 @@ struct FuelModal: View {
                              Float(total.commaToPoint()) != fuelModel.refills[index].total)) ||
                             (!editMode && odometer != "" && liters != "" && total != "") {
                             HStack{
+                                if (status == "") {
+                                    Spacer()
+                                }
                                 if (editMode) {
                                     Button(action: {
                                         let id = fuelModel.refills[index].id
@@ -97,56 +100,60 @@ struct FuelModal: View {
                                     }) {Text(String(localized: "add"))}
                                         .padding(.horizontal)
                                 }
-                                Spacer()
-                                if (editMode) {
-                                    Button(action: {
-                                        let status = Status(text: status, authUserName: userModel.user.userName)
-                                        let id = fuelModel.refills[index].id
-                                        fuelModel.refills[index].odometer = Int(odometer)!
-                                        fuelModel.refills[index].liters = Float(liters.commaToPoint())!
-                                        fuelModel.refills[index].eurosLiter = (Float(total.commaToPoint())!)/(Float(liters.commaToPoint())!)
-                                        fuelModel.refills[index].total = Float(total.commaToPoint())!
-                                        fuelModel.refills[index].date = date
-                                        fuelModel.refills[index].fullTank = full
-                                        fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
-                                        DispatchQueue.global().async {
-                                            fuelModel.updateRefill(refill: fuelModel.refills[index])
-                                            statusModel.publish(status: status)
-                                        }
-                                        let refillsTemp = fuelModel.refills
-                                        let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
-                                            return ref0 > ref1
-                                        })
-                                        fuelModel.refills = refillsSorted
-                                        
-                                        index = fuelModel.refills.firstIndex(where: {$0.id == id}).unsafelyUnwrapped
-                                        
-                                        self.showFuelModal = false
-                                    }) {Text(String(localized: "saveAndPublish"))}
-                                        .padding(.horizontal)
+                                if (status == "") {
+                                    Spacer()
                                 } else {
-                                    Button(action: {
-                                        if ((odometer == "") || (liters == "") || (total == "")) {
-                                            self.showFuelModal = false
-                                        } else {
+                                    Spacer()
+                                    if (editMode) {
+                                        Button(action: {
                                             let status = Status(text: status, authUserName: userModel.user.userName)
-                                            let refill = Refill(
-                                                date: date,
-                                                eurosLiter: (Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1),
-                                                fullTank: full,
-                                                liters: Float(liters.commaToPoint())!,
-                                                odometer: Int(odometer)!,
-                                                total: Float(total.commaToPoint())!,
-                                                totalCarbon: (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
-                                            )
+                                            let id = fuelModel.refills[index].id
+                                            fuelModel.refills[index].odometer = Int(odometer)!
+                                            fuelModel.refills[index].liters = Float(liters.commaToPoint())!
+                                            fuelModel.refills[index].eurosLiter = (Float(total.commaToPoint())!)/(Float(liters.commaToPoint())!)
+                                            fuelModel.refills[index].total = Float(total.commaToPoint())!
+                                            fuelModel.refills[index].date = date
+                                            fuelModel.refills[index].fullTank = full
+                                            fuelModel.refills[index].totalCarbon = (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
                                             DispatchQueue.global().async {
-                                                fuelModel.publishRefill(refill: refill)
+                                                fuelModel.updateRefill(refill: fuelModel.refills[index])
                                                 statusModel.publish(status: status)
                                             }
+                                            let refillsTemp = fuelModel.refills
+                                            let refillsSorted = refillsTemp.sorted(by: { (ref0: Refill, ref1: Refill) -> Bool in
+                                                return ref0 > ref1
+                                            })
+                                            fuelModel.refills = refillsSorted
+                                            
+                                            index = fuelModel.refills.firstIndex(where: {$0.id == id}).unsafelyUnwrapped
+                                            
                                             self.showFuelModal = false
-                                        }
-                                    }) {Text(String(localized: "addAndPublish"))}
-                                        .padding(.horizontal)
+                                        }) {Text(String(localized: "saveAndPublish"))}
+                                            .padding(.horizontal)
+                                    } else {
+                                        Button(action: {
+                                            if ((odometer == "") || (liters == "") || (total == "")) {
+                                                self.showFuelModal = false
+                                            } else {
+                                                let status = Status(text: status, authUserName: userModel.user.userName)
+                                                let refill = Refill(
+                                                    date: date,
+                                                    eurosLiter: (Float(total.commaToPoint()) ?? 0)/(Float(liters.commaToPoint()) ?? 1),
+                                                    fullTank: full,
+                                                    liters: Float(liters.commaToPoint())!,
+                                                    odometer: Int(odometer)!,
+                                                    total: Float(total.commaToPoint())!,
+                                                    totalCarbon: (Float(liters.commaToPoint())!*globalsModel.globals.carbonPerLiter)
+                                                )
+                                                DispatchQueue.global().async {
+                                                    fuelModel.publishRefill(refill: refill)
+                                                    statusModel.publish(status: status)
+                                                }
+                                                self.showFuelModal = false
+                                            }
+                                        }) {Text(String(localized: "addAndPublish"))}
+                                            .padding(.horizontal)
+                                    }
                                 }
                             }
                             .buttonStyle(BorderlessButtonStyle())
