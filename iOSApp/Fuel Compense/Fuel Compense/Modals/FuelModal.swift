@@ -48,12 +48,14 @@ struct FuelModal: View {
                         TextField(String(localized: "status"), text: $status)
                     }
                     Section {
-                        if (editMode && 
-                            (odometer != "" || liters != "" || total != "") && 
-                            (Int(odometer) != fuelModel.refills[index].odometer ||
-                             Float(liters.commaToPoint()) != fuelModel.refills[index].liters ||
-                             Float(total.commaToPoint()) != fuelModel.refills[index].total)) ||
-                            (!editMode && odometer != "" && liters != "" && total != "") {
+                        if ((editMode &&
+                             (odometer != "" && liters != "" && total != "") &&
+                             (Int(odometer) != fuelModel.refills[index].odometer ||
+                              Float(liters.commaToPoint()) != fuelModel.refills[index].liters ||
+                              Float(total.commaToPoint()) != fuelModel.refills[index].total ||
+                              full != fuelModel.refills[index].fullTank ||
+                              date != fuelModel.refills[index].date)) ||
+                            (!editMode && odometer != "" && liters != "" && total != "")) {
                             HStack{
                                 if (status == "") {
                                     Spacer()

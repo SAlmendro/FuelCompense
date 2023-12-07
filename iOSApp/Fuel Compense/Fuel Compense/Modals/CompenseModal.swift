@@ -34,8 +34,12 @@ struct CompenseModal: View {
                     TextField(String(localized: "status"), text: $status)
                 }
                 Section {
-                    if ((!editMode && CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)) ||
-                        (editMode && (Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons) && (CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)))) {
+                    if ((editMode &&
+                        (CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0)) &&
+                        ((Float(CO2tons.commaToPoint()) != carbonModel.compensations[index].tons) ||
+                         (date != carbonModel.compensations[index].date) ||
+                         (comment != carbonModel.compensations[index].comment))) ||
+                        (!editMode && CO2tons != "" && Float(CO2tons.commaToPoint()) != Float(0))) {
                         HStack{
                             if (status == "") {
                                 Spacer()

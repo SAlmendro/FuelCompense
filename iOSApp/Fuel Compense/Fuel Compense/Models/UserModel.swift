@@ -159,8 +159,10 @@ class UserModel : ObservableObject {
             }
             
             if registerCorrect {
-                self.user = User(userName: userName)
-                self.notLoggedUser = false
+                DispatchQueue.main.async {
+                    self.user = User(userName: userName)
+                    self.notLoggedUser = false
+                }
             }
             
             completion(registerCorrect) // Llamamos al bloque de finalización con el valor actual de registerCorrect

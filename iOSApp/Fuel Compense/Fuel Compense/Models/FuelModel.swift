@@ -48,7 +48,7 @@ struct Refill: Codable, Comparable {
 
         let dateString = try container.decode(String.self, forKey: .date)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         if let date = dateFormatter.date(from: dateString) {
             self.date = date
         } else {
@@ -125,7 +125,7 @@ class FuelModel : ObservableObject {
     
     init(globalsModel: GlobalsModel, userModel: UserModel){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         encoder.dateEncodingStrategy = .formatted(dateFormatter)
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         userDef = UserDefaults.standard
@@ -315,13 +315,12 @@ class FuelModel : ObservableObject {
     }
     
     public func getAverageEmissions() -> Float {
-        let totalEmissions = getTotalEmissions()
+        var totalEmissions = getTotalEmissions()
         if totalEmissions == 0 {
             return Float(0)
         }
-        print("total emissions: \(totalEmissions)")
+        totalEmissions = totalEmissions - refills[refills.count-1].totalCarbon
         let totalKm = getTotalKm()
-        print("total km: \(totalKm)")
         if totalKm < 1 {
             return Float(0)
         }
@@ -364,7 +363,8 @@ class FuelModel : ObservableObject {
         if totalKm < 1 {
             return Float(0)
         }
-        return (getTotalConsume()/Float(totalKm))*100
+        let totalLiters = getTotalConsume() - refills[refills.count-1].liters
+        return (totalLiters/Float(totalKm))*100
     }
     
     public func getAverageEur() -> Float {
@@ -372,7 +372,8 @@ class FuelModel : ObservableObject {
         if totalKm < 1 {
             return Float(0)
         }
-        return (getTotalEur()/Float(totalKm))*100
+        let totalEur = getTotalEur() - refills[refills.count-1].total
+        return (totalEur/Float(totalKm))*100
     }
     
     public func getNumberOfFullTanks() -> Int {
@@ -541,6 +542,7 @@ class FuelModel : ObservableObject {
                     let refillsSorted = refillsRetrieved.sorted(by: { (ref0, ref1) in
                         return ref0 > ref1
                     })
+                    print(refillsSorted)
                     DispatchQueue.main.async {
                         self.refills = refillsSorted
                     }

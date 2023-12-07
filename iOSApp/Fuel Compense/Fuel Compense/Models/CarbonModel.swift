@@ -39,7 +39,7 @@ struct Compensation: Codable, Comparable {
         
         let dateString = try container.decode(String.self, forKey: .date)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         if let date = dateFormatter.date(from: dateString) {
             self.date = date
         } else {
@@ -98,7 +98,7 @@ class CarbonModel : ObservableObject {
     
     init(globalsModel: GlobalsModel, userModel: UserModel){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         encoder.dateEncodingStrategy = .formatted(dateFormatter)
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         userDef = UserDefaults.standard

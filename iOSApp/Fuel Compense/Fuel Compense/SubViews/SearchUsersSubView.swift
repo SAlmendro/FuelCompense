@@ -23,6 +23,7 @@ struct SearchUsersSubView: View {
 
             Button(action: {
                 searchResults = userModel.searchUsers(keyword: keyword)
+                searchResults.removeAll(where: {$0 == userModel.user.userName})
             }) {
                 Text(String(localized: "search"))
                     .padding()
