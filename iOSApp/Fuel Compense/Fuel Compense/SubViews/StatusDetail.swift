@@ -93,9 +93,10 @@ struct StatusDetail: View {
                                         DispatchQueue.global().async {
                                             statusModel.getSubscribedStatuses()
                                         }
-                                        self.mode.wrappedValue.dismiss()
                                     } else {
                                         print("He fallado borrando un estado")
+                                    }
+                                    DispatchQueue.main.async {
                                         self.mode.wrappedValue.dismiss()
                                     }
                                 }
